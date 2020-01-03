@@ -66,4 +66,43 @@ Es importante considerar que hay múltiples guías de estilo y al final sólo son e
 Mi recomendación es que cada que entren a un proyecto sigan la guía de estilos que está usando el proyecto y que encuentren una guía que les guste para sus proyectos personales o proyectos nuevos.
 Y recuerden que todo el código en un proyecto debería parecer que lo escribió una sola persona, sin importar cuántas personas hayan contribuido.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+#4 Variables: Strings 
+Hubo que revisar la sintaxis de las eclaraciones ya que manejan camelCase ademas de que este bien escritas las palabras.
+
+Los metodos o funciones predeterminadas cuentan con dos paréntesis para ser invocadas: toUpperCase() toLowerCase() chartAt() 
+Y las propiedades que invocamos no llevan los paréntesis: nombre.length
+Metodos llevan parentesis al final
+Propiedades NO usan paréntesis
+
+Si asignamos un valor (otro nombre) a la variable nombre no sera posible que se actualice la variable que estaba contando en primer lugar la cantidad de letras pues tendra almacenado aún el valor anterior y si queremos mostrar el otro se requiere actualizar también esa variable que cuenta para que adopte el nuevo conteo de letras de nombre.
+
+Se puede concatenar por medio de las comillas invertidas a esto de le llama interpolación de texto dentro de las comillas invertidas  `${variable}` dentro de estas podemos separar con un espacio normal y así se vera en la interfaz, podemos agregar funciones dentro de estos corchetes a las variables de JavaScript `${variable.toUpperCase()}`
+
+str es una abreviación para un string
+
+enlaces::::::::::========>
+https://tutobasico.com/convenciones-javascript/    == Este enlace meciona algunas buenas practicas al momento de escribir código JavaScrip como:
+	& Usar guión  bajo delante de variables o propiedades privadas
+	& La primera letra en mayúscula para los nombres de clases y constructores (PascalCase) 
+
+https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/String/substr#Par.C3.A1metros
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substr
+
+**Interpolación de texto :: **
+http://librosweb.es/tutorial/las-nuevas-cadenas-de-texto-de-javascript-6/
+
+comentario::::::::::::::::==============>
+var nombre=‘Francisco’, apellido='Velasco’
+console.log(‘Mi nombre es ’ + nombre +’ y apellido es: ’ + apellido);
+var nombreEnMayusculas = nombre.toUpperCase()
+var apellidoEnMinusculas = apellido.toLowerCase()
+var primerletranombre = nombre.charAt(0)
+var cantidadletrasnombre= nombre.length
+var nombreCompleto = nombre + ’ ’ +apellido
+var nombreCompleto2 = ${nombre} ${apellido.toUpperCase()}
+var str = nombre.substr(1,2)
+var str = nombre.substr(8,8)
+var str = nombre.substr(7,8)
