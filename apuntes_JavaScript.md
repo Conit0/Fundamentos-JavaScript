@@ -139,3 +139,37 @@ JS Un lenguaje compilado o interpretado = https://medium.com/@pharesdiego/javasc
 JS Compilado o Interpretado? <- Este lo escribí yo xD = 
 Aquí dejo una charla interesante de la JSConf 2017 donde explican un poco mas sobre los Javascript Engines: https://www.youtube.com/watch?v=p-iiEDtpy6I&feature=youtu.be
 Mas detalladamente explicado en la serie de libros YDKJS : https://github.com/getify/You-Dont-Know-JS
+
+#7 El alcance de las funciones
+Toda variable que no este definida dentro de una función va estar definida dentro del alcance global y vamos a poder acceder a ella dentro del objeto global es decir dentro del navegador (DOM)
+
+enlaces:::::::::::::::==========>
+https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/String#M%C3%A9todos
+
+comentarios::::::::::::::::::::::::================>
+¿En la práctica que beneficios tiene trabajar con variables locales o globales?
+
+En react no sientes tanto ese beneficio debido al scope de “.this”, todo permanece dentro del scope de la clase bajo this.
+Cuando usas react hooks todo react se convierte en javascript plano, y pierdes el scope de this. En ese punto ya puedes pensar en variables locales y globales, peeeeero:
+Nunca vas a ocupar este feature en react. Asi no funciona react. Para eso usar los props si quieres que una variable pase entre componentes, los states son para manejar variables locales, y una variable local la manejas con tecnologias como redux.
+Si usas javascript con jquery en un entorno más tradicional, si usas variables globales y locales de la misma manera que redux cre un estado único. Muchos lenguajes orientados a objetos como PHP o C# usan la caracteristica de tener diferentes scopes.
+
+comentarios::::::::::::::::::::::::=====================>
+Ámbito
+En JavaScript, las instrucciones que se encuentran fuera de una función se considera que están en el ámbito global. Este es el espacio en el que escribimos las instrucciones hasta que se define una función u otra clase de estructura de datos. Las variables definidas en el ámbito global tienen un alcance global y, por lo tanto, se pueden usar desde cualquier parte del código, pero las declaradas dentro de las funciones tienen un alcance local, lo que significa que solo se pueden usar dentro de la función en la que se han declarado. Esta es otra ventaja de las funciones; son lugares especiales en el código donde podemos almacenar información a la que no se podrá acceder desde otras partes del código. Esta segregación nos ayuda a evitar generar duplicados que pueden conducir a errores, como sobrescribir el valor de una variable cuando el valor anterior aún era requerido por la aplicación.
+El siguiente ejemplo ilustra cómo se definen los diferentes ámbitos y qué debemos esperar cuando accedemos desde un ámbito a variables que se han definido en un ámbito diferente.
+
+var variableGlobal = 5;
+functionmifuncion(){
+ var variableLocal = "El valor es ";
+ alert(variableLocal + variableGlobal); // "El valor es 5"
+}
+mifuncion();
+alert(variableLocal); 
+
+Debido a que las variables declaradas en diferentes ámbitos se consideran diferentes variables, dos variables con el mismo nombre, una en el ámbito global y otra en el ámbito local (dentro de una función), se considerarán dos variables distintas (se les asigna un espacio de memoria diferente).
+
+Extraido del libro “El gran libro de HTML5 CSS3 y JavaScript 3ed” J.D Gauchat.
+
+comentario::::::::::::::::::::::::=============>
+Recuerda que de todas maneras no todo es escribir la menor cantidad de líneas, es acerca de hacer el código entendible. Y recuerda: no escribimos código para comunicarnos con las máquinas, escribimos código para comunicarnos entre desarrolladores
