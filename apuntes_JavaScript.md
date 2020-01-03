@@ -106,3 +106,18 @@ var nombreCompleto2 = ${nombre} ${apellido.toUpperCase()}
 var str = nombre.substr(1,2)
 var str = nombre.substr(8,8)
 var str = nombre.substr(7,8)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+#5 Variables: números
+Modulo global de matemáticas (Math)
+Math.round = para redondear el número decimal con el que estamos interactuando.
+toFixed(n) = con este metodo tomamos n cantidad de decimales, y al parecer también los convierte en string 
+parseFloat() se usa para convertir a número flotante o para especificarlo, donde <<parse>> significa análisis sintáctico o transformar, leer, asignar (de ahí la expreción parsear) y <<Float>> representa el punto flotante.
+
+Es común que en algunas ocaciones olvidemos algún caracter y nos arroje un error de variable no definida. Hay que tener en cuenta la precisión con la que calcula los valores definidos dentro de las variables.
+
+enlaces::::::::::::::::::::==========>
+http://www.etnassoft.com/2014/06/10/let-la-nueva-forma-de-declarar-variables-en-javascript/
+http://www.etnassoft.com/2016/11/16/guia-definitiva-del-recolector-de-basura-en-javascript/
