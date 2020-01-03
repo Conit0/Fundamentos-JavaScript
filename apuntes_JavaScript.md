@@ -173,3 +173,51 @@ Extraido del libro “El gran libro de HTML5 CSS3 y JavaScript 3ed” J.D Gauchat.
 
 comentario::::::::::::::::::::::::=============>
 Recuerda que de todas maneras no todo es escribir la menor cantidad de líneas, es acerca de hacer el código entendible. Y recuerda: no escribimos código para comunicarnos con las máquinas, escribimos código para comunicarnos entre desarrolladores
+
+#8 Objetos
+En el caso que tuvieramos que obtener más nombres como en el ejemplo anterior, podriasmos seguir declarando variables para cada nombre nuevo y colocar dentro de los parametro de la función el nombre que le hayamos dado a cada variable para que impirmiera el resultado. Para evitar extendernos demaciado y resulta más prolijo empezar a usar los  <<objetos>> 
+
+{} esto delimita un objeto; un objeto en programación es la representacion de caractericticas que hay en común con los entes de la aparente realidad.
+
+estructura de un objeto
+var objeto = {
+    clave: 'valor',
+    clave: 'valor',
+    key: value
+}
+
+
+#8 Objetos
+
+
+enlaces:::::::::::::::::::===============>
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
+https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Trabajando_con_objectos
+
+comentarios::::::::::::::::::===============>
+Al momento de declarar los objetos, al no tener una clase como base, si queremos seguir un estándar, ¿se le debería asignar un nombre que inicie con mayúscula (como una clase) o seguir una minúscula (como variable con camel case)? Gracias!
+-------------------------------------
+En los objetos de JS se utiliza camel case.
+En el nuevo estandar de ECMAScript 6 ya se soportan clases y en estas si es necesario -por buena practica- iniciarlas con mayuscula para diferenciar que se refiere a una clase.
+
+comentarios::::::::::::::::::::::::=============>
+¿Qué función cumplen los parámetros dentro de las funciones?
+-------------------
+Los parámetros en las funciones son datos que les pasamos para que realicen alguna acción con ella, por ejemplo si eres un diseñador y tu función es diseñar pero debo pasarte un parámetro que es la idea te la pasaría de la siguiente manera:
+functiondesigner (idea) {
+  makeAnAwesomeDesign(idea)
+}
+-----------------
+Los parámetros son la información que reciben las funciones para calcular y entregar un resultado.
+functionadd(n1, n2) {
+  return n1 + n2;
+}
+Los argumentos son la información que enviamos a las funciones para que la procesen y nos devuelvan un resultado.
+const result = add(1, 2);
+Dicho de otra forma: los argumentos se envían y los parámetros se reciben.
+
+comentario:::::::::::::::::::::==============>
+La declaración de tu objeto esta bien. Solo te aconsejaría:
+
+Usar const en lugar de var. Siempre que no tengas que reasignar de nuevo un valor a tu variable. Para ese caso usa let le falto poner los backticks en el return:
+return `Mi nombre completo es ${this.nombre} ${this.apellido}}`
