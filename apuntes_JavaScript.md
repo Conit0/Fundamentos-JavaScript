@@ -121,3 +121,21 @@ Es común que en algunas ocaciones olvidemos algún caracter y nos arroje un error
 enlaces::::::::::::::::::::==========>
 http://www.etnassoft.com/2014/06/10/let-la-nueva-forma-de-declarar-variables-en-javascript/
 http://www.etnassoft.com/2016/11/16/guia-definitiva-del-recolector-de-basura-en-javascript/
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+#6 Funciones
+fracciones de código reutilizable, podemos asignarle parametros entre los paréntesis para hacerla reutilizable, podemos alterar el orden de las variables lo que resultaria confuso pero se puede, pues tomara el primer valor para la variable que se haya definido primero dentro de los parametros asignados, si obviamos alguna variable el compilador tratara de ejecutarla así tenga que mostrar undefined.
+
+enlaces:::::::::::===========>
+https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Palabras_Reservadas
+
+comentario::::::::::::::::::================>
+Falso Sacha!! En realidad Javascript es compilado no interpretado como mencionaste en el minuto 7:52, JS utiliza la técnica JIT (Just In Time). Cumple con las características de los lenguajes compilados con la excepción de no exportar un build ejecutable. Como el browser es un interprete de HTML y CSS suele confundirse, pero hay que recordar que para correr JS en el navegador (o correr JS en general) es necesario un Engine.
+
+Para mas info sugiero leer los siguientes Links:
+JS Un lenguaje compilado o interpretado = https://medium.com/@pharesdiego/javascript-un-lenguaje-compilado-o-interpretado-962ee405e123
+JS Compilado o Interpretado? <- Este lo escribí yo xD = 
+Aquí dejo una charla interesante de la JSConf 2017 donde explican un poco mas sobre los Javascript Engines: https://www.youtube.com/watch?v=p-iiEDtpy6I&feature=youtu.be
+Mas detalladamente explicado en la serie de libros YDKJS : https://github.com/getify/You-Dont-Know-JS
