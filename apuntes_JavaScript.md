@@ -1,4 +1,5 @@
 2. Primeros pasos en JavaScript
+
 #3 Variables
 Los lenguajes de programación pueden clasificarse según su tipado o por el tipo de datos que aceptan sus variables. Tenemos lenguajes de tipado dinámico o estático y aquellos de tipado fuerte o débil (también conocidos como no-tipados) 
 
@@ -140,6 +141,9 @@ JS Compilado o Interpretado? <- Este lo escribí yo xD =
 Aquí dejo una charla interesante de la JSConf 2017 donde explican un poco mas sobre los Javascript Engines: https://www.youtube.com/watch?v=p-iiEDtpy6I&feature=youtu.be
 Mas detalladamente explicado en la serie de libros YDKJS : https://github.com/getify/You-Dont-Know-JS
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 #7 El alcance de las funciones
 Toda variable que no este definida dentro de una función va estar definida dentro del alcance global y vamos a poder acceder a ella dentro del objeto global es decir dentro del navegador (DOM)
 
@@ -174,6 +178,9 @@ Extraido del libro “El gran libro de HTML5 CSS3 y JavaScript 3ed” J.D Gauchat.
 comentario::::::::::::::::::::::::=============>
 Recuerda que de todas maneras no todo es escribir la menor cantidad de líneas, es acerca de hacer el código entendible. Y recuerda: no escribimos código para comunicarnos con las máquinas, escribimos código para comunicarnos entre desarrolladores
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 #8 Objetos
 En el caso que tuvieramos que obtener más nombres como en el ejemplo anterior, podriasmos seguir declarando variables para cada nombre nuevo y colocar dentro de los parametro de la función el nombre que le hayamos dado a cada variable para que impirmiera el resultado. Para evitar extendernos demaciado y resulta más prolijo empezar a usar los  <<objetos>> 
 
@@ -188,7 +195,11 @@ var objeto = {
 
 
 #8 Objetos
+El concepto de Objetos en JavaScript puede entenderse con objetos tangibles de la vida real.
 
+Un objeto es un entidad independiente con propiedades y tipos. Compáralo con una taza, por ejemplo. Una taza es un objeto con propiedades. Una taza tiene un color, un diseño, tiene peso y un material con la que fue hecha, etc. De la misma manera, los objetos de JavaScript pueden tener propiedades, las cuales definen sus características.
+
+JavaScript está diseñado sobre un paradigma simple basado en objetos. Un objeto es una colección de propiedades, y una propiedad es una asociación entre un nombre (o clave) y un valor. Un valor de una propiedad puede ser una función, en cuyo caso la propiedad es conocida. Además de los objetos que están predefinidos en el navegador, puedes definir tus propios objetos.
 
 enlaces:::::::::::::::::::===============>
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
@@ -221,3 +232,104 @@ La declaración de tu objeto esta bien. Solo te aconsejaría:
 
 Usar const en lugar de var. Siempre que no tengas que reasignar de nuevo un valor a tu variable. Para ese caso usa let le falto poner los backticks en el return:
 return `Mi nombre completo es ${this.nombre} ${this.apellido}}`
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+#9 Desestructurar objetos
+Esta es una de las nuevas caractaristicas del estandar ES6 (EcmaScript 2015) y debido a su propia estructura, puede ser extremadamente flexibley, gracias a esa versatilidad, toda nueva característica puede ser explotada hasta sus límites teóricos.
+Esto trata de incorporar lo mejor de otros lenjuages y de manera paulatina a JavaScript
+
+La desestructuración podemos definirla como una expresión que permite asignar valores a nombres conforme a una estructura de tabla dada. Ejemplo con array:
+
+[ myVarOne, myVarTwo ] = [ 'foo', 'bar' ];
+ 
+console.info( myVarOne );  //foo
+console.info( myVarTwo ); //bar
+
+Como ocurre con cualquier variable en Javascript, ésta ha de ser declarada para evitar contaminar el espacio global. Durante la desestructuración, la declaración puede realizarse tanto en la misma instrucción como con anterioridad. Ejemplo con arrays:
+
+var a, b;
+let c, d;
+[ a, b, c, d ] = [ 'La', 'donna', 'e', 'mobile' ];
+var [ e, f ] = [ 'cual', 'piuma' ];
+let [ g, h ] = [ 'al', 'vento' ];
+console.info( a, b, c, d, e, f, g, h );
+// La donna e mobile cual piuma al vento
+
+EJEMPLOS CON OBJETOS
+Es posible usar objetos sólo con remplazar los corchetes [] con llaves {} 
+
+var obj = {
+    foo: 'Hello',
+    bar: 'World'
+};
+var { foo, bar } = obj;
+console.info( foo, bar ); // Hello World
+
+Cuando el objeto no contiene las claves que solicitamos, se les asocia automaticamente el valor por defecto para estos casos 'undefined'
+var { a, b } = obj;
+console.info( a, b ); // undefined undefined
+
+Si las varables ya estan declaradas, no podremos usar sólo llaves para indicar el primer conjunto
+var obj = {
+       foo: 'Hello',
+       bar: 'World'
+};
+var foo, bar;
+{ foo, bar } = obj //SyntaxError
+
+Este error se da porque las llaves estan indicando un bloque/contexto (esta estructura el valida en JavaScript) para que funcione en este caso tenemos que enmarcar la instrucción entre paréntesis:
+( { foo, bar } = obj );
+console.info( foo, bar ); // Hello World
+
+Se pueden ignorar valores en los dos conjuntos por medio de un elisión (esto se e llama a dos comas consecutivas que no encierren ningún valor):
+var [ a, , b, , c ] = [ 'la', 'donna', 'e', 'mobile', 'cual', 'piuma' ];
+console.info( a, b, c ); // la e cual
+
+Ignorando valores con la elisión en las dos partes del conjunto:
+var [ , , , , ] = [ 'la', 'donna', 'e', 'mobile', 'cual', 'piuma' ];
+
+var [ a, b, c, d ] = [ 'la', , 'donna', , 'e', 'mobile' ];
+console.info( a, b, c, d ); // la undefined donna undefiend
+enlaces:::::::::::::::::::::::::===================>
+http://www.etnassoft.com/2016/07/04/desestructuracion-en-javascript-parte-1/
+
+comentario::::::::::::::::::::::===================>
+Para agregarle algo a la clase, tambien se puede desestructurar un objeto de un objeto para obtener sus valores ejemplo:
+var obj1 = {
+	obj2 : {
+		nombre: 'victor',
+		edad: 19
+	             }
+	}
+functionsaludar(obj){
+	var {nombre, edad} = obj.obj2
+	console.log(`Hola me llamo ${nombre} y tengo ${edad} años`)
+}
+saludar(obj1) // Salida ->  Hola me llamo victor y tengo 19 años
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+#10 Parámetros como referencia o como valor
+
+Podemos acceder a un explorador de archivos desde el navegador.
+
+JavaScript se comporta distinto con los objetos, los objetos que pasamos por parametros se pasan por referencia eso quiere decir que si los modificamos dentro del cuerpo de una función su valor se va ver modificado fuera de esa función también.
+
+al tomar los parametros que declaramos en la función que pude ser un objeto si es un objeto dentro de la función
+
+//Esto va dentro de la función
+return {
+     ...persona,
+     edad: persona.edad += 2 // esto aumentara en dos la clave edad del objeto que  sea instanciado dentro de los parametros al invocar la función.
+}
+
+function cumples(persona) {
+	  persona.edad += 1
+}
+cumples(jonathan) //Al invocar esta función y pasar el obejto como parametro d
+*****salida-> {nombre: "Jonathan", apellido: "Cardozo", edad: 28}
+
+cumples(sacha.edad)

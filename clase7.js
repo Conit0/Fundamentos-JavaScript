@@ -23,13 +23,13 @@ imprimirNombreMayusculas({ nombre: 'Pepito' })
 
 //Código para imprimir nombre y edad.
 /*
-functionimprimirEdad(persona){
-    var { nombre } = persona
-    var { edad } = persona
-    console.log(`Hola, me llamo ${nombre.charAt(0).toUpperCase()}${nombre.substr(1, nombre.length-1)} y tengo ${edad} años`);    
+function imprimirEdad(persona)
+{
+    var { nombre } = persona;
+    var { edad } = persona;
+    console.log(`Hola, me llamo ${nombre.charAt(0).toUpperCase()}${nombre.substr(1, nombre.length-1)} y tengo ${edad} años`);
 }
-var avatar = {nombre: 'seiro',
-        edad: 19}
+var avatar = {nombre: 'serio', edad: 19}
 
 imprimirEdad(avatar)
 */
