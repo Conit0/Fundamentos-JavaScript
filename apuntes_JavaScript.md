@@ -333,3 +333,47 @@ cumples(jonathan) //Al invocar esta función y pasar el obejto como parametro d
 *****salida-> {nombre: "Jonathan", apellido: "Cardozo", edad: 28}
 
 cumples(sacha.edad)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+#11 Comparaciones en JavaScript
+
+Me doy cuenta que cuando tienes un objeto y el nombre de ese objeto es igual al nombre de alguna de las claves que hay dentro del mostrara un error, pero ahora que recargo nuevamente el navegador y luego de haber cambiado las varaibles y volverlas a cambiar para que el nombre de la varaible coincidiera con una de las claves del objeto y comfirmar mi teoría me doy cuenta que no es cierto y que posiblemente era el cache de la página.
+
+Evaluando el comportamiento de distintos tipos de datos (primitivos)
+
+por medio de == hacemos una comparación que busca coincidencias entre las dos comparaciones así tenga que convertir el valor de las dos comparaciones y con esto cambiar sus tipos de datos. Con el === (triple igual) comparamos a un nivel más estricto es más recomendable su uso, a nivel laboral no es permitido su uso ni en comentarios para el uso en producción.
+
+La comparación no reacciona a los objetos igual como lo hace con los tipos de datos primitivos, cuando hacemos un comparación ( == o ===) de objetos en JavaScript este pregunta por la referencia a la variable que estamos utilizando.  
+
+
+enlaces::::::::::::::::::::::::::::========================>
+https://www.todojs.com/tipos-datos-javascript-es6/	
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+3. Estructuras de control y funciones
+Estas permitiran si un código se ejecuta, no se ejecuta, si se ejecuta multiples veces o hasta que se cumpla determinada condición.
+
+#12 Condicionales
+los condicionales especifican si un código se ejecuta o no
+
+`${}` o también llamados template scripts con ellos podremos colocar las varaibles y texto para mostrar sin necesidad de concatenarlos con el signo más+
+
+comentarios:::::::::::::::::::::::::::::::::::::================>
+En las soluciones de los retos he visto mucho
+ persona.edad >= 18 ? true:false
+Esto es una forma de hacer los condicionales más cortos?
+--------------------------------------------
+si quieres tener mas lifehacks
+(condición) && (solo si se cumple)
+(condición) || (solo si no cumple, como tener solo el 'else')
+---------------------------------------------
+si es un condicional de una sola linea y se llama operador ternario, lo que hace es tener una condición persona.edad >= 18 luego sigue el signo de interrogación ? y va el valor que retorna si la condición se cumple o no se cumple separado por dos puntos.
+condición ? se cumple: no se cumple
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
