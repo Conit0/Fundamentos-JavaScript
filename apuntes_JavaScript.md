@@ -377,3 +377,20 @@ condición ? se cumple: no se cumple
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+#13 Funciones que retornan valores
+
+Entender el contexto del programa y del código nos ayuda a mejorarlo y detectar fallos.
+Haciendo uso de las funciones podemos almacenar el valor de una variable dentro de una función  y esta función nos retornara un valor que podremos usar dentro de otra función donde esta albergada la lógica.
+
+para indicar que una varaible debe conserve fijo su valor declaramos la variable como <<const>> y una practica para darles el nombre a estas es usuar todo en mayúsculas y separar las palabras por guiones bajos: 
+var mayoriaDeEdad = 18   //formato para los nombres de las varaibles
+const MAYORIA_DE_EDAD = 18 //formato para los nombres de las constantes
+En caso de no tener que re-asignar este valor usamos <<const>> minimizando el estado de mutación "mutable state" reduciendo procesos.
+
+enlaces:::::::::::::::::::::::::::::::::::==============>
+https://medium.com/@tatymolys/var-let-y-const-donde-cuando-y-por-qu%C3%A9-d4a0ee66883b
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
