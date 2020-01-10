@@ -393,4 +393,28 @@ https://medium.com/@tatymolys/var-let-y-const-donde-cuando-y-por-qu%C3%A9-d4a0ee
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+#14 Arrow functions
+En JavaScript existe otro modo de escribir funciones, podemos asignar a una varaible un función (no todos los lenguajes lo permiten)  al hacer esto la función asignada a la variable, si no tiene nombre, pasa ser anonima. Suelen ser declaradas como <<const>> para así entender que tienen asignada una función. 
+
+=> a esto le llamamos arrow functions
+
+function nombreFuncion (persona){ ...}   //function estandar
+nombreFuncion (persona) =>  //Arrow function. cuando tenemos sólo un parametro podemos obviar los paréntesis.
+
+Estas dos son practicamente equivalente pues dentro del manejo de algunos contextos la (=>) arrow function hace algo más.
+
+//Cuando tenemos un sólo parametro en la función podemos obviar los paréntesis
+//También podemos obviar las llaves {} y la sentencia return, cuando lo único que hace la función es retornar un valor
+
+// const esMayorDeEdad = persona => persona.edad >= MAYORIA_DE_EDAD
+
+//También podemos quitar persona desestructurando el objeto y tendra que estar dentro de paréntesis
+const esMayorDeEdad = ({ edad }) => edad>= MAYORIA_DE_EDAD
+//En la ínea de código que arriba, hay una constante a la que le asignamos una función a esta función como parametro le pasamos un objeto desestrucuturado que tiene una edad y nos retornara un valor indicando si es mayor a MAYORIA_DE_EDAD (este valor es booleano). Esta forma es un poco más compleja al momento de entender la función, pero es la que esta más generalizadoa en el hambito productivo.
+
+enlaces:::::::::::::::::::::::::::==================>
+Aquí les dejo documentación acerca de las Arrow functions me ayudo mucho a entender esta nueva nomenclatura https://desarrolloweb.com/articulos/arrow-functions-es6.html
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
