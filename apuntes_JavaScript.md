@@ -445,3 +445,25 @@ Recomiendo usarlos si apenas estás iniciando y te sirve para recordar cosas clav
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+#16 Estructuras repetitivas: while
+
+Uncaught ReferenceError: sacha is not defined => puede que el error se deba a un objeto que no esta definido o quiza mal escrito.
+
+While = mientras. Ejecutara lo que este entre llaves mientras la condición sea verdadera.
+
+debugger;
+La sentencia debugger invoca cualquier funcionalidad de depuración disponible, tiene la misma función que un breakpoint. Si la funcionalidad de depuración no está disponible, esta sentencia no tiene efecto alguno.
+
+Cuando hacemos que uno de estos ciclos colapse la página evitando que carge usaremos la sentencia debugger y si tenemos el inspector de elementos en la pestaña de consola abierta en el navegador que carge la página dentendra la ejecución del programa al leer esa palabrita.
+
+Una vez tengamos la página abierta junto con el inspector de elemento en la pestaña consola, cargamos el archivo o la dirección de la página, despues de esto nos manda automaticamente a la pestaña sources (inspector de elementos) esta parte nos mostrara una serie de herramientas más como un reproductor que consta de: 
+1. Un boton de play para correr el proceso hasta que se vuelva a encontrar con un debugger
+2. Con la segunda opción va pasando a la siguente línea, proceso por proceso, uno por uno
+3. Las otras flechas son diversas formas de pasar por cada proceso.
+4. Tenemos la opción de crear breakpoint o debugger de manera interantiva dentro de la pestaña source a travez de los números que identifican a cada línea de código.
+A esta función también podemos acceder sin necesidad de invocar la sentencia <<debugger>>, desde el inspector de elemento en la pestaña Sources en contraremos los mismo controles pero ahora evaluaremos todo el código y no dedes una parte en especifico como si lo hariamos con la sentencia debugger.
+
+Recuerda que las funciones y los metodos de JavaScript deben llevar paréntesis para ser invocadas y así funcionar.
+
+enlaces::::::::::::::::::::::::::===============>
+https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Sentencias/debugger
