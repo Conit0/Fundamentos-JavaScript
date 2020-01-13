@@ -418,3 +418,30 @@ Aquí les dejo documentación acerca de las Arrow functions me ayudo mucho a enten
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+#15 Estructuras repetitivas: for
+bucle para  = loop for
+Lo que hace esta instrucción es repetir determinada condción por eso es llamada bucle.
+Despues del <<for>> hay unos paréntesis () su interior esta formado por tres partes; inicial, condición y el incremento. for (var i = 1; i <= 365; i++)
+dentro de los paréntesis tenemos un contador con nombre de variable <<i>>
+
+Hay que recordar que cuando tenemos un objeto y ese objeto lo usamos dentro de otra función  y lo modificamos este objeto se va a ver modificado fuera de la función también, sino queremos que eso ocurra tendremos que crear un nuevo objeto desglosando o desestructurando el original.
+
+Podemos evitar magics numbers declarandolos como variables (let, const, var) en el ambito donde se requieran, por lo general si son valores que no necesitamos que sean alterados y al contrario mantengan su valor usaremos <<const>> esto nos permitira que tener un referencia de ese número (una idea de lo que hace por su nombre de variable) para entender mejor el código cuando llegue la hora de darle una repasada.
+
+enlaces:::::::::::::::::::::==================>
+https://itqna.net/questions/878/what-are-magic-numbers-javascript
+
+
+comentario:::::::::::::::::::::::============>
+Ya te hicieron la observación, y es cierta, el código limpio es aquel que puede entenderse sin necesidad de dejar comentarios, hay libros que hablan al respecto, por ejemplo “Clean Code” de Robert Martin, en el cual hay un capítulo dedicado a la parte de generar comentarios.
+
+Al contrario de lo que expones, tener tantos comentarios para un equipo de trabajo refleja que tu código es o muy confuso o está mal programado (aunque no lo sea) y que necesario dar una explicación detallada de cada proceso.
+
+En las empresas donde he trabajado, tenemos como regla que no exista comentarios en repositorios de trabajo compartido, ya que si tenemos que hacer una obersación lo colocamos en la sección de “issues”, puedes tenerlos en entornos de trabajo local, pero puedes ser penalizado si te realizan una revisión de código.
+
+Recomiendo usarlos si apenas estás iniciando y te sirve para recordar cosas claves, o algún tipo de ejecución solamente.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+

@@ -11,7 +11,7 @@ var dario = {
 }
 
 function imprimirNombreMayusculas(persona) {
-  //Aquí asignamos un objeto como nombre de variable para obtener este mismo resultado
+  //Aquí asignamos un objeto como nombre de variable para obtener este mismo resultado (desglosa, desestructura)
   //var nombre = persona.nombre
   var { nombre } = persona
   console.log(nombre.toUpperCase())
