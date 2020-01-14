@@ -523,4 +523,42 @@ Espero que les sea de ayuda y gracias a @juanseg por compartir el código. Me sup
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+4. Array´s
+Los arrays son estructuras que nos permiten organizar elementos dentro de una colección. Estos elementos pueden ser números, strings, booleanos, objetos, etc
+
+#19 Introducción a arrays
+
+Podemos cargar el array [] muchas cosas; objetos, numeros, texto, funciones o mezclar cosas dentro del mismo array, JavaScript lo permite.
+
+Ademas use (Math.ceil(Math.random() * 100)) para mostrar una altura aleatoria dentro del objeto a esa clave. ceil parece arrojar un número alto mientras que floor el número es menor.
+
+colección de datos
+var array = [a, b, c, d]
+acceder a un dato especifico del array, donde la cuenta del indice empieza desde cero
+array[0]
+acceder a un dato de la lista de la colección y a una de sus claves (para el caso de un objeto)
+array[3].apellido otra forma array[3]['apellido']
+
+enlaces:::::::::::::::::::::::::::::====================>
+https://medium.com/@josephcardillo/using-math-random-in-javascript-c49eff920b11
+https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/template_strings
+
+comentario:::::::::::::::::::::::::::::::::===============>
+people.forEach( (person) => { console.log(`${person.name}${person.lastName} is ${person.height} mts`) } );
+Yo usé el metodo forEach() de los arrays de javascript para poder recorrer las personas usando Arrow Function.
+Para más info ver: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
+
+comentario:::::::::::::::::::::::::::::::==============>
+Otra forma de iterar los objetos es usar for of. Ésta forma es muy usada para iterar arrays de objetos
+for (let persona of personas){
+  console.log(`${persona.nombre} mide ${persona.altura.toFixed(2)} mts`);
+}
+
+comentario:::::::::::::::::::::::::::::::==============>
+Aunque no es la clase de física, dejo este hilo sobre abreviatura de unidades, metros solo se abrevia como m.
+https://es.wikipedia.org/wiki/Wikiproyecto:Corrección_de_errores_menores/Unidades_y_símbolos
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
