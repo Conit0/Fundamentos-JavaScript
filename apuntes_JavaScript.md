@@ -467,3 +467,60 @@ Recuerda que las funciones y los metodos de JavaScript deben llevar paréntesis p
 
 enlaces::::::::::::::::::::::::::===============>
 https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Sentencias/debugger
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+#17 Estructuras repetitivas: do-while
+Otra estructura repetitiva es el do-while. A diferencia de la instrucción while, un bucle do…while se ejecuta una vez antes de que se evalúe la expresión condicional.
+
+Se diferencia del while ya que ejecuta al menos una vez el código, cuantas veces sucede algo (contador)
+
+La sentencia do...while crea un bucle que ejecuta una sentencia especificada, hasta que la condición de comprobación se evalúa como falsa. La condición se evalúa después de ejecutar la sentencia, dando como resultado que la sentencia especificada se ejecute al menos una vez.
+
+En Argentina cuando alguien te molesta se le dice -Anda a ver a la esquina si llueve- 
+
+enlaces::::::::::::::::::::::==========>
+https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Sentencias/do...while
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+#18 Condicional múltiple: switch
+Nos permite decidir que código ejecutar de acuerdo a múltiples condiciones
+
+La declaración switch evalúa una expresión, comparando el valor de esa expresión con una instancia case, y ejecuta declaraciones asociadas a ese case, así como las declaraciones en los case que siguen, una vez se haya cerrado con un brake continuara con los demas case, detro de esta estructura encontramos el caso default que es como un else donde llegara si no encuentra el valor solicitado dentro de los case. Cuando olvidamos cerrar un case tomara también el siguiente y lo mostrara o se producira un error eso depende mucho del contexto.
+
+prompt = esta función muestra una pregunta y pide datos
+
+enlaces::::::::::::::::::::::::::=================>
+https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Sentencias/switch
+
+eliminar acentos
+https://www.lawebdelprogramador.com/codigo/JavaScript/4380-Eliminar-acentos-con-replace-utilizando-una-expresion-regular.html
+
+https://stackoverflow.com/questions/12145296/jquery-what-does-the-e-in-function-e-stand-for/12145342#12145342
+
+comentario:::::::::::::::::::::::::==============>
+La verdad es que me costó entender la función, pero ya. La detallo a continuación por si a alguien le puede ser de ayuda.
+
+var reemplazarAcentos = function(cadena){
+	var chars = {
+		"á":"a", "é":"e", "í":"i", "ó":"o", "ú":"u",
+		"à":"a", "è":"e", "ì":"i", "ò":"o", "ù":"u", "ñ":"n",
+		"Á":"A", "É":"E", "Í":"I", "Ó":"O", "Ú":"U",
+        "À":"A", "È":"E", "Ì":"I", "Ò":"O", "Ù":"U", "Ñ":"N"
+    }
+Aquí lo único que se hace es guardar un objeto con la correspondencia de cada letra con tilde a una sin tilde. Es decir: “á” equivaldría a “a”
+
+var expr = /[áàéèíìóòúùñ]/ig;
+Esta variable fue la que me costó entender, pero lo cierto es que no tiene ninguna dificultad. Simplemente es una expresión de javascript que permite determinar un criterio de búsqueda en un string. Es decir, si utilizaramos un match (función de búsqueda en JS) con la variable expresión sobre una variable que contenga la palabra “camión” nos localizaría la letra o con tilde, porque así se especifica en el criterio de búsqueda. Puedes leer más acerca de la expresión aquí: https://www.w3schools.com/jsref/jsref_regexp_charset.asp (el ig en vez de solamente g, indica que no se distingue entre mayúsculas y minúsculas)
+
+var res = cadena.replace(expr,function(e){return chars[e]});
+Aquí, lo que se hace es obtener todas las letras con tilde y reemplazarlas por letras sin tilde. No entendía tampoco porque utiliza la letra e como parámetro, pero resulta que simplemente sirve como referencia al parámetro inicial (en este caso, cadena). Puedes leer más al respecto de e como parámetro aquí: https://stackoverflow.com/a/12145342
+
+Espero que les sea de ayuda y gracias a @juanseg por compartir el código. Me supuso un pequeño reto entenderlo.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
