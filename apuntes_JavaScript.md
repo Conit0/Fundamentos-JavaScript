@@ -561,4 +561,69 @@ https://es.wikipedia.org/wiki/Wikiproyecto:Corrección_de_errores_menores/Unidade
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+#20 Filtrar un array
+
+comentario::::::::::::::::::::::::::================>
+El parámetro persona hace referencia a cada uno de los elementos dentro del array llamado personas.
+Recuerda también, que se está pasando como parámetro del método personas.filter() la constante esAlta, que guarda nuestra arrow function, de ahí la referencia al array que mencioné antes.
+Espero te sirva, un saludo.
+
+comentarios::::::::::::::::::::=================>
+Una pregunta, ¿por qué si “esAlta” es una función, no se le ponen ()?
+let personasAltas = personas.filter(esAlta)
+---------------------------------
+Esta forma de pasar funciones como parámetros de otra función para que se ejecuten en algún momento particular dentro del código de dicha función, se conoce tambien como callback, y una manera de verlo es que en este caso la función se pasa como referencia, es decir, se pasa el código de la función … no el resultado de haberla ejecutado, que es cuando se le colocan los paréntesis función() … para usar el resultado y no la definición de esta.
+-----------------------------------
+Ya me explicaron porqué, es porque cuando se llama a una función, normalmente queremos que se ejecute directamente, que es cuando se le colocan () . Pero si la función la usamos como un parámetro, no estamos esperando que se ejecute directamente, necesitamos que la otra función la llame para que se “active” , entonces es cuando no se le colocan los paréntesis (Creo que me expliqué bien c:)
+---------------------------------------
+Te podría decir que son caprichos de javascript; pues la mayoría de las veces cuando se pasa un función cómo parámetro, no es necesario escribir los paréntesis.
+Pero en sí depende de cómo esté estructurado lo que deseas hacer. En éste caso las funciones modificadoras de arreglos como filter automáticamente pasan el parámetro persona (de acuerdo al ejemplo de la clase) a la función es Alta.
+----------------------------------------
+Pones paréntesis luego de la función únicamente cuando la quieres llamar, si lo que quieres es pasarla como argumento, es decir referenciarla se maneja igual que una variable, es decir sólo pasas el nombre de la función. Si no cada vez que llegues a esa línea se va a ejecutar la función, y le pasarás undefined al .map si es una función que no devuelve nada y si es una función que devuelve un valor terminarás pasando el valor como argumento
+--------------------------------------------
+Las variables tienen valores fijos. Siempre que las llamamos nos devuelven el mismo resultado.
+
+var patito = "patito";
+
+alert(patito); // "patito"
+alert(patito); // "patito"
+alert(patito); // "patito"
+alert(patito); // "patito" (siempre es lo mismo)
+En cambio, las funciones pueden devolvernos diferentes resultados dependiendo de los datos que enviemos en los argumentos (o sea, dentro de los paréntesis).
+
+functionpatito(nombre) {
+  return"el patito se llama: " + nombre;
+}
+alert(patito("Juan")); // "el patito se llama: Juan"
+alert(patito("Pedro")); // "el patito se llama: Pedro"
+alert(patito("Don Pato")); // "el patito se llama: Don Pato"
+
+Tu tranquilo. Sigue con el curso que vas a ir entendiendo todos estos conceptos a medida que avances. 
+-------------------------------------------------------
+La variable es como una memoria entonces no va con paréntesis ya que va a guardar el nombre de la variavle que puede ser x o z o y ya que genera un valor
+-------------------------------------------------
+¿Para qué necesitas recibir un parámetro en esa función?
+Los parámetros son útiles cuando necesitas que una función devuelva diferentes resultado dependiendo del argumento que les enviemos. Pero no todas los necesitan.
+
+// No recibe parámetros
+const imprimirColorBlanco = () => console.log("blanco :D");
+imprimirColorBlanco(); // blanco :D
+imprimirColorBlanco(); // blanco :D
+imprimirColorBlanco(); // blanco :D
+
+// Sí recibe parámetros
+const imprimirMensaje = (mensaje) => console.log(mensaje);
+imprimirMensaje("hola"); // hola
+imprimirMensaje("levillagra"); // levillagra
+imprimirMensaje("disfruta"); // disfruta
+imprimirMensaje("el curso :P"); // el curso :P
+
+comentario:::::::::::::::::::::::::::::::==============>
+El Object.assign() funciona bien para copiar objetos cuando no tienes mas objetos dentro del objeto. En ese caso se crea una referencia y si modificas la copia, también modificaras el original.
+Lo que puedes hacer para copiar un objeto sin temor a modificar el original usa: JSON.parse(JSON.stringify(miObjeto)).
+
+Para el tema del filter, ese es el método correcto para filtrar un array. No te modifica el array que filtras, solo te devuelve un array con los objetos que cumplan la condición.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
