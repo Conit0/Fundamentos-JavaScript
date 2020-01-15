@@ -24,8 +24,9 @@ imprimirNombreMayusculas(dario)
 
 //con esta función se pretende alterara el valor que reside dentro de un objeto en este caso la edad.
 function cumples(persona) {
+  //Este return con llaves pretende devolver un obejto nuevo con un conjunto de arrays distinto al original
   return {
-    ...persona, //Devuelve un nuevo objeto por medio de los tres puntos
+    ...persona, //Devuelve un nuevo objeto por medio de los tres puntos apartir del objeto persona
     edad: persona.edad += 2 //aumenta en uno la edad
   }
 }

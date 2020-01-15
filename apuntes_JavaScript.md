@@ -627,3 +627,30 @@ Para el tema del filter, ese es el método correcto para filtrar un array. No te 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+#21 Transformar un array
+
+Map devuelve un nuevo array modificando cada uno de los elementos que le vayamos pasando de l array original. Este metodo siempre devulve un array nuevo sin emabargo es preciso indicar la creación de un nuevo objeto para que el objeto original no se vea afectado en el futuro.
+
+El objeto Map almacena pares clave/valor. Cualquier valor (tanto objetos como valores primitivos) pueden ser usados como clave o valor.
+
+Para verificar la difencia que hay entre los arrays comparamos sus indices
+
+Cuando queremos retornar un nuevo objeto es necesario hacer uso de la desestructuración de los objetos  y dentro de la función que retornara ese objeto tendremos que a ese objeto nuevo que nace apartir de otro para no modificar el original y crear uno nuevo lo envolvemos dentro de paréntesis para que este nuevo objeto sea generado dentro del cuerpo de la función. 
+
+enlaces::::::::::::::::::::::::::::::===================>
+https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Map
+https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Sentencias/for...in
+
+
+comentario:::::::::::::::::::::::::::::::::====================>
+**map ** retorna un nuevo arreglo (en otro espacio de memoria)
+foreach simplemente itera sobre los elementos aplicando la función dada,
+forin es mas recomendada para la iteración sobre objetos no sobre arrays
+
+comentario:::::::::::::::::::::::::::::::::====================>
+Otro ejemplo envolviendo las llaves entre paréntesis para indicar que se devuelve un nuevo objeto y no que se trata del cuerpo de la función:
+const users = personas.map(({edad, altura, dinero}) => ({edad, altura, dinero}))
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
