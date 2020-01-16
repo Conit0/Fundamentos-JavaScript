@@ -654,3 +654,154 @@ const users = personas.map(({edad, altura, dinero}) => ({edad, altura, dinero}))
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+#22 Reducir un array a un valor
+
+El método reduce() nos permite reducir, mediante una función que se aplica a cada uno de los elemento del array, todos los elementos de dicho array, a un valor único.
+
+con esta función podremos representar mejor los arrays asiendo que sean más fáciles de interpretar:
+console.table([]) 
+Y de esta manera logramos ver las columnas de las claves que hemos establesido.
+console.table(personas, ["nombre", "edad"])
+
+la funcion que hacemos de reducer, no retorna valores hasta haber terminado de iterar todo el arreglo por eso la variable en este caso se situa despues de la función si la colocamos antes habra un error. 
+
+La función reduce() permite lograr objetivos que generalmente de manera estructurada cuestan un poco de trabajo lograr. El dominio de este tipo de funciones nos permitirán logra una código más limpio y mucho más fácil de leer.
+
+enlaces:::::::::::::::::::::::==================>
+https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Array/reduce
+https://medium.com/@xadrijo/un-vistazo-a-la-funci%C3%B3n-reduce-en-javascript-f4459bc4e3aa
+http://juanlopez.com.ar/javascript-metodo-reduce-para-arrays/
+https://developer.mozilla.org/es/docs/Web/API/Console/tabla
+https://www.freecodecamp.org/news/learn-reduce-in-10-minutes/
+
+comentario::::::::::::::::::::::::::::=============>
+para iterar sobre arrays se usa forEach al contrario del for
+
+comentario::::::::::::::::::::::::::::=============>
+Imagina qe tenemos una empresa y ya viene el día del niño, por lo que van a hacer una fiesta para los trabajadores y los niños. para esto necesitamos saber cuantos hijos tienen cada uno de los trabajadores.
+Si ya tenemos un Array con los trabajadores y cada Objeto tiene un atributo con la cantidad de hijos, de ahí podemos sacar ese numero.
+//lista de objetos
+var adrian= { nombre: 'Adrián',apellido: 'Garcia',hijos: 2}
+var dama= {nombre: 'Damáris',	apellido: 'Soto',	hijos: 1}
+var neft= {	nombre: 'Nefteradi',	apellido: 'Luna',	hijos: 4}
+//tenemos el listado de todos los trabajadores que son cientos
+var personas = [adrian, dama, neft]
+const reducir = (acum, persona) => {
+	return acum + persona.hijos
+}
+//Array.reduce(funcion, valor inicial)
+var totalNiños = personas.reduce(reducir, 0)
+console.log(`Tenemos que hacer ${totalNiños} bolsas de dulces`)
+
+comentario::::::::::::::::::::::::::::=============>
+Que quieren decir los … ?
+---------------------------------------.
+Indica que se va acopiar todos los atributos del objetos, a excepción de los que se escriban luego de los …
+ejemplo:
+persona ={
+	nombre: 'juan',
+	apellido: 'pérez',
+	edad: 28
+}
+persona2 ={
+        ...persona,
+	edad: 32
+}
+Lo que hace ese código es copiar el objeto persona a persona2, conservando todos los atributos, a excepción de la edad, que pasa de ser 28 a 32.
+De esta manera estas creando un nuevo objeto independiente, ya que si escribís:
+var persona2 = persona
+estas diciendo que persona2 es el mismo objeto que persona, por lo tanto cada modificación que le hagas a persona2 lo sufrirá persona.
+
+comentario::::::::::::::::::::::::::::=============>
+Método Reduce()
+Bueno, para aclarar un poco la explicación de la clase, ya que se omiten algunas cosillas:
+Este método lo que hace es aplicar una función a un acumulador y a cada valor de un array con el fin de reducirlo a un único valor.
+personas.reduce(reducer, 0)
+Esta función (en éste caso reducer) tiene 4 argumentos; dos de ellos omitidos en la clase por fines prácticos:
+Valor Anterior => Que es el valor devuelto en la llamada anterior de la función o el ValorInicial si es que se proveyó.
+-Valor Actual => Elemento actual que está siendo procesado en el array. En éste caso libros.
+
+Índice Actual => Índice del elemento actual que está siendo procesado en el array.
+
+Array => O sea, el array sobre el cual se llamó el método reduce. En éste caso, Personas.
+
+Entonces, el método reduce, tiene dos parámetros, la función con sus 4 parámetros opcionales y el:
+Valor Inicial => Objeto a usar como primer argumento en la primera llamada de la función. En éste caso 0.
+Si en ValorInicial ponemos un número 100, entonces ese 100 se sumará a los 684 libros.
+
+
+comentario::::::::::::::::::::::::::::=============>
+Por que no necesito declarar la varible acum al usarla con el metodo reuce ?
+---------------------------------------------------
+dentro del reducer acum es un parametro de entrada
+--------------------------------------------------
+Javascript permite crear variables sin utilizar las palabras reservadas let, var o const. Sin embargo, tengo entendido que esto no es una buena práctica. Para evitar que javascript procese este tipo de declaraciones puedes agregar al inicio de tu archivo .js la instrucción “use strict”.
+
+
+comentario::::::::::::::::::::::::================>
+A mi parecer creo que faltaron métodos muy importantes como:
+pop()
+push()
+shift()
+unshift()
+split()
+splice()
+slice()
+También trabajar con arreglos multidimensionales, que a mi parecer es algo con lo que se trabaja la mayor parte del tiempo…espero que actualicen el curso porque si faltaron bastantes cosas.
+--------------------------------------
+estoy de acuerdo, creo que falto mas profundizar más en los arrays, y las estructura de control, le falta la calidad que alcanzó el curso de python de david aroesti, esperemos a la siguiente iteración, y habrá que complementar este curso leyendo un par de libros.
+---------------------------------
+Te colaboro con algunas definiciones:
+//pop() agrega elementos al inicio del Array
+//push() elimina el ultimo elemento del Array
+//shift() elimina el primer elemento del Array
+//unshift() Agrega un elemento al comienzo del Array.
+//slice() Te permite obtener una porcion o “revanada” del arreglo. ej: personas.slice(4,6) “esto devuelve a las personas 5 y 6”
+//splice() Te permite eliminar elementos de un Array, el primer parametro es la posición y el segundo parametro la cantidad de elementos a eliminar ej: personas.splice(4,1) solo eliminara una persona, en este caso el que este en la posición 4.
+
+comentario:::::::::::::::::::::::::::::==================>
+En esta función:
+
+const reducer = (acum, persona) => acum + persona.cantidadDeLibros
+var totalDeLibros = personas.reduce(reducer, 0)
+
+Dónde estaríamos pasando el parámetro de ‘acum’ cuando invocamos la función?
+No termino de entender cómo funciona.
+Alguien podría explicarme?
+--------------------------   ---------------------------
+es un poquito complejo, pero te lo haré facil.
+
+en una función tradicional tienes esto:
+
+functionreducer() {
+//your code
+}
+en una variable tradicional tienes lo siguiente:
+
+var name = "name";
+const lastName = "lastname";
+en js tradicional, puedes igualar una constante/variable a lo que quieras, ejemplo:
+
+functionjump() {...}
+
+var jumpVar = jump;
+const jumpConst = jump;
+
+// estas tres lineas hacen lo mismo
+jumpVar();
+jumpConst();
+jump();
+
+//también puedes meter en una variable objetos, clases, arreglos, promesas, eventos, listeners, jsons, lo que quieras.
+la función que incluiste en tu pregunta es un “arrow function”. No explicaré la diferencia o la razón de ser del arrow function, para eso tienes https://stackoverflow.com/questions/34361379/arrow-function-vs-function-declaration-expressions-are-they-equivalent-exch.
+
+RESPUESTA
+en el caso de tu funcion, lo que estás haciendo es guardar en la constante “reducer” la arrow function:
+
+(acum, persona) => { ... }
+y como es obvio, los parámetros es aquello detrás de la flecha del arrow, que es acum y persona.
+
+¿donde le pasas los parámetros? no lo haces. arrow function está diseñado para recibir la data dentro del scope donde se encuentre, es decir, si tu tienes una clase o un componente con 20 variables y 20 funciones dentro, cualquier arrow function que esté dentro de esa clase/componente tendrá acceso a cada variable y función.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
