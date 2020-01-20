@@ -807,7 +807,7 @@ y como es obvio, los parámetros es aquello detrás de la flecha del arrow, que es
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-#23 Cómo funcionan las clases en JavaScript
+#23 Cómo funcionan las clases en JavaScript'
 
 Las clases son funciones cuya sintaxis tiene dos componentes:
 	expresiones
@@ -854,5 +854,122 @@ https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+#24 Modificando un prototipo
+
+En esta clase veremos cómo se modifican las clases de herencias. JavaScript funciona con una estructura orientada a objetos y cada objeto tiene una propiedad privada que mantiene un enlace a otro objeto llamado prototipo.
+
+Entendamos que el prototipo es un objeto más de JavaScript , si lo modificamos en cierta altura del código desde allí quedara modificado.
+
+Es importante donde colocamos las funciones que va a tener el prototipo es importate que las coloquemos todas juntas, ya que vamos a ir creando objetos (personas) con esos prototipos y queresmos que tenga todas las funciones, a menos que más adelante en el código queramos modificar de alguna forma ese prototipo, pero lo más común es siempre definir la función/es ("clases" o más bien prototipos) arriba y luego irlas usando en nuestro código en vez de modificarlas a medida que pasa nuestro código, es cuestión de darles un orden al iniciar el código y con ello tenerlas ascecibles hacia todos los objetos que vayamos creando
+
+output = se refiere a los valores de salida que arroja la consola
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
