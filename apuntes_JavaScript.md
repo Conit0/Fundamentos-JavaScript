@@ -673,6 +673,7 @@ https://medium.com/@xadrijo/un-vistazo-a-la-funci%C3%B3n-reduce-en-javascript-f4
 http://juanlopez.com.ar/javascript-metodo-reduce-para-arrays/
 https://developer.mozilla.org/es/docs/Web/API/Console/tabla
 https://www.freecodecamp.org/news/learn-reduce-in-10-minutes/
+https://codeburst.io/learn-understand-javascripts-reduce-function-b2b0406efbdc
 
 comentario::::::::::::::::::::::::::::=============>
 para iterar sobre arrays se usa forEach al contrario del for
@@ -805,3 +806,53 @@ y como es obvio, los parámetros es aquello detrás de la flecha del arrow, que es
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+#23 Cómo funcionan las clases en JavaScript
+
+Las clases son funciones cuya sintaxis tiene dos componentes:
+	expresiones
+	declaraciones
+En esta clase veremos el uso de this. Dentro de una función, el valor de this depende de cómo es llamada ésta.
+
+JavaScript en un lenguaje orientado a objetos basado en prototipos, en lugar de estar basado en clases. Debido a esta básica diferencia, es menos evidente entender cómo JavaScript nos permite crear herencia entre objetos, y heredar las propiedades y sus valores.
+
+Cuando se habla de objetos en JavaScrip estamos hablando de prototipos y no tanto de clases como en otros lenguajes P.O.O, cambian esos conceptos al igual que no existe la herencia, pues estas llamdas "clases" terminan siendo prototipos en JavaScript.
+
+Para definir un prototipo hay que definir una << función nombreFunción () {} >>, luego dentro de los paréntesis pondremos los parametros que va a requerir inicializar o crear una nueva persona, esto también es conocido en otros lenguajes como un constrcutor
+
+new palabra reservada de JavaScript para indicar que se crearan nuevos objetos dado un prototipo, obviar el uso de este operador arroja como resultado undefined
+
+El  operador new crea una instancia de un objeto definido por el usuario o uno de los tipos de objetos incorporados que tienen una función de construcción. 
+
+La palabra clave this de una función se comporta un poco diferente en Javascript en comparación con otros lenguajes. Además tiene algunas diferencias entre el modo estricto y el modo no estricto.
+En general, el valor de this está determinado por cómo se invoca a la función. No puede ser establecida mediante una asignación en tiempo de ejecución, y puede ser diferente cada vez que la función es invocada. ES5 introdujo el método bind() para establecer el valor de la función this independientemente de como es llamada, y ES2015 introdujo las funciones flecha que no proporcionan su propio "binding" de this (se mantiene el valor de this del contexto léxico que envuelve a la función)
+
+const test = {
+  
+	prop: 42,
+  
+	func: function() {
+    
+		return this.prop;
+  },
+
+};
+
+
+console.log(test.func());
+
+// expected output: 42
+
+enlaces::::::::::::::::::::::::::==============>
+https://www.arkaitzgarro.com/javascript/capitulo-9.html
+https://developer.mozilla.org/es/docs/Web/JavaScript/Herencia_y_la_cadena_de_protipos
+https://developer.mozilla.org/es/docs/Learn/JavaScript/Objects/Inheritance
+https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Operadores/new
+https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Operadores/this
+https://www.arkaitzgarro.com/javascript/capitulo-9.html
+https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Object/prototype
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
