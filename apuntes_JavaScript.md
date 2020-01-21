@@ -869,11 +869,47 @@ output = se refiere a los valores de salida que arroja la consola
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+#25 El contexto de las funciones: quién es this
 
+Para colocar un debugger dentro de una arrow function conviene dejar los corchetes para que funcione, el debugger nos mostrara que la palabra calve this 
 
+Al rastrear el this por medio del debugger señala que es equivalente al objeto  window el objeto global de la página
+Al hacer la comparación << this.altura > 1.8 >> es << window.altura > 1.8 >> y el punto indica que entraremos a alguno de los atributos o claves del objeto window y al no encontrar el atributo altura el resultado de esta instancia sera << undefined >> y no sera nunca mayor que ocho que daria como resultado errores en los resultados.
+Y esto de que no esperamos que << this >> no es lo que esperabamos es uno de los errores más comunes en JavaScript, quizas no en los primeros pasos pero a medida que avanzamos como desarrolladores con esté tegnologia, lo que pasa es que al usarlo dentro de las arrow funtions estas asigna una función pero cambia el << this >> dentro de la función lo que hace es apuntar al << this >> que este fuera de esta función y << this >> dentro del ambito global representa analogamente a window
 
+Persona.prototype.soyAlto = () => {
+  //debugger //Funcionara cuando invoquemos la función
+  return this.altura > 1.8
+} 
 
+Este es el resultado de this en la consola
 
+Window {parent: Window, opener: null, top: Window, length: 0, frames: Window, …}
+Vemos que la comparación this === window arroja como resultado << 
+true >>
+
+En el contexto de ejecución global (fuera de cualquier función), this se refiere al objeto global, ya sea en modo estricto o no.
+console.log(this.document === document); // true
+// En los navegadores web, el objeto window también es un objeto global:
+console.log(this === window); // true
+this.a = 37;
+console.log(window.a); // 37
+
+***********Llamada simple
+function f1(){
+  return this;
+}
+f1() === window; // objeto global
+
+En este caso, el valor de this no está establecido por la llamada. Dado que el código no está en modo estricto, el valor de this debe ser siempre un objeto por lo que por defecto es el objeto global.
+function f2(){
+  "use strict"; // consultar modo estricto
+  return this;
+}
+f2() === undefined;
+
+En modo estricto, el valor de this se mantiene en lo que está establecida al entrar en el contexto de ejecución. Si no está definido, permanece undefined. También se puede ajustar a cualquier valor, tales como null o 42 o "Yo no soy this".
+Nota: En el segundo ejemplo, this debería ser undefined, porque f2 fue llamado sin proporcionar ninguna base (ej. window.f2()). Esta característica no fue implementada en algunos navegadores cuando se comenzó a dar soporte al modo estricto. Como resultado, retorna incorrectamente el objeto window.
 
 
 
