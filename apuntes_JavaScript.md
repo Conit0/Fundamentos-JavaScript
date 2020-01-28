@@ -871,11 +871,14 @@ output = se refiere a los valores de salida que arroja la consola
 
 #25 El contexto de las funciones: quién es this
 
+En esta clase explicamos por qué al introducir el arrow function salió un error. El error del contexto de this en javascrip es uno de los errores más comunes.
+Recuerda que dentro de la arrow function, this está haciendo referencia al espacio global, a windows.
+
 Para colocar un debugger dentro de una arrow function conviene dejar los corchetes para que funcione, el debugger nos mostrara que la palabra calve this 
 
 Al rastrear el this por medio del debugger señala que es equivalente al objeto  window el objeto global de la página
 Al hacer la comparación << this.altura > 1.8 >> es << window.altura > 1.8 >> y el punto indica que entraremos a alguno de los atributos o claves del objeto window y al no encontrar el atributo altura el resultado de esta instancia sera << undefined >> y no sera nunca mayor que ocho que daria como resultado errores en los resultados.
-Y esto de que no esperamos que << this >> no es lo que esperabamos es uno de los errores más comunes en JavaScript, quizas no en los primeros pasos pero a medida que avanzamos como desarrolladores con esté tegnologia, lo que pasa es que al usarlo dentro de las arrow funtions estas asigna una función pero cambia el << this >> dentro de la función lo que hace es apuntar al << this >> que este fuera de esta función y << this >> dentro del ambito global representa analogamente a window
+Y esto de que no esperamos que << this >> no es lo que esperabamos es uno de los errores más comunes en JavaScript, quizas no en los primeros pasos pero a medida que avanzamos como desarrolladores con esté tegnologia, lo que pasa es que al usarlo dentro de las arrow funtions estas asigna una función pero cambia el << this >> dentro de la función lo que hace es apuntar al << this >> que este fuera de esta función y << this >> dentro del ambito global representa analogamente a window, esto sucede porque las arrow functions cambian quien es << this >> dentro de la función 
 
 Persona.prototype.soyAlto = () => {
   //debugger //Funcionara cuando invoquemos la función
@@ -886,7 +889,7 @@ Este es el resultado de this en la consola
 
 Window {parent: Window, opener: null, top: Window, length: 0, frames: Window, …}
 Vemos que la comparación this === window arroja como resultado << 
-true >>
+true >> que es el mismo objeto y la misma referencia en memoria
 
 En el contexto de ejecución global (fuera de cualquier función), this se refiere al objeto global, ya sea en modo estricto o no.
 console.log(this.document === document); // true
@@ -911,101 +914,241 @@ f2() === undefined;
 En modo estricto, el valor de this se mantiene en lo que está establecida al entrar en el contexto de ejecución. Si no está definido, permanece undefined. También se puede ajustar a cualquier valor, tales como null o 42 o "Yo no soy this".
 Nota: En el segundo ejemplo, this debería ser undefined, porque f2 fue llamado sin proporcionar ninguna base (ej. window.f2()). Esta característica no fue implementada en algunos navegadores cuando se comenzó a dar soporte al modo estricto. Como resultado, retorna incorrectamente el objeto window.
 
+La expresión de función flecha tiene una sintaxis más corta que una expresión de función convencional y no vincula sus propios this, arguments, super, o new.target. Las funciones flecha siempre son anónimas. Estas funciones son funciones no relacionadas con métodos y no pueden ser usadas como constructores.
+
+enlaces:::::::::::::::::::::::::::::==============>
+https://yeisondaza.com/entendiendo-this-javascript
+https://www.codementor.io/@dariogarciamoya/understanding-this-in-javascript-with-arrow-functions-gcpjwfyuc
+https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Funciones/Arrow_functions
+https://hacks.mozilla.org/2015/06/es6-in-depth-arrow-functions/
+https://dmitripavlutin.com/when-not-to-use-arrow-functions-in-javascript/
 
 
+página::::::::::::::::::::::::::::===============>
+this es un keyword de JavaScript que tiene un comportamiento muy diferente a otros lenguajes de programación, así para algunos es considerado uno de los grandes errores de diseño del lenguaje.
 
+comentario:::::::::::::::::::::::::::::::==============>
+This en las arrow functions es “window” porque:
+Las Arrow functions heredan this de su “parent Scope”, lo que es llamado “lexical Scoping”
+Fuente:
+https://www.codementor.io/@dariogarciamoya/understanding-this-in-javascript-with-arrow-functions-gcpjwfyuc
 
+comentario::::::::::::::::::::::==============>
+Recuerdo que tuve problemas par entender esto al principio pero lo entendí así:
+Las arrow functions tienen el método .bin() implicitamente y el método .bind() devuelve un nuevo objeto con this haciendo referencia al objeto global(objeto window).
 
+Persona.prototype.soyAlto = () => this.altura > 1.8
 
+es lo mismo que:
+Persona.prototype.soyAlto = (function(){
+	returnthis.altura > 1.8
+}).bind(this)
 
+recomiendo este articulo: Cuando no usar arrow functions en JavaScript
+https://dmitripavlutin.com/when-not-to-use-arrow-functions-in-javascript/
 
 
+comentario:::::::::::::::::::::::::::::::::::::::::::::::::================>
+Había olvidado por completo que tanto arrow functions como lambdas carecen de referencia this  https://en.wikipedia.org/wiki/Anonymous_function
 
+comentario:::::::::::::::::::::::::::::::::::::::::::::::::================>
+La sentencia debugger invoca cualquier funcionalidad de depuración disponible, tiene la misma función que un breakpoint. Si la funcionalidad de depuración no está disponible, esta sentencia no tiene efecto alguno.
+Fuente: MDN
+https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Sentencias/debugger
+-------------------------------------------------------
+Para solventar errores (“bugs” como dicen los programadores) deteniendo tu programa en la linea de codigo donde coloques el debugger y dandote herramientas para ver que sucede
 
+Hace mucho más fácil la gestion por lo poco que he visto, en especial en ciclos
 
+Ejemplos
 
+//mientras 0 sea mayor a uno
+while ( 0 < 1) 
+{
+//haz esto
+document.alert("Holaaa")
+debugger
+}
 
+/*
+El codigo correra eternamente, 
+Sin debugger la web recargaria para siempre y no podrias hacer nada y seria mas dificl ver el error, compruebalo tu mismo
+*/
 
+comentario:::::::::::::::::::::::::::::::::::::::::::::::::================>
+Hola, respecto a las arrow functions se me ocurrio la idea de meterlas dentro del constructor directamente asignandolas dentro de una variable me gustaria saber de alguien mas experimentado, si esta practica es considerada correcta.
 
+// Manera numero 1
+functionPersona(name, last_name, age, heigth) {
+  this.name = name;
+  this.last_name = last_name;
+  this.age = age;
+  this.heigth = heigth;
+  this.sayHey =  () => {
+  console.log(`Hola, me llamo ${this.name}`);
+  }
+}
+--------------------------------------------------------------
+lo que estás haciendo no es nada nuevo, y es algo bien conocido y usado en muchos lenguajes de programación, no solo Javascript. En C# eso sería un delegado y en ambos lenguajes es la base teórica de los eventos (:
+te pondré un código de ejemplo:
 
+// función tradicional
+functionsayGoodbye() {
+	console.log("adios!");
+}
 
+var myExpression = sayGoodbye();
 
+//arrow function almacenada en una variable
+var sayHello = () => {
+	console.log("hola ChekeGT!");
+}
 
+//abreviado sería así, solo para demostrar una sintaxis limpia
+var sayHello = () => console.log(message);
+en estos ejemplos tienes una función tradicional. la de toda la vida. las funciones tradicionales pueden ser almacenadas en una variable y eso te permite cosas muy interesantes en tu código.
 
+un arrow function también se puede almacenar en una variable, son idénticos en ese aspecto.
 
+En el caso de los ejemplos, si tu haces:
+sayGoodbye();
+myExpression();
+ambos te darán el mismo resultado. en el primero ejecutas la función, y en el segundo ejecutas la función almacenada en la variable. Con los arrow functions sucede igual.
 
+https://stackoverflow.com/questions/37228121/es6-assign-a-variable-with-an-arrow-function
 
+comentario:::::::::::::::::::::::::::::::::::::::::::::::::================>
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+#26 La verdad oculta sobre las clases en JavaScript
 
+Los objetos en JavaScript son “contenedores” dinámicos de propiedades. Estos objetos poseen un enlace a un objeto prototipo. Cuando intentamos acceder a la propiedad de un objeto, la propiedad no sólo se busca en el propio objeto sino también en el prototipo del objeto, en el prototipo del prototipo, y así sucesivamente hasta que se encuentre una propiedad que coincida con el nombre o se alcance el final de la cadena de prototipos.
 
+En algunos lenguajes de programación (POO) y tienes una idea de su funcionamiento una pregunta que surge es : ¿cómo hago para que un prototipo herede de otro?. Pero esto no ocurre exactamente de la forma como ocurre en otros lenjuages (POO) pues JavaScritp no soporta la herencia  por que no soporta las clases, hay prototipos que son objetos y les vamos agregando metodos que reciben funciones, saben quien es << this >> y saben como ejecutarlas, pero no existe un sistema que diga que este prototipo va heredar de otro, lo que sí existe es la HERENCIA PROTOTIPAL.
 
+El prototipo "hijo" tiene que responder a un metodo por lo que va a buscar en el prototipo padre haber si lo encuentra, si no lo encuentra seguira esa cadena de buscar en el prototipo padre hasta llegar al prototipo base de todos los objetos que es object y si este no conoce ese mensaje el interprete nos dara el error que no puede ejecutarse es metodo.
 
 
+los nombres de variables << fn >> << noop >> usualmente se dan a variables que contienen funciones que no hacen nada, vacia o función dumie 
 
+Los prototipos simpre son los objetos con los que estamos trabajando, todas las funciones tienen << prototype >> y en el caso de los parametros que hay dentro de una función también si dentro del contexto estos parametros representan funciones.Vemos que el prototype es un atributo que tienen todas las funciones y que es un objeto que nos dice que metodos entiende, que atributos tiene, cual es su constructor si lo tiene, y también tiene un atributo que  aparece como << __proto__ >> que apunta al prototipo que tiene el objeto del que se desplieja en este caso es << Object >>  y ahí termina la cadena de adherencia de prototipos
 
+Persona.prototype
+    {saludar: ƒ, soyAlto: ƒ, constructor: ƒ}
+        saludar: ƒ ()
+        soyAlto: ƒ ()
+        constructor: ƒ Persona(nombre, apellido, altura)
+        __proto__: Object
 
+Ahora vemos este otro caso que es de donde estamos aplicando la cadena de prototipos y la herencia prototipal,  tenemos que es << Persona >> pero con el metodo de la herencia modificamos el constructor como agregar el nuevo metodo de saludar (el nuevo mensaje que va a mostrar) y también vemos que el << __proto__ >> es un Object que tiene otros metodos << saludar >> y << soyAlto >>
 
+Desarrollador.prototype
+    Persona {constructor: ƒ, saludar: ƒ}
+       constructor: ƒ Desarrollador(nombre, apellido)
+       saludar: ƒ ()
+       __proto__:
+               saludar: ƒ ()
+               soyAlto: ƒ ()
+               constructor: ƒ Persona(nombre, apellido, altura)
+               __proto__: Object
 
+De esta manera es como nosotros podemos hacer (invocar) << atruro.soyAlto >> arrojara << false >> pues el metodo soy alto no existe en el prototipe directamente del desarrollador lo que hace entonces todos lo objetos que sean creados con el porototipo de desarrollador es ver en primer lugar su su propio prototipo lo tiene y sino se van a ir fijando en la cadena (desplegable) de << __proto__ >> si alguno de ellos entiende el método, vemos para el caso de << arturo.soyalto >> encuentra el proto tipo de << Persona >> y también podemos ver que tiene el método << saludar >> pero el de << Desarrollador >> lo pisa ademas vemos que finalmente tenemos otro << __proto__ >> que ahora apunta << Object >> y son todos métodos que tienen todos los  objetos  y todos los atributos que tienen todos los objetos.
+Por último cabe destacar de todo esto es que la herencia como se conoce normalmente en la programación orientada a objetos (POO) no existe en JavaScript, no hay clases hay prototipos y existe lo que es la herencia prototipal que nos muestra como al ejecutar un metodo lo que hace es buscar en el prototipo de ese objeto haber si lo encuentra si finalmente no lo encontro este buscar en el << __proto__ >> 	que apunta a << Object >> para intentar resolverlo.
 
+proto surge al desplgar un objeto desde la consola del inspector de elementos
 
+*********************enJavaScript (de aquí pa'bajo)
 
+objeto: Los objetos son las entidades básicas de tiempo de ejecución identificables en la programación orientada a objetos. Entonces, un objeto representa una entidad que puede almacenar datos y tiene su interfaz a través de funciones.
 
+clase: También podemos decir que una clase es una colección de objetos de tipos similares.
+Una vez que se crea una clase, podemos crear cualquier número de objetos que pertenezcan a esa clase. En realidad, una clase no especifica ningún dato, determina las propiedades o métodos que pueden contener un objeto de esa clase. Las clases normalmente actúan como un tipo de datos incorporado, pero en realidad son tipos de datos definidos por el usuario.
 
+Abstracción de datos: La abstracción de datos es un concepto que oculta los detalles de fondo y representa solo la información necesaria para el mundo exterior . Es el proceso de simplificación del concepto del mundo real en su componente absolutamente necesario.
 
+Por ejemplo, estás montando una bicicleta, solo conoces los métodos esenciales para montar una bicicleta, como acelerar, frenar, cómo cambiar las velocidades, usar el embrague, etc. Simplemente usa el acelerador y su bicicleta comienza a moverse, no necesita saber los detalles de lo que sucede adentro para andar en bicicleta.
+Esto se llama abstracción, solo conoce las partes esenciales para andar en bicicleta () sin incluir el proceso de fondo o la explicación.
 
+Encapsulación de datos: Es una técnica que combina mienbros de datos y funciones, opera esos datos en una sóla únidad conocida como clase. Esta técnica básicamente el inpide el acceso a los datos directamente. Las funciones proporcionan la única forma de poder acceder a los datos.
+Si desea leer un dato en un objeto, debe llamar a la función miembro en el objeto. La función leerá los datos y le devolverá los datos. Por lo tanto, no tiene acceso a los datos directamente. Como los datos están ocultos, están protegidos contra alteraciones accidentales.
 
+Herencia: Básicamente es un método que proporciona una manera de las capacidades y propiedades de una clase en otra clase. Esta técnica proporciona reutilización de código a los programadores. Podemos formar una nueva clase a partir de una clase existente, donde la clase existente contiene algunas propiedades o métodos que también existen en una clase. Aquí la nueva clase se llama como la clase derivada y la clase existente, es decir, la clase de la que se deriva la nueva clase se llama como la clase base.
 
+Por ejemplo; 'vehículo' es una clase con algunas propiedades y métodos. El 'automóvil' y el 'autobús' también son dos clases que tiene algunas de sus propiedades y métodos que ya existen en la clase 'vehículo'.
 
+Polimorfismo: Es la capacidad de procesar un mensaje o datos en más de una forma. Admite la capacidad de un objeto de una clase para comportase de manera diferente en respuesta a un mensaje o acción.
+Considerate a ti como un ejemplo de la vida real, que puede tener diferentes formas de interpretar la información y tener características diferentes como ser: estudiante, amante, payaso, perdido, imbecil, cantante. Esto se llama polimorfismo, ya que tiene algunas formas o características diferentes con respecto a una acción o situación diferente.
 
+Sobrecarga: es la capacidad de una sola función para realizar diferentes tareas dependiendo de la situación. Entonces, el concepto de sobrecarga está relacionado de alguna manera con la propiedad del polimorfismo de OOP. Cuando se debe operar una función u operador existente en un nuevo tipo de datos, se llama como sobrecargado.
 
+La sobrecarga permite crear diferentes métodos con el mismo nombre que difieren entre sí en el tipo de entrada y salida de la función. Se puede usar con funciones y miembros.
+*************************enJavaScript (de aquí pa'rriba)
 
+PROTOTIPO: 1. Primer ejemplar que se fabrica de una figura, un invento u otra cosa, y que sirve de modelo para fabricar otras iguales, o molde original con el que se fabrica. 2. Persona o cosa que reúne en grado máximo las características principales de cierto tipo de cosas y puede representarlas. 
+3. En el ámbito de la informática, se conoce como prototipo al modelo que se desarrolla de un software para reflejar cómo se comporta un sistema. Estos prototipos se utilizan para comprender cómo funciona el sistema en cuestión.
+4 . La noción de prototipo procede de la lengua griega. En concreto, es fruto de la suma de dos componentes de dicha lengua:
+-El prefijo “protos-”, que puede traducirse como “el primero”.
+-El sustantivo “tipos”, que es sinónimo de “modelo” o “tipo”.
+5. Este término se emplea para nombrar al primer dispositivo que se desarrolla de algo y que sirve como modelo para la fabricación de los siguientes o como muestra.
+7. es un ejemplar o primer molde en que se fabrica una figura u otra cosa.
+8. perfecto y modelo de una virtud, vicio o cualidad.
+9. también se puede referir a cualquier tipo de máquina en pruebas, o un objeto diseñado para una demostración de cualquier tipo.
+10. prototipado puede ser un modelo del ciclo de vida del software, tal como el desarrollo en espiral o el desarrollo en cascada.
 
+enlaces:::::::::::::::::::::::::::::==============>
+https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Classes
+https://www.csetutor.com/basic-concept-of-object-oriented-programming/
+https://javascript.info/class-inheritance
+https://developer.mozilla.org/es/docs/Web/JavaScript/Herencia_y_la_cadena_de_protipos
 
 
+comentario:::::::::::::::::::::::::::::::::::::::::::::::::================>
+https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Classes
+Estuve leyendo este articulo, no se si el curso se quedo anticuado y ya mejoraron la forma de manejar las clases.
+Hice las pruebas y funciona de maravilla, es mas fácil que el prototipado.
+classAnimal{
+    constructor(nombre){
+        this.nombre = nombre
+    }
+    hablar(){
+        console.log(this.nombre +' hace ruido')
+    }
+}
+classPerroextendsAnimal{
+    hablar(){
+        console.log(this.nombre + ' ladra!')
+    }
+}
 
+comentario:::::::::::::::::::::::::::::::::::::::::::::::::================>
+Los objetos en JavaScript son “contenedores” dinámicos de propiedades. Estos objetos poseen un enlace a un objeto prototipo. Cuando intentamos acceder a la propiedad de un objeto, la propiedad no sólo se busca en el propio objeto sino también en el prototipo del objeto, en el prototipo del prototipo, y así sucesivamente hasta que se encuentre una propiedad que coincida con el nombre o se alcance el final de la cadena de prototipos.
+javascript no soporta la herencia por que en realidad javascript no tiene clases tiene prototipos a los que les vamos agregando metodos que reciben funciones y saben quien es this saben como ejecutarlas lo que en realidad si existe es la herencia prototifal
 
+comentarios:::::::::::::::::::::::::::::::::::::::::::::::::================>
+Qué quiere decir constructor?
+------------------------------------
+Es una función que se ejecuta cada vez que creamos una nueva instancia del objeto.
+-----------------------------------
+Es el encargado de crear un nuevo objeto o mejor dicho, una nueva instancia del objeto. Básicamente se encarga de preparar un objeto para su uso.
 
+comentario:::::::::::::::::::::::::::::::::::::::::::::::::================>
+No Clases, por lo tanto no existen herencias, sólo son prototipos que se conectan y hacen que fluya/circule la información.
+Si ésta clase fue algo confusa, no se preocupen, sólo fue una explicación a grandes rasgos, en la siguiente clase viene mejor explicado, bueno eso dice Sacha.
 
+comentario:::::::::::::::::::::::::::::::::::::::::::::::::================>
+Ya se puede utilizar el sintax sugar Extends para la herencia de clases. Aquí hay muy buenos ejemplos desde lo más simple hasta lo más complejo como lo vimos en esta clase.
+link:
+http://javascript.info/class-inheritance
 
+comentario:::::::::::::::::::::::::::::::::::::::::::::::::================>
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
+enlaces:::::::::::::::::::::::::::::==============>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+comentario:::::::::::::::::::::::::::::::::::::::::::::::::================>
