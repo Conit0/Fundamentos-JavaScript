@@ -1147,8 +1147,86 @@ comentario:::::::::::::::::::::::::::::::::::::::::::::::::================>
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+#27 Clases en JavaScript
 
+Las clases de JavaScript son introducidas en el ECMAScript 2015 y son una mejora en la sintaxis sobre la herencia basada en prototipos de JavaScript.
+La palabra clave extends se usa en declaraciones de clase o expresiones de clase para crear una clase que es hija de otra clase.
+El método constructor es un método especial para crear e inicializar un objeto creado a partir de una clase.
+
+EcmaScript es el estandar en el cual se basa JavaScript para conformarse como lenguaje, siendo todas las funcionalidades del lenguaje. Y aún que usemos la palabra reservada << class >> todo por debajo son prototipos, y aunque quizas de aquí en adelante los empecemos a llamar clases no debemos olvidar que son prototipos.
+
+Podemos ver el siguente objeto << Persona >> en consola que tiene unos atributos, el << __proto__ >> que es un objeto contiene ciertos metodos y su << __proto__ >> es el prototipo << Object >> 
+jonny
+   Persona {nombre: "Jonathan", apellido: "Cardozo", altura: "1.92"}
+        nombre: "Jonathan"
+        apellido: "Cardozo"
+        altura: "1.92"
+        __proto__:
+	constructor: class Persona
+	saludar: ƒ saludar()
+	soyAlto: ƒ soyAlto()
+	__proto__: Object
+
+Para hacer que una clase "herede" de otra sólo hace falta la palabra clave << extends >> 
+
+
+Programación basada ??en prototipos
+La programación basada ??en prototipos es un estilo de programación orientada a objetos en la que las clases no están presentes y la reutilización de comportamiento (conocido como herencia en lenguajes basados ??en clases) se lleva a cabo a través de un proceso de decoración de objetos existentes que sirven de prototipos. Este modelo también se conoce como programación sin clases, orientada a prototipos o basada en ejemplos.
+
+error==================::::::::::::::::::::::::::>
+var aleja = new Desarrollador('Aleja', 'De Mi Corazón', '1.72')
+
+clase25.js:39 Uncaught ReferenceError: Must call super constructor in derived class before accessing 'this' or returning from derived constructor
+    at new Desarrollador (clase25.js:39)
+    at <anonymous>:1:13 //Pimero debemos llamar al constructor << super >> y pasarle los parametros antes de usar << this  >> dentro de la clase padre por así llamarla, luego de esto podremo acceder a << this >> sin que nos marque un error.
 
 enlaces:::::::::::::::::::::::::::::==============>
+https://developer.mozilla.org/es/docs/Web/JavaScript/Introducci%C3%B3n_a_JavaScript_orientado_a_objetos
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
+
+comentarios:::::::::::::::::::::::::::::::::::::::::::::::::================>
+no existe polimorfismo en javascript?
+---------------------------
+Sí existe en JS.
+Esta guía te puede ayudar: https://developer.mozilla.org/es/docs/Web/JavaScript/Introducción_a_JavaScript_orientado_a_objetos.
+
+comentarios:::::::::::::::::::::::::::::::::::::::::::::::::================>
+Es necesario volver a escribir el constructor en la clase Desarrollador ?. Yo hice la prueba omitiendolo ?. Yo hice la prueba sin usarlo y me funcionó bien, aunque no se si eso me puede traer un problema después. Ejm de como lo hice
+class Desarrollador extends Persona{
+saludar (){
+console.log(Hola soy desarrolador mi nombre es ${this.nombre})
+}
+--------------------------------------
+Creo que si no se declara el constructor de forma explícita en la subclase el interprete de Javascript lo hace de forma implícita y llama al constructor de la clase padre con los argumentos enviados a través de la subclase. Por eso te funciona tu código.
+En el caso de declarar el constructor hay dos reglas respecto al constructor de una clase que hereda de otra que debes tomar en cuenta:
+this no puede ser usado en el constructor de una clase hijo hasta que super() sea llamado.
+Los constructores de clases en ES6 deben llamar a super() si son subclases o deben regresar de forma explicita un objeto.
+-------------------------------------------------
+Si defines un método constructor en la clase que hereda y no llamas a super debe darte el error ReferenceError: Must call super constructor in derived class before accessing 'this' or returning from derived constructor. La única forma de que te este funcionando sin el super() es que tampoco tengas el método constructor, en este caso Javascript agrega un constructor por default en el que hace la llamada a super.
+--------------------------------------
+Al escribir **super ** esta invocando el método **constructor ** de tu clase Persona , y en este caso estas enviando en el super los parámetros para aplicar el don’t repeat yourself.
+
+comentarios:::::::::::::::::::::::::::::::::::::::::::::::::================>
+En la teoría de Orientado a objetos, cuando una clase hija hereda a una clase padre, también hereda su constructor.
+https://javascript.info/class-inheritance en este enlace, en el primer recuadro de código está muy bien explicado.
+https://javascript.info/class-inheritance#overriding-constructor en esta sección del mismo enlace te explican muy bien como hacer “overriding constructor”, que es precisamente lo que estás buscando.
 
 comentario:::::::::::::::::::::::::::::::::::::::::::::::::================>
+gente… pregunta, yo hice el experimento sin copiar el constructor de la clase padre y sigue funcionando ~ no entiendo muy bien para qué se usa el super()… es decir, si entiendo pero … si se usa el mismo constructor ¿para qué se duplica?
+--------------------------------------------------------
+este enlace te lo explica todo: https://stackoverflow.com/questions/39822941/what-does-super-do-without-any-arguments
+Tampoco te lies demasiado, con ES6 super queda deprecado en React dentro de su sintaxis, y con React Hooks es todavía más fácil la sintáxis. Está bien aprender super() en React para saber leer código que lo contenga, pero no lo uses. Aprende Hooks
+https://reactjs.org/docs/hooks-intro.html
+en resumen:
+una clase derivada debe usar super() si la clase tiene un constructor. En React todos los componentes extienden de Component por lo que lo necesitan.
+Necesitas super() para tener acceso a this o de lo contrario nunca se inicializa this.
+Te permite inicializar states y realizar binding dentro del constructor sin necesidad de hacer uso del lifecycle de React para ello.
+para acceder a los props dentro del constructor requieres super() y que este obtenga props como parámetro, para hacer this.props.
+constructor(props) {
+  super(props);
+  this.state = {count: props.initialCount};
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
