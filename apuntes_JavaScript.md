@@ -807,6 +807,9 @@ y como es obvio, los parámetros es aquello detrás de la flecha del arrow, que es
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+5. Programación Orientada a Objetos en JavaScript:
+JavaScript dispone de fuertes capacidades de programación orientada a objetos, a pesar de que han tenido lugar algunos debates respecto a las diferencias de sus capacidades en comparación con otros lenguajes
+
 #23 Cómo funcionan las clases en JavaScript'
 
 Las clases son funciones cuya sintaxis tiene dos componentes:
@@ -1169,6 +1172,8 @@ jonny
 
 Para hacer que una clase "herede" de otra sólo hace falta la palabra clave << extends >> 
 
+La palabra reservada super llama al constructor de la clase padre
+
 
 Programación basada ??en prototipos
 La programación basada ??en prototipos es un estilo de programación orientada a objetos en la que las clases no están presentes y la reutilización de comportamiento (conocido como herencia en lenguajes basados ??en clases) se lleva a cabo a través de un proceso de decoración de objetos existentes que sirven de prototipos. Este modelo también se conoce como programación sin clases, orientada a prototipos o basada en ejemplos.
@@ -1229,4 +1234,46 @@ constructor(props) {
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+6. Asincronismo
 
+Se aplica a la modalidad de transmisión de datos en la que cada carácter llega precedido por un bit inicial y seguido de un bit final.
+
+#28 Funciones como parámetros
+
+En JavaScript, los parámetros de funciones son por defecto undefined. De todos modos, en algunas situaciones puede ser útil colocar un valor por defecto diferente que lo evalúe como verdadero.
+
+Para entender el asincronismo hay que tener en cuenta que las funciones también pueden ser pasadas como parametros. Dentro de la función también podemos establecer como parametro para que arroge valor false 
+
+Hay ciertos valores que se comportan como true o como false:
+	false = << null >> << 0 >> << '' >>
+	true = << {object} >> << [] >> << 'holaMundo' >>
+En el caso que sean puestos dentro de una estructura de control y evaluados dentro de una condición dara como resultado un valor booleano. Pero dentro de las practicas de programación puede resultar mucho mejor colocar el valor booleano y el código resultara más lejible.
+Es importante tener definidos lás variables que le pasaremos a nuestras funciones al ser invocadas lo requeriran
+
+La palabra clave super es usada para llamar funciones del objeto padre.
+
+undefined evaluado como una condición dentro de un << if >> da como resultado false 
+
+enlaces:::::::::::::::::::::================>
+https://stackoverflow.com/questions/32647215/declaring-static-constants-in-es6-classes
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator
+https://developer.mozilla.org/en-US/docs/Glossary/Falsy
+https://developer.mozilla.org/en-US/docs/Glossary/Truthy
+
+comentarios::::::::::::::::::::::::::::::::::==============>
+Como puedo declarar una constante dentro de una clase en JS.
+Digamos un atributo static.
+----------------------------------------------------
+Encuentras toda la info aquí: https://stackoverflow.com/questions/32647215/declaring-static-constants-in-es6-classes
+En resumen, las constantes estáticas en clases de JavaScript solo están disponibles a partir de ES7 o con babel-preset-stage-0. Con ES6 “normalito” debemos usar getters y setters.
+
+comentarios::::::::::::::::::::::::::::::::::==============>
+No me entero de nada con este profesor ??
+--------------------------------------------
+ Alguna vez me sentí igual. Lo que me ayudo muchisimo fue complementar las clases con lectura sobre el tema.
+Te recomiendo darle un vistazo a estos link =
+https://wmedia.es/como-aprender-javascript-de-una-vez-por-todas/
+https://danielmoralesp.gitbooks.io/javascript-avanzado-en-espanol/content/
+https://developer.mozilla.org/es/docs/Web/JavaScript/Guide
+
+a
