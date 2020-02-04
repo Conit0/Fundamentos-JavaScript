@@ -1261,7 +1261,7 @@ https://developer.mozilla.org/en-US/docs/Glossary/Falsy
 https://developer.mozilla.org/en-US/docs/Glossary/Truthy
 
 comentarios::::::::::::::::::::::::::::::::::==============>
-Como puedo declarar una constante dentro de una clase en JS.
+Como puedo declarar una constante dentrode una clase en JS.
 Digamos un atributo static.
 ----------------------------------------------------
 Encuentras toda la info aquí: https://stackoverflow.com/questions/32647215/declaring-static-constants-in-es6-classes
@@ -1276,4 +1276,93 @@ https://wmedia.es/como-aprender-javascript-de-una-vez-por-todas/
 https://danielmoralesp.gitbooks.io/javascript-avanzado-en-espanol/content/
 https://developer.mozilla.org/es/docs/Web/JavaScript/Guide
 
-a
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+#29Cómo funciona el asincronismo en JavaScript
+
+JavaScript sólo puede hacer una cosa a la vez, sin embargo; es capaz de delegar la ejecución de ciertas funciones a otros procesos. Este modelo de concurrencia se llama EventLoop.
+
+JavaScript delega en el navegador ciertas tareas y les asocia funciones que deberán ser ejecutadas al ser completadas. Estas funciones se llaman callbacks, y una vez que el navegador ha regresado con la respuesta, el callback asociado pasa a la cola de tareas para ser ejecutado una vez que JavaScript haya terminado todas las instrucciones que están en la pila de ejecución.
+
+Si se acumulan funciones en la cola de tareas y JavaScript se encuentra ejecutando procesos muy pesados, el EventLoop quedará bloqueado y esas funciones pudieran tardar demasiado en ejecutarse.
+
+Apuntes:
+Sólo puede ejecutar un tarea a la vez, aunque no es multitarea puede delegar la ejecución de ciertas funciones a otros procesos (EventLoop)
+Pila de ejcución o callstack aquí va poniendo las llamdas a funciones según el orden de ejecución del programa, si una función llama a otra esta se agrega a la pila, cuando termina de ejecutar una función la saca de la pila y la bota. En algún momento dado el programa necesita saber algo por medio del navegador y al regresar traera una función a esto se le llama callback una función que JavaScript ejecutara cuando regrese la respuesta del servidor, mientras JavaScript continua con el programa principal, cuando llegue la respuesta la función a ejecutar ira a parar a la cola de tareas donde se ira encolando (peticiones a servidores, interaciones visuales, navegación claid inside, los eventos que se realizan cada cierto tiempo) solo hasta que el programa se quede sin funciones en la pila de ejecución es que va ir a buscar las funciones de la cola de tareas por eso hay que tener cuidado de no generar un cuello de botella en la pila de ejecución, si JavaScript se queda ejecutando tareas muy pesadas las funciones de la cola de tareas van a tardar mucho tiempo en ejecutarse por eso ¡NO BLOQUEAR EL EVENTLOOP!  
+
+
+
+enlaces:::::::::::::::::::::================>
+http://latentflip.com/loupe/?code=JC5vbignYnV0dG9uJywgJ2NsaWNrJywgZnVuY3Rpb24gb25DbGljaygpIHsKICAgIHNldFRpbWVvdXQoZnVuY3Rpb24gdGltZXIoKSB7CiAgICAgICAgY29uc29sZS5sb2coJ1lvdSBjbGlja2VkIHRoZSBidXR0b24hJyk7ICAgIAogICAgfSwgMjAwMCk7Cn0pOwoKY29uc29sZS5sb2coIkhpISIpOwoKc2V0VGltZW91dChmdW5jdGlvbiB0aW1lb3V0KCkgewogICAgY29uc29sZS5sb2coIkNsaWNrIHRoZSBidXR0b24hIik7Cn0sIDUwMDApOwoKY29uc29sZS5sb2coIldlbGNvbWUgdG8gbG91cGUuIik7!!!
+
+https://stackoverflow.com/questions/33768726/blocking-event-loop
+https://www.youtube.com/watch?v=PndHsDpEfhU&list=PLImOJ2OqvvkCuDi6E33HXMP23BvYYBHcm
+
+
+comentario::::::::::::::::::::::=============>
+Un cuello de botella siempre hará referencia a un elemento que limita una cadena de ejecución. En este caso, si tenemos una función que está tomando mucho tiempo la pila de ejecución se verá sobrecargada y el resto de tu aplicación se pondrá mucho más lenta al punto de no ser usable
+
+comentario::::::::::::::::::::::=============>
+¿Cómo bloquear ek eventloop?
+-------------------------------------------------------
+Puedes bloquear el event loop creando un for loop infinito o un while, o como en el siguiente ejemplo, una función que se llame a sí misma.
+functionrepeat(operation, num) {
+    if (num <= 0) return
+    operation()
+    repeat(operation, --num)
+}
+------------------------------------------
+while(true){
+console.warn(' NO VOY A BLOQUEAR EL EVENTLOOP')
+ } //No! Fuera…!! Impulso de idiotez…!! D:
+
+comentario::::::::::::::::::::::=============>
+Según entiendo el código se lee de arriba hacia abajo y después apila de abajo hacia arriba.
+--------------------------------------------------
+Algo así, el código se va leyendo de arriba a abajo y mientras se vaya encontrando funciones o tareas va a irlas mandando al callstack o al queue.
+
+comentario::::::::::::::::::::::=============>
+Transcripción del guión del video
+(No tan exacta…)
+Asincronismo
+Javascript sólo puede hacer una cosa a la vez … pero puede delegar la ejecución de ciertas funciones a otros procesos.
+Este modelo de concurrencia se llama EventLoop.
+…
+JavaScript tiene algo llamado pila de ejecución o callStack donde va poniendo las llamadas a las funciones según el orden de ejecución de nuestro programa; si una función llama a otra, entonces esta se agrega a la pila.
+Cuando termina de ejecutar una función la saca de la pila y la desecha.
+
+En algún momento dado nuestro programa necesita algún dato de otro sitio en la web y le pide al navegador que cuándo obtenga los datos ejecute cierta función. Esta tarea que se lleva el navegador se llama ‘callBack’.
+Mientras tanto js sigue ejecutando nuestro programa principal y cuando la respuesta llega va a parar a la ‘cola de tareas’.
+Aquí las tareas se ordenan una detrás de la otra a medida de que van llegando.
+
+Qué tareas van a parar a esta cola?
+• las peticiones a servidores
+• las interacciones visuales
+• la navegación clayInside (dice esto?)
+• los eventos que se realizan cada cierto tiempo
+
+Recién cuando el programa se queda sin funciones en la pila de ejecución es que va a ir a buscar las funciones en la ‘cola de tareas’; por eso es que hay que tener cuidado de no generar un ‘cuello de botella’ en la pila de ejecución.
+
+Si javaScript se queda ejecutando tareas muy pesadas las funciones de la ‘cola de tareas’ van a tardar mucho tiempo en ejecutarse.
+
+Por eso recuerda estas palabras y repitelas todas las noche antes de irte a dormir:
+No Voy A Bloquear el EventLoop!
+
+comentarios:::::::::::::::::::::::================>
+Ya entiendo porqué JS fue tan odiado, no tiene un buen POO, tampoco es multitarea….
+---------------------------------------
+Solo odiado por los que unicamente piensan dentro de la caja.
+Por eso hay que pensar fuera de la caja
+--------------------------------------------
+Es odiado porque JS trabaja diferente su POO donde en lugar de hacer copias a lo loco de Propiedades y Métodos entre objetos, los delega entre objetos padres e hijos en el Prototype Chain ahorrándose performance. Pero muchos devs que vienen de otros lenguajes les da flojera tratar de entender esas funcionalidades.
+BTW!! Java esta copiando el asincronismo de Javascript en la versión 10 ya viene con Promises. Tambien Kotlin viene con algo parecido a Async/Await 
+----------------------------------------
+No se trata de flojera, además Javascript no es orientado a objetos, es pura programación estructurada y funcional.
+Programación estructurada porque trabaja instrucción a instrucción y funcional porque está todo el tiempo haciendo callbacks.
+Lo que ocurre con muchos programadores es que, se pasó de la programación estructurada a la POO. Ese paradigma permitía mejorar mucho el diseño y el mantenimiento del código, básicamente ahorrar costes. Por lo tanto tratar con lenguajes como Javascript se siente como un paso atrás. Ya que mantener código JS en archivos grandes es insufrible por lo que veo.
+Como dato personal, espero encontrar formas eficiente de organizar el código a medida que avance en la carrera de JS. Porque la programación estructurada es lo que tiene, que llega un momento en que es insostenible, no hay quien le meta mano.
+-----------------------------------------
+Lo más importante no es la eficiencia al programar, sino la legibilidad y la ^^cohesión**. La eficiencia solo debe ser tratada cuando haya problemas de eficiencia que podamos medir con pruebas.
+
+Ya que primero estamos las personas, las que leemos y manipulamos el código, y luego las máquinas, las que a día de hoy tienen gran potencia para permitirnos no ser tan eficientes al codificar.

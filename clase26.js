@@ -11,12 +11,14 @@ class Persona {
     console.log(` Hola, me shamo ${nombre} ${apellido}`)
     // esta función se va ejecutar cuando sea asignada como parametro de lo contrario sera falsa.
     //Pregunttamos dentro de un << if >> si nos vino algo del parametro que tenemos en << saludar >> el bloque de código se ejecuta si es verdadera 
+    // Método
     if (fn) {
       //Podemos colocar << false >> como último parametro o usar un valor que sea evaluado como << false >> o solo omitirlo para que sea evaluado como << undefined >> para cuando lleve a la función << esDev >> y sea evaluado << false >> dentro de la condición.
       fn(nombre, apellido)
       //debugger //uso esta sentencia para comprobar lo que menciono que al pasar el parametro dentro de la función se ejecutara este << if >> por lotanto es << true >>
     }
   } 
+  // Getter
   soyAlto() {
     return this.altura > 1.8
   }
@@ -47,11 +49,11 @@ function responderSaludo(nombre, apellido, esDev) {
 
 var jonny = new Persona('Jonathan', 'Cardozo', '1.92');
 var aleja = new Persona('Aleja', 'De Mi Corazón', '1.72')
-var arturo = new Desarrollador('Arturo','Martinez', '1.82')
+var arturo = new Desarrollador('Arturo','Canseko', '1.82')
 
-// jonny.saludar(responderSaludo)
-// aleja.saludar()
-// arturo.saludar(responderSaludo)
+jonny.saludar(responderSaludo)
+aleja.saludar()
+arturo.saludar(responderSaludo)
 
 /*
  * Podemos desestructurar o desglosar el nombre y el apellido y acontinuación reducir un poco más el código
