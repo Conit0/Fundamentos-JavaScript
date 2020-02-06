@@ -1291,13 +1291,13 @@ Apuntes:
 Sólo puede ejecutar un tarea a la vez, aunque no es multitarea puede delegar la ejecución de ciertas funciones a otros procesos (EventLoop)
 Pila de ejcución o callstack aquí va poniendo las llamdas a funciones según el orden de ejecución del programa, si una función llama a otra esta se agrega a la pila, cuando termina de ejecutar una función la saca de la pila y la bota. En algún momento dado el programa necesita saber algo por medio del navegador y al regresar traera una función a esto se le llama callback una función que JavaScript ejecutara cuando regrese la respuesta del servidor, mientras JavaScript continua con el programa principal, cuando llegue la respuesta la función a ejecutar ira a parar a la cola de tareas donde se ira encolando (peticiones a servidores, interaciones visuales, navegación claid inside, los eventos que se realizan cada cierto tiempo) solo hasta que el programa se quede sin funciones en la pila de ejecución es que va ir a buscar las funciones de la cola de tareas por eso hay que tener cuidado de no generar un cuello de botella en la pila de ejecución, si JavaScript se queda ejecutando tareas muy pesadas las funciones de la cola de tareas van a tardar mucho tiempo en ejecutarse por eso ¡NO BLOQUEAR EL EVENTLOOP!  
 
-
-
 enlaces:::::::::::::::::::::================>
 http://latentflip.com/loupe/?code=JC5vbignYnV0dG9uJywgJ2NsaWNrJywgZnVuY3Rpb24gb25DbGljaygpIHsKICAgIHNldFRpbWVvdXQoZnVuY3Rpb24gdGltZXIoKSB7CiAgICAgICAgY29uc29sZS5sb2coJ1lvdSBjbGlja2VkIHRoZSBidXR0b24hJyk7ICAgIAogICAgfSwgMjAwMCk7Cn0pOwoKY29uc29sZS5sb2coIkhpISIpOwoKc2V0VGltZW91dChmdW5jdGlvbiB0aW1lb3V0KCkgewogICAgY29uc29sZS5sb2coIkNsaWNrIHRoZSBidXR0b24hIik7Cn0sIDUwMDApOwoKY29uc29sZS5sb2coIldlbGNvbWUgdG8gbG91cGUuIik7!!!
 
 https://stackoverflow.com/questions/33768726/blocking-event-loop
 https://www.youtube.com/watch?v=PndHsDpEfhU&list=PLImOJ2OqvvkCuDi6E33HXMP23BvYYBHcm
+https://www.youtube.com/watch?v=W8AeMrVtFLY
+https://github.com/leonardomso/33-js-concepts
 
 
 comentario::::::::::::::::::::::=============>
@@ -1366,3 +1366,52 @@ Como dato personal, espero encontrar formas eficiente de organizar el código a m
 Lo más importante no es la eficiencia al programar, sino la legibilidad y la ^^cohesión**. La eficiencia solo debe ser tratada cuando haya problemas de eficiencia que podamos medir con pruebas.
 
 Ya que primero estamos las personas, las que leemos y manipulamos el código, y luego las máquinas, las que a día de hoy tienen gran potencia para permitirnos no ser tan eficientes al codificar.
+
+comentario::::::::::::::::::::===========>
+esta analogía me pareció muy buena para entender aun mas el asincronismo de JS:
+Imagina que te levantas una mañana a preparar tu desayuno. Primero decides tostar tu pan y luego prepararás tu avena. Si fuera una persona síncrona (Blocking) tendrías que esperar a tostar tu pan para recíen preparar tu avena. Pero si fuera una persona asíncrona (Non Blocking) luego de poner a tostar tu pan, vas preparando tu avena. La acción de que salga tu pan de la tostadora sería un callback que está esperando que finalice el proceso para ejecutarse. Pero otros procesos (como preparar tu avena) ya podrían irse realizando.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+#30 Cómo funciona el tiempo en JavaScript
+
+En principio, cualquier tarea que se haya delegado al navegador a través de un callback, deberá esperar hasta que todas las instrucciones del programa principal se hayan ejecutado. Por esta razón el tiempo de espera definido en funciones como setTimeout, no garantizan que el callback se ejecute en ese tiempo exactamente, sino en cualquier momento a partir de allí, sólo cuando la cola de tareas se haya vaciado.
+
+Cómo JavaScript ejecuta algo de manera asincrona
+  Tener en cuenta las tareas que se ejecutan de esta manera
+   Tareas a tiempo futuro
+    Interactuar el DOM , ya sea modificando alguno de sus elementos del documento (titulos, botones, CSS, alert) todo esto también se ejectuta de manera asincrona
+    Hacer un pedido de datos externo, un request externo (Vanilla, jQuery, fetch) esto también se ejectuta de manera asincrona y hay que tenerlo en cuenta cuando estamos desarrollando
+
+
+Tener en mente conceptos como: Call Back, Asincronismo, promesas, async await
+
+    setTimeout(function () {
+      console.log('b')
+    }, 2000)
+
+enlaces:::::::::::::::::::::::::::::::=============>
+https://medium.com/@ubykuo/event-loop-la-naturaleza-asincr%C3%B3nica-de-javascript-78d0a9a3e03d
+https://medium.com/@gaurav.pandvia/understanding-javascript-function-executions-tasks-event-loop-call-stack-more-part-1-5683dea1f5ec
+https://developer.mozilla.org/en-US/docs/Web/JavaScript
+http://vanilla-js.com/
+https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Sentencias/funcion_asincrona
+https://en.wikipedia.org/wiki/Async/await#In_JavaScript
+
+comentarios::::::::::::::::::::::::==============>
+El setTimeOut con tiempo 0 cumple la misma función que el window.onload?
+---------------------------------
+Son dos conceptos diferentes. El window.onload es un evento del objeto window. Este se ejecuta justo cuando una página termina de cargarse. Es útil cuando necesitas manipular el DOM ya que asi te aseguras que todo el DOM ya ha sido cargado.
+Por otro lado el setTimeout, hace parte del API del browser. Es un método, asíncrono, que ejecuta una función después de cierto tiempo. Asi el tiempo sea 0, se ejecutará de inmediato al final del callstack.
+
+comentarios::::::::::::::::::::::::===========>
+Si console.log() es una función y se ejecuta en el hilo principal y SetTimeout() también es una función pero se encola para ser ejecutada, como sabemos que funciones javascript se encolan y cuales ejecutan directamente?
+---------------------------------------------------
+Porque setTimeOut estaría haciendo callBack…
+La función console.log(' ') está siendo llamada inmediatamente.
+setTimeOut( function(){}, 2000 ) es llamada al instante también, pero la función que hay dentro de esta función es callback y será enviada a la cola de tareas una vez pasen los 2 segundos. Lo que hay en la cola de tareas va a ser ejecutado una vez que JavaScript finalice la pila de ejecución principal.
+En sintesis, sabremos que la función será demorada cuando hagamos un callback. Que es una función que tenga como argumento otra función. Es decir que se requiere el resultado de la función b para completar a.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

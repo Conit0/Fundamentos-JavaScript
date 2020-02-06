@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video #30 | Cómo funciona el tiempo en JavaScript</title>
+</head>
+<body>
+  <script>
+
+    console.log('a')
+    // Recibe dos parametros; una función y un delete con el que expresamos en milisegundos cuento tardara en ejecutarse la función
+    setTimeout(function () {
+      console.log('b')
+    }, 2000)
+    /*Colocando como referencia de tiempo a 0 así:
+    setTimeout(() => console.log('b'), 0)
+    esto será enviado a al callStack (pila de llamadas), luego 
+    que termine de ejecutar lo principal ira al callStack para ir sacando lo que hay en ella*/
+    console.log('c')
+
+    /* Vemos cuanto tiempo tarda en aparecer la letra << d >>
+    cuando realizamos una tarea asincrona para este caso el delete es minimo
+    pues nada nos grantiza que no estemos bloqueando el eventloop y no estemos
+    bloqueando la ejecución del código.
+    **Primero se tiene que ejecutar la parte principal del programa y luego el call Stack
+    setTimeout(()=>console.log('d'), 2000)
+    for (let i = 0; i < 100; i++) {
+      
+    }
+    */
+
+    /**
+     *de esta forma estamos invocando primero la función en vez de hacer antes una referencia a ella dentro de los parámetros dentro de una función anonima
+      setTimeout(console.log('b'), 2000)
+        Así es como resive una función (sintaxis para las que solo van a retornar un valor):
+      setTimeout(()=>console.log('b'), 2000)
+    */
+  </script>
+</body>
+</html>
