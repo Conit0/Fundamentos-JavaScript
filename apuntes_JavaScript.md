@@ -1415,3 +1415,55 @@ En sintesis, sabremos que la función será demorada cuando hagamos un callback. Q
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+#31 Callbacks
+= Devoluciones de llamada
+
+En esta clase aprenderemos que son los callbacks y usaremos una librería externa que se llama jQuery.
+Un callback es una función que se pasa a otra función como un argumento. Esta función se invoca, después, dentro de la función externa para completar alguna acción.
+
+CDN = Content Delivery Network = Red de entrega de contenidos = Es una red superpuesta de computadoras que continen copias de datos, colocados en varios puntos de una red con el fin de máximizar el ancho de banda para el acceso a los datos del cliente por una red.
+
+Un método que todos los strings tiene es << replace >> 
+<< arguments >>  es una varaible que trae por defecto todas las funciones
+
+Revisamos la documentación para el método .get de jQuery 
+
+enlaces::::::::::::::::::::===============>
+Si desean acceder a una API con datos de usuarios de Github pueden navegar aqui: https://api.github.com/algunusuario
+https://jquery.com/
+https://swapi.co/
+https://code.jquery.com/
+https://es.wikipedia.org/wiki/Red_de_distribuci%C3%B3n_de_contenidos
+https://medium.com/jsninja/call-stack-event-loop-and-task-queue-d49eff2ec7bb
+https://api.jquery.com/jquery.get/
+
+¿hay otras apis del tipo de la de star wars pero con otras películas, series o productos?
+Ésta está bastante buena
+http://www.omdbapi.com/
+Ejemplo:
+http://www.omdbapi.com/?apikey=[yourkey]&t=harry+potter
+
+comentarios::::::::::::::::::::::::::::::============>
+¿Qué es un API?
+------------------------------------------
+Application programming interface.
+Es básicamente estándares de comunicación para hacer conexiones clientes servidor, el API más utilizado actualmente en web es REST pero GraphQL ha venido ganando muchísima fuerza.
+Ten en cuenta que GraphQL no es un API pero más bien un lenguaje para hacer peticiones.
+Así es, pero el término API se extiende más allá de sólo eso. Java tiene su propia API por ejemplo, Al igual que iOS y Android. API es una serie de procesos que se deben seguir para establecer comunicación entre dos partes, creo que esa sería una buena manera de explicarlo.
+De todas maneras a medida que avances con tu carrera personal como desarrollador irás experimentando y aprendiendo más al respecto
+
+comentarios::::::::::::::::::::::::::::::============>
+Cual es la verdadera finalidad de los callback no entendí…
+------------------------------------------------------------------------
+En términos sencillos un callback es una función que se pasa como parámetro a otra función y su finalidad es llevar la respuesta que da un servidor a un request (solicitud) que hayamos mandado
+----------------------------------------------------------
+Los callbacks son una función pasada como parámetro que va a ser ejecutada en cierto momento. Así logramos tener un código asíncrono que nos permite postergar la ejecución de cierta tarea hasta que ocurra un evento
+En clases posteriores vas a ver una mejor forma de lograr código asíncrono usando promesas.
+---------------------------------------------------------------
+Los callback te permiten ejecutar una función cuando algo pasa, si por ejemplo queremos que se envíe una petición al servidor cuando presionamos un botón los callbacks son los que nos van a permitir realizar esta operación. Piensalo cómo funciones que serán pasadas como argumentos para en caso de que se dé una acción sea ejecutada
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
