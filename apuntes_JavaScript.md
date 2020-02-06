@@ -1466,4 +1466,105 @@ Los callback te permiten ejecutar una función cuando algo pasa, si por ejemplo q
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+#32 Haciendo múltiples requests
 
+En esta clase accederemos a múltiples datos al mismo tiempo. Continuaremos trabajando con los jQuery y swapi.
+
+tener en cuenta que para que la función reaccione al llamarla hay que pasarle dentro de ella el método << $.get >> dentro los parámetros uno de esos parámetros también estara definido dentro de la función.
+
+enlaces::::::::::::::::::::::::::::::===================>
+http://www.enrique7mc.com/2016/05/lista-apis-publicas/
+
+Aquí un resumen del uso de Ajax con Jquery:
+https://webdesign.tutsplus.com/es/tutorials/a-beginners-guide-to-ajax-with-jquery--cms-25126
+Documentación
+https://www.w3schools.com/jquery/jquery_ajax_intro.asp
+
+Te dejo algunos ejemplos de otras API´s:
+https://developer.marvel.com/
+https://rickandmortyapi.com/
+https://developers.themoviedb.org/3/movies
+
+comentarios::::::::::::::::::::::::===============>
+Hay alguna forma de hacer esto sin recurrir a jquery?
+---------------------------------------------------------------
+broo te tengo la solución
+
+const StarApi = 'https://swapi.co/api/'
+const peopleSource = 'people/'
+const opts = {crossDomain: true}
+
+asyncfunctionload(){
+
+    asyncfunctionGetData(url, opts){
+        const response = await fetch(url);
+        const data = await response.json();
+        return (data)
+    }
+    asyncfunctionGetSource(Source){
+        constlist = await GetData(`${StarApi}${Source}`);
+        return (list)
+    }
+
+    const people =  await GetSource(peopleSource)
+    functionCharacterName(a){
+        console.log(people.results[a].name)
+    }
+    CharacterName(1)
+CharacterName(2)
+}
+load()
+
+comentarios::::::::::::::::::::::::===============>
+Asincronismo
+Es llamar a uno o múltiples métodos asincrónicos, pero sin conocer en qué orden nos llegarán las respuestas, eso depende del servidor y de cuanto tarda cada uno de los requests.
+Básicamente, conocemos en qué orden lanzamos los requests, pero no sabemos en qué orden nos llegarán.
+
+comentarios::::::::::::::::::::::::::==============>
+Esto de usar APIs es una muy buena herramienta para construir grandes páginas.
+Les paso ésta web que contiene un listado de APIs públicas:
+http://www.enrique7mc.com/2016/05/lista-apis-publicas/
+Nota: El link originalmente lo compartió alguien en el curso de jQuery a JS
+
+comentarios::::::::::::::::::::::::::==============>
+Resumen de la clase:
+Requests en paralelo
+Creamos una nueva función y modificamos levemente el código para hacer el callback ingresando solamente el id:
+const API_URL = 'https://swapi.co/api/'
+const PEOPLE_URL = 'people/:id'
+
+const opts = { crossDomain: true}
+const onPeopleResponse = function(person){
+    console.log(person.name)
+}
+
+functionobtenerPersonaje(id){
+    consturl = `${API_URL}${PEOPLE_URL.replace(':id', id)}`
+    $.get(url, opts, onPeopleResponse)
+}
+
+Dado este código.
+En qué orden nos llegarán las respuestas?
+
+obtenerPersonaje(1)
+obtenerPersonaje(2)
+obtenerPersonaje(3)
+
+//  3
+//  2
+//  1
+
+En este request el resultado llegó en el orden inverso en el que los pedimos.
+Por qué sucede esto?
+Por el asincronismo de JS.
+No sabemos en qué orden nos llegarán las respuestas, esto depende del servidor y de cada uno de los requests.
+Iniciamos los requests en un determinado orden pero no sabemos en qué orden van a llegar.
+
+comentarios::::::::::::::::::::::::::::==========================>
+¿Por qué las llamadas se hacen de forma paralela? Si JS no es lenguaje multihilo?
+----------------------------------------------------------------
+no están en paralelo. están desincronizadas. es tema de async. son dos cosas muy diferentes.
+Imagina lo siguiente:
+Vas a tu servicio de correo más cercano y envías 5 cajas a 5 paises. pides que el correo los envie, y cuando lleguen te los regresen.
+Tu llegaste al servicio de correo con 5 cajas, y se repartieron 5 cajas al mismo tiempo. Te tomó 3 segundos de diferencia físicamente darle cada caja al encargado. En tu pc toma 3 milisegundos ejecutar cada llamada asíncrona.
+No puedes ver que no fueron al mismo tiempo porque sucede en milisegundos (o menos). Los resultados tampoco te llegan al mismo tiempo, cada respuesta se tomó su tiempo en llegar, y si recibieran 200 requests al mismo tiempo, tu pc procesa una por una. Entra a los devtools y revisalo en network. verás el orden de las llamadas y su latencia en milisegundos.
