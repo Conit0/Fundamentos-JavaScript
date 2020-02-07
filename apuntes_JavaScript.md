@@ -1568,3 +1568,53 @@ Imagina lo siguiente:
 Vas a tu servicio de correo más cercano y envías 5 cajas a 5 paises. pides que el correo los envie, y cuando lleguen te los regresen.
 Tu llegaste al servicio de correo con 5 cajas, y se repartieron 5 cajas al mismo tiempo. Te tomó 3 segundos de diferencia físicamente darle cada caja al encargado. En tu pc toma 3 milisegundos ejecutar cada llamada asíncrona.
 No puedes ver que no fueron al mismo tiempo porque sucede en milisegundos (o menos). Los resultados tampoco te llegan al mismo tiempo, cada respuesta se tomó su tiempo en llegar, y si recibieran 200 requests al mismo tiempo, tu pc procesa una por una. Entra a los devtools y revisalo en network. verás el orden de las llamadas y su latencia en milisegundos.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+#33 Manejando el Orden y el Asincronismo en JavaScript 
+
+Una manera de asegurar que se respete la secuencia en que hemos realizado múltiples tareas es utilizando callbacks, con lo que se ejecutará luego, en cada llamada. Lo importante es que el llamado al callback se haga através de una función anónima. Sin embargo, al hacerlo de esta manera generamos una situación poco deseada llamada CallBackHell.
+
+Callbacks Hell o Pyramid of Doom
+
+enlaces::::::::::::::::::::::::::=========================>
+https://www.campusmvp.es/recursos/post/Que-es-la-recursividad-o-recursion-Un-ejemplo-con-JavaScript.aspx
+https://www.todojs.com/controlar-la-ejecucion-asincrona/
+https://api.jquery.com/jquery.get/
+https://medium.com/@jmz12/callbacks-promesas-y-async-await-que-alguien-me-explique-514137cb57e2
+
+comentarios:::::::::::::::::::::::::::::::::::::=========================>
+Este codigo funciona perfectamente, pero de donde sale el “persona” en function (persona)???
+-----------------------------------------------------------------------------
+ese persona, es la respuesta del servidor.
+esa como tal es una función anónima la cual la petición recibe como parámetro. dentro del objeto de la petición ella toma un nombre succes.
+pero ya eso es manejo interno
+-------------------------------------------------------------------------
+La función $.get() de jquery recibe varios parámetros entre ellos una función de callback, en este caso es function (persona) , a su vez esta función de callback recibe varios parámetros Function( PlainObject data, String textStatus, jqXHR jqXHR ) persona son los datos que regresa la llamada get de jQuery (Objeto obtenido de la llamada al servidor).
+Puedes consultar la documentación de jQuery:
+https://api.jquery.com/jquery.get/
+
+comentarios:::::::::::::::::::::::::::::::::::::=========================>
+porqué el servidor entrega las consultas en desorden ?
+------------------------------------------------------------------
+El servidor puede demorarse más ejecutando una que otra, o simplemente si el paquete de información se fue por otro camino, se pierde, luego el protocolo de red lo vuelve a pedir, se demora más. Se demora también porque simplemente en tu zona el internet bajó por un momento corto y provocó un retraso en unos paquetes que venían primero, etc…
+---------------------------------------------------------------
+¿Podria decirse entonces que:
+Los callback aunque nos permiten mostrar la información de manera síncrona, también hacen más lento la ejecución del código?
+(ya que no estamos recibiendo la información que nos llega más rápido sino la que llega en el orden que precisamos)
+--------------------------------------------------------------------
+El servidor entrega las respuestas en desorden por muchos factores, por ejemplo si maneja una caché y tiene algunos datos en caché estos se responderán más rápido que los que tiene que buscar en una base de datos.
+puede ser latencia de red, incluso hay maneras desde un servidor de asignar recursos por el usuario que ejecuta a petición.
+pueden hacer muchisimas razones. para ello y es algo que siempre sucederá
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+#34 Manejo de errores con callbacks
+
+Para solucionar el problema de quedarnos sin conexión, u otro error similar, en medio de una sucesión de callbacks utilizamos el método fail().
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
