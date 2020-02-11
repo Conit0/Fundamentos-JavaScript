@@ -1618,3 +1618,79 @@ Para solucionar el problema de quedarnos sin conexión, u otro error similar, en 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+#35 Promesas
+
+En esta clase veremos las promesas, que son valores que aun no conocemos. Las promesas tienen tres estados:
+	pending (Cuando creamos una promesa)
+	fullfilled (Sí se resulve exitosamente)resolve = .then(valor => {...}) (llegado a este estado podemos retornar nuevamente una promesa e ir encadenadolas en sucesivas acciones asincronas y puede ser rechazada o resulta)
+	rejected (Ocurre algún error en la acción asincrona que esta resolviendo) reject = .cath(error => {...})
+Las promesas se invocan de la siguiente forma:
+
+new Promise( ( resolve, reject ) => {
+  // --- llamado asíncrono
+  if( todoOK ) {
+     // -- se ejecutó el llamado exitosamente
+     resolve()
+  } else {
+     // -- hubo un error en el llamado
+     reject()
+  }
+} )
+No olvides ver el material adjunto de esta clase.
+
+Para evitar el problema que surge con los callbacks y es que tenemos un callback y ese callback tiene a otro y... el código se hace bastante ilegible. Usar poliFit detecta si el buscador no soporta las promesas cree la clase de las promesas por nosotros y así poder utilizarlas nosotros y seriá trasparente para el código. 
+
+Valores que aún no conocemos, también pueden resolverse de manera sincrona, es otro objeto de JavaScript << new Promise >> 
+
+Promise {<pending>}
+__proto__: Promise
+[[PromiseStatus]]: "resolved"
+[[PromiseValue]]: Object    (depliejo)
+
+__proto__: Promise
+constructor: ƒ Promise()
+then: ƒ then()
+catch: ƒ catch()
+finally: ƒ finally()
+Symbol(Symbol.toStringTag): "Promise"
+__proto__: Object
+[[PromiseStatus]]: "resolved"
+[[PromiseValue]]: Object
+name: "Eeth Koth"
+height: "171"
+mass: "unknown"
+hair_color: "black"
+skin_color: "brown"
+eye_color: "brown"
+birth_year: "unknown"
+gender: "male"
+homeworld: "https://swapi.co/api/planets/45/"
+films: (2) ["https://swapi.co/api/films/4/", "https://swapi.co/api/films/6/"]
+species: ["https://swapi.co/api/species/22/"]
+vehicles: []
+starships: []
+created: "2014-12-20T10:26:47.902000Z"
+edited: "2014-12-20T21:17:50.427000Z"
+url: "https://swapi.co/api/people/54/"
+
+typeof(obtenerPersonaje)
+          "function"
+
+typeof(obtenerPersonaje(54))          
+"object"
+
+Vemos que los cambios que ocurren al instanciar la función desde la consola, las promesas son objetos esta función sólo se transforma en objeto una vez le pasemos un parametro de lo contrario llama el contenido de esa función dentro del código. 
+
+enlaces::::::::::::::::::::::======================>
+https://medium.com/better-programming/callbacks-vs-promises-in-javascript-1f074e93a3b5
+
+
+comentarios:::::::::::::::::::::::::::::::::====================>
+Conclusión podemos decir que definimos un objeto de tipo promesa, si se resuelve la promesa llamamos la funcion resolve() y si falla rechazamos la promesa con reject() luego podemos obtener estos valores con .then() para el resolve() y .catch() para .rejected() | el .then() y .catch() reciben como parametros lo que mandemos de las promesas
+------------------------------------------------------------------
+si amigo es un poco complejo de digerir al principio esto del asincronismo las promesas es fundamental entenderlas si te vas a un framework como react, yo ahorita estoy en react y si entiendes esto lo demás lo aprendes super facil.
+Pero mas adelante vas a ver async-await y se hace mucho mas fácil trabajar con codigo asincrono y hacerlo ver sincrono ya que lo malo de las promesas hay que encadenar los metodos con .then y .catch() 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
