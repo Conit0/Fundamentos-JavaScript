@@ -1694,3 +1694,52 @@ Pero mas adelante vas a ver async-await y se hace mucho mas fácil trabajar con c
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+#36 Promesas Encadenadas
+
+A diferencia de los callbacks en el CallbackHell, que terminan estando anidados unos dentro de otros, cuando se usan Promesas la ejecución de las llamadas no se hacen de manera anidada sino de manera encadenada, al mismo nivel una debajo de la otra, lo que hace que el código sea mucho más legible y mantenible.
+
+enlace:::::::::::::::::::::::::::::::==============>
+https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Usar_promesas#Encadenamiento
+
+comentarios:::::::::::::::::::::================>
+Si quisiera obtener los primeros 100 personajes. ¿Puedo usar lo siguiente?
+for(i=1; i <= 100; i++){
+	obtenerPersonaje(i)
+		.then(personaje => {
+		console.log(`El personaje ` i `es ${personajei.name`)
+		return obtenerPersonaje(i+1)
+	})
+	.catch(onError)
+------------------------------------------------------------------------
+no seria mas efectivo hacer una funcion recursiva de esta maner a
+
+functionObtenerPersonajes(i){
+    i+=1
+    if(i>100){
+        console.log("terminamos")
+    } else {
+        obtenerPersonaje(i)
+        .then(persona=>{
+            console.log(`El personaje ${i} es ${persona.name}`)
+            return ObtenerPersonajes(i)
+        })
+        .catch(onError)
+    } 
+}
+ObtenerPersonajes(i)
+------------------------------------------------------------------
+1?? Si la API nos permitiera hacer una petición de x cantidad de personajes al mismo tiempo, eso sería lo más efectivo. Una sola petición, menos tiempo.
+Puedes intentar obtener TODOS los personajes con la API en la ruta /people/.
+2?? Suponiendo que la API no nos lo permite, la forma en que la hiciste no es muy efectiva, ya que solo llegamos a buscar el primer personaje, pero de la segunda búsqueda ya no estamos resolviendo la promesa.
+
+Para ejecutar todas las promesas podrías usar Promise.all.
+?? https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all
+?? https://stackoverflow.com/questions/31424561/wait-until-all-promises-complete-even-if-some-rejected
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+#37 Múltiples promesas en paralelo
+
+Para hacer el llamado a múltiples promesas, nos apoyamos en un array de ids con el que luego construimos otro arreglo de Promesas, que pasaremos como parámetro a Promise.all( arregloDePromesas ), con las promesas podemos encadenar llamadas en paralelo, algo que no es posible usando callbacks.
+
