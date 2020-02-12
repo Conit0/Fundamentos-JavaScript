@@ -1743,3 +1743,71 @@ Para ejecutar todas las promesas podrías usar Promise.all.
 
 Para hacer el llamado a múltiples promesas, nos apoyamos en un array de ids con el que luego construimos otro arreglo de Promesas, que pasaremos como parámetro a Promise.all( arregloDePromesas ), con las promesas podemos encadenar llamadas en paralelo, algo que no es posible usando callbacks.
 
+Promise.all espera a que todo se cumpla (o bien al primer rechazo)
+
+
+enlaces:::::::::::::::::::::====================>
+https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Promise/all
+https://medium.com/@jonathanrojaslpez/una-mirada-a-las-promesas-en-javascript-eb2743bd1009
+https://platzi.com/blog/que-es-y-como-funcionan-las-promesas-en-javascript/
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
+https://stackoverflow.com/questions/17295056/array-vs-object-efficiency-in-javascript
+
+comentarios::::::::::::::::::::::::::::::::::::::::========================>
+¿Por qué un array ocupa menos espacio en memoria y corre màs ràpido que una variable entera?
+Por experiencia con unos arrays en google apps script se que es asi y por un poco de teoria
+¿Pero que sucede en el transfondo de las cosas?
+------------------------------------------------------------
+Un array no es más rápido que una variable. Si te refieres a un objeto el cual contiene una lista de objetos internamente (similar a como un array almacena data) eso es muy diferente.
+Un array es una estructura de datos simple, en el caso de Javascript es un indexado.
+En el caso de un objeto es más complicado. Javascript tiene que construir el objeto como una estructura de dato más compleja debido a que un objeto también almacena el tipo de objeto, el tipo de dato, su posición, más objetos con mas tipos etc etc.
+Es simplemente por la manera en que internamente el lenguaje construye la estructura. No quiero meterme al transfondo del transfondo, para eso hay libros y cursos enteros.
+te dejo esto si quieres empezar entendiendolo un poco más.
+https://stackoverflow.com/questions/17295056/array-vs-object-efficiency-in-javascript
+
+comentarios::::::::::::::::::::::::::::::::::::::::=====================>
+¿Cómo hacer el código para cuando no tengo idea cuántos personajes existen?
+---------------------------------------------------------------
+Tendrias que pensar ya en la lógica del código. De manera que sea transversal.
+Podrias definir una forma de saber cuantas personas van a jugar. Eso se traduce en un método que pueda preguntar (por medio del objeto prompt y asignar turnos de acuerdo al número de participantes.
+Ya conociendo ese valor puedes hacer un código que responda con base al número de jugadores.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+#38 Async-await: lo último en asincronismo
+
+Async-await es la manera más simple y clara de realizar tareas asíncronas. Await detiene la ejecución del programa hasta que todas las promesas sean resueltas. Para poder utilizar esta forma, hay que colocar async antes de la definición de la función, y encerrar el llamado a Promises.all() dentro de un bloque try … catch.
+
+Vemos como el async await clarifica mucho más nuestro código y es algo que hoy en día se usa bastante
+
+enlaces:::::::::::::::::::::::::===================>
+https://www.youtube.com/watch?v=568g8hxJJp4    P.D. Todo su canal es de JS
+https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API3
+https://www.youtube.com/watch?v=Q3HtXuDEy5s
+https://rapidapi.com/blog/most-popular-api/
+https://developers.google.com/web/fundamentals/primers/async-functions?hl=es
+https://github.com/jhnemogap/notasCursos-Platzi/blob/master/fundamentosJavaScript.md
+https://github.com/rulosCodev/fundamentosJs
+
+comentarios::::::::::::::::::::==============>
+Async Await, siempre dependerá de Promise?
+------------------------------------------------------------------
+Si te refieres a que para hacer código asíncrono necesitas partir de una promesa, no. Puedes hacer muchas cosas asíncronas sin promesas.
+Las promesas son un feature de ES6 si no me equivoco, que resuelven como 10 fallos de los callbacks, y dan una mejor estructura para crear código asíncrono.
+
+comentarios:::::::::::::::::::::::::::::::::::::====================>
+async-await es lo mismo que los callbacks y las promesas pero de forma más fácil. En realidad, async-await y las promesas trabajan juntos. Encontré esta información para ver ejemplos de async await en acción: https://developers.google.com/web/fundamentals/primers/async-functions?hl=es
+-----------------------------------------------------
+Lo que hace el await es detener la ejecución de la función allí hasta que todas la promesas sean resueltas | var personajes = await Promise.all(promesas) | y recién allí ese valor se guarda en la variable personajes y la estructura tiene que estar dentro de un try y catch para obtener el valor de la resolución de la promesa, en llamado asíncrono el await tiene que estar dentro del try y los errores los recibimos en el catch | en este caso var personajes es un array con las promesas resueltas
+Tienes que saber que el .all() se resuelve como un array que preserva el orden de las promesas que le pasamos como parametro hasta que todas se resuelvan
+
+comentario::::::::::::::::::::::::::::::::::::============================>
+Qué es un Polyfill
+Un pollyfill, o tambien conocido pollyfiller, es aquel fragmento de codigo (plugin) que permite habilitar cierto codigo que es moderno en navegadores que son muy antiguos, por ejemplo Internet Explorer, lo cual nos permite olvidarnos de dichos navegadores antiguos y poder concentrarnos en el codigo actual o moderno.
+Para mas Informacion dejo dos links muy provechosos:
+Polyfiills ¿Qué son? https://blog.michelletorres.mx/polyfills-que-son/
+Pollyfills para CSS3 y HTML5  https://www.imaginanet.com/blog/polyfills-para-css3-y-html5.html
+
+comentario::::::::::::::::::::::::::::::::::::===================>
+Async-await es la manera más simple y clara de realizar tareas asíncronas. Await detiene la ejecución del programa hasta que todas las promesas sean resueltas. Para poder utilizar esta forma, hay que colocar async antes de la definición de la función, y encerrar el llamado a Promises.all() dentro de un bloque try … catch.
