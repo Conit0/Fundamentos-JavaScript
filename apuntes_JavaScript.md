@@ -1744,7 +1744,7 @@ Para ejecutar todas las promesas podrías usar Promise.all.
 Para hacer el llamado a múltiples promesas, nos apoyamos en un array de ids con el que luego construimos otro arreglo de Promesas, que pasaremos como parámetro a Promise.all( arregloDePromesas ), con las promesas podemos encadenar llamadas en paralelo, algo que no es posible usando callbacks.
 
 Promise.all espera a que todo se cumpla (o bien al primer rechazo)
-
+El método Promise.all(iterable) devuelve una promesa que termina correctamente cuando todas las promesas en el argumento iterable han sido concluídas con éxito, o bien rechaza la petición con el motivo pasado por la primera promesa que es rechazada.
 
 enlaces:::::::::::::::::::::====================>
 https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Promise/all
@@ -1811,3 +1811,122 @@ Pollyfills para CSS3 y HTML5  https://www.imaginanet.com/blog/polyfills-para-css
 
 comentario::::::::::::::::::::::::::::::::::::===================>
 Async-await es la manera más simple y clara de realizar tareas asíncronas. Await detiene la ejecución del programa hasta que todas las promesas sean resueltas. Para poder utilizar esta forma, hay que colocar async antes de la definición de la función, y encerrar el llamado a Promises.all() dentro de un bloque try … catch.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+7. Juego de HTML
+
+#39 Comenzando el juego
+
+Crearemos el juego Simon (Simón dice), en el que se van iluminando una secuencia de botones que el jugador tendrá que ir repitiendo, si se equivoca volverá a comenzar. El juego tendrá 10 niveles de dificultad, que deberán ser superados para ganar.
+
+enlaces::::::::::::::::::::::::::::::::::::::::::::::::==============================>
+https://developer.mozilla.org/en-US/docs/Web/API/Element/classList
+
+comentarios::::::::::::::::::::::::::::::::====================>
+No se de donde sale el classList… alguien me explica?
+--------------------------------------------------------------------
+classList es una propiedad que retorna el listado de clases que tiene un determinado elemento del dom, en este caso se trae esta lista y se le añade la clase hide usando el add.
+Puedes ver más información aquí https://developer.mozilla.org/en-US/docs/Web/API/Element/classList
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+#40 Generando una secuencia de números
+
+Para generar la secuencia del juego usaremos un array con números aleatorios, que representarán el color del botón que se iluminará cada vez. Usamos new Array() para crear el arreglo de manera dinámica, y llamamos al método fill para rellenar ese array con ceros y poder luego iterar sobre éste con map().
+
+Podemos colocar el atributo aunque no exista, ya lo definiremos luego si a lugar.
+Una clase es un objeto y cuando llamamos ese objeto para optener sus atributos se le llama una instancia.
+
+podemos hacer arrays de dos formas de la forma convencional 
+var ambiguo = [1,2,3,4,5,6,7,8,9]
+o de la forma GENIAL 
+var GENIAL = new Array(9)
+Adicional a esto le agregamos un par de cosas para darle valor a esos arrays
+var GENIAL = new Array(9).fill(0).map()
+
+new Array(10).fill(0).map(n => Math.random() * 4)
+fill() hace que todos los elementos de un array tengan el mismo valor y ese valor va dentro de los parétesis, seguido ira la función map() y no funcionara si no tiene elementos que esten definidos y tenga un valor así sea cero, la arrow function tiene << n >> que es igual a cero y se encarga de retornar << Math.random >> que es un valor entre cero y uno y al multiplicarlo por cuatro vamos a obtener un valor cero y cuatro pero nunca va llegar a ser cuatro y va a ser decimal, lo redondeamos hacia abajo encerrandolo en << Math.floor >> y nos quedamos con un valor entrero (3.9 lo pasa a 3)  
+
+window.juego = new Juego() // a modo de prueba podemos asiganar la variable dentro del objeto window y la tendremos disponible para ver el resultado en consola un array con diez valores aleatorios 
+
+para redondear hacia arriba existe la función Math.ceil()
+https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Math/ceil
+
+1. defer parece la mejor opción de forma general. Salvo que el script manipule o interaccione con el DOM antes de DOMContentLoaded ($( document ).ready en jQuery). También sería la mejor opción si el script tiene dependencias con otros scripts y es importante el orden en el que se ejecuta cada uno.
+2. async sería ideal para scripts que manipulan o interaccionan con el DOM antes de DOMContentLoaded y/o que no tienen dependencias con otros scripts.
+3. Seguir utilizando JS en su forma predeterminada sería la última opción. Si el script es pequeño, preferible inline, ya que el análisis HTML se detendría pero sería una interferencia muy pequeña en comparación con la solicitud y descarga del archivo.
+
+enlaces:::::::::::::::::::::::::::::::::::::::::::::::::======================>
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fill
+https://www.freecodecamp.org/news/https-medium-com-gladchinda-hacks-for-creating-javascript-arrays-a1b80cb372b/
+https://developer.mozilla.org/en-US/docs/Web/API/Window
+https://cybmeta.com/diferencia-async-y-defer
+https://www.youtube.com/watch?v=gvicrj31JOM
+
+comentario::::::::::::::::::::::::::::::===============>
+Por si desean profundizar en algunos puntos, dejo unos recursos adicionales que me parecieron interesantes:
+Arrays:
+Hacks for Creating JavaScript Arrays https://www.freecodecamp.org/news/https-medium-com-gladchinda-hacks-for-creating-javascript-arrays-a1b80cb372b/
+Array.prototype.fill() https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fill
+
+comentarios::::::::::::::::::::::::::::::::::::::::::::::=========================>
+separe el archivo en 3, css, js, y html cuando el archivo js lo coloco en head o al inicio del body no lo ejecuta pero cuando lo coloco al final si funciona, a que se debe esto ?
+--------------------------------------------------------------
+Si tu código JS interactúa con algún elemento HTML debe ejecutarse cuando estos elementos HTML ya hayan cargado, de otra forma, JS no podrá encontrar estos elementos y el programa no funcionará.
+Puedes colocar el script al final del documento HTML o darle el atributo defer para que no se ejecute hasta que todo el HTML haya cargado.
+?? https://cybmeta.com/diferencia-async-y-defer
+
+comentarios:::::::::::::::::::::::============================>
+No me quedo claro el propósito de la n en el .map
+Cual es su función ahí??
+Y si pongo en el .fill(5) ejemplo, que esta sucediendo ahi??
+Me altera algo?
+----------------------------------------------------------------------------------------------------
+Para entender lo que está pasando debes entender la sintaxis de la función map.
+según developer.mozilla.org:
+var nuevo_array = arr.map(functioncallback(currentValue, index, array){
+    // Elemento devuelto de nuevo_array
+}[, thisArg])
+te lo explico mejor aqui:
+
+primero a saber que la función map solo la puedes usar como método de un array que ya tengas. Lo que hace map es iterar cada elemento del arreglo, y transformarlo en otro arreglo. Por ende debes almacenar el resultado de map en un arreglo diferente.
+
+var array = otroarray.map();
+dentro de map se espera una función de tipo callback, que se va a encargar de ejecutar el trabajo. Para no liartela, te introduciré directamente a las dos mejores maneras de escribirlo:
+
+1)
+// le metes un arrow function anónimo con return
+// () => { ... }
+
+var array = otroarray.map( () => {
+ //... code here
+return (...) 
+});
+2)
+// le metes un arrow function sin brackets, anunciando que el
+// resultado de esa linea de código es tu retorno
+// () =>  ... 
+var array = otroarray.map( () => ... );
+https://stackoverflow.com/questions/38282997/rendering-an-array-map-in-react
+
+ahora viene la respuesta a tu pregunta… map es un iterador muy parecido a for, o a un while. ¿Como sabe “map” el elemento que está iterando?
+con ese mágico “n” que viste (:
+var array = elements.map( (element) => {
+ // haces algo con "element"
+return (return) // metes a array el element modificado
+});
+si te fijas, dentro del paréntesis de la función arrow es donde le mandas cada elemento de tu lista de elementos y puedes alterarlo.
+
+hay más cosas que puedes hacer, pero eso ya te lo dejo de tarea investigarlo, como:
+le puedes dar a tu arrow function otro parámetros llamado index, y saber la posición que estás iterando, por si quieres que el elemento 10 sea azul y no rojo.
+Fill es muy facil, simplemente rellena todo tu arreglo con el mismo dato. si quieres que todo tu arreglo inicial antes de mapear tenga ceros, haces:
+// dice, al nuevo arreglo de tamaño 10, llenalo de ceros, luego mapealo
+newarray(10).fill(0).map(...
+si le pones un 5 como dice en tu pregunta, se llenará el arreglo nuevo de cincos.
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fill
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
