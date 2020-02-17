@@ -1929,3 +1929,36 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+#41 Iluminando la secuencia de colores
+
+En esta clase se observa la diferencia entre el uso de let y var para la declaración de variables y cómo esta diferencia afecta el alcance de la variable dentro de un ciclo for. Se recomienda siempre el uso de let cuando se trata de estructuras for, ya que al usar var, el valor de dicha variable se va a remplazar cada vez con la última asignación que se haga, mientras que con let, conservará su valor dentro de cada iteración.
+Siempre que sea posible debemos usar const sobre let, y let sobre var.
+
+cómo buscar errores uncaught typeerror en javascript
+Resulta que tuve este error por que en la función << transformarNumeroAColor () >> no tenia definido el parámetro << numero >> que es el que recibe << switch (numero) >> y además la lógica del switch estaba errada (empezaba definiendo cero para el primero y me salte un número para un total de cuatro colores).
+
+el << break >> del switch no se podra ejecutar si lo antecede un << return >> así que no hace falta colocarlo al final 
+
+<< this.colores[color].classList.add ('light') >> de esta forma asignamos a un elemnto de html cuando tenga derterminado color se le añada la clase << light >> luego la eliminamos con esta función albergada dentro del método << setTimeout >> que hara un << remove >> de esa clase   << setTimeout(() => this.apagarColor(color), 350) >>
+
+<< setTimeout(() => this.iluminarColor(color), 1000 * i) >> por su parte esta línea nos permite que cada que la recorra el for << i >> aumentara en uno sumando cada vez más tiempo al multiplicar por los milisegundos y que no se ejecute de forma a amontonada todos lo colores
+
+dentro del método << iluminarSecuencia >> hay un << for >> tiene una variable << color >> definida como << var >> que por sus caractaristicas ira pisando el resultado que arroja cada recorrido del << for >>. Si usaramos << let >> para que << color >> mantenga cada valor dentro de ese bloque, se suele usar dentro de los ciclos for. Como << color >> no tiene una reasignación (color = .... (reasignación)) para evitarnos bugs siempre es necesario usar << const >> para declarar nuestras variables.
+
+comentarios:::::::::::::::::::::::::::::::====================>
+Para los que, tienen “poco tiempo”, desarrollando código, y tienen “algunas” dudas
+1- https://www.geeksforgeeks.org/javascript-tutorial/
+2-https://developer.mozilla.org/es/docs/Web/JavaScript
+3. https://dev.to/sarah_chima/var-let-and-const--whats-the-difference-69e
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

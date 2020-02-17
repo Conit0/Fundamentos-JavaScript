@@ -107,13 +107,14 @@
       constructor() {
         this.inicializar()
         this.generarSecuencia()
+        this.siguienteNivel()
       }
       //Con esto agragamos una clase a la lista de CSS 
       inicializar() {
         btnEmpezar.classList.add('hide')
-        this.nivel = 1
+        this.nivel = 7
         this.colores = {
-          celeste, //estando definidos ya no ahorramos↓↓
+          celeste, //estando definidos globalmente podemos ahorramos↓↓
           violeta, // celeste: celeste,
           naranja,
           verde
@@ -122,13 +123,45 @@
       generarSecuencia() {
         this.secuencia = new Array(10).fill(0).map(n => Math.floor(Math.random() * 4))
       }
+      siguienteNivel() {
+        this.iluminarSecuencia()
+      }
+      transformarNumeroAColor(numero){
+        switch (numero) {
+          case 0:
+            return 'celeste'
+          case 1:
+            return 'violeta'
+          case 2:
+            return 'naranja'
+          case 3:
+            return 'verde'
+        }
+      }
+      iluminarSecuencia() {
+        for (let i = 0; i < this.nivel; i++) {
+          const color = this.transformarNumeroAColor(this.secuencia[i]) // Por cada uno de los números ira transformando el color
+          setTimeout(() => //función para ilumninar el color
+            // console.log(color),
+            this.iluminarColor(color)
+            , 1000 * i)
+        }
+      }
+      iluminarColor(color) {
+        this.colores[color].classList.add ('light')
+        setTimeout(() => this.apagarColor(color), 350)
+      }
+      apagarColor(color) {
+        this.colores[color].classList.remove('light')
+      }
     }
+    
+
 
     function empezarJuego() {
       // var juego = new Juego()
       window.juego = new Juego() // a modo de prueba podemos asiganar la variable dentro del objeto window y la tendremos disponible y ver el resultado en consola 
     }
-
   </script>
 </body>
 
