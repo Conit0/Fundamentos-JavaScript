@@ -1955,10 +1955,88 @@ Para los que, tienen “poco tiempo”, desarrollando código, y tienen “algunas” dud
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+#42 Obteniendo el input del usuario
+
+Para obtener el input del usuario agregamos un manejador para el evento click del mouse usando addEventListener para cada uno de los colores del juego. Utilizando la propiedad target devuelta por el evento click podemos identificar cuál es el botón que ha sido presionado.
+
+Función para reconocer el evento click << agregarEventosClick >> y luego añadimos el evento que escuchara y la función que se ejecutara con el evento click 
+
+      agregarEventosClick(){
+        this.colores.celeste.addEventListener('click', this.elegirColor)
+      }
+Usualmente el parámetro que recibe la función se nombra << ev >>  
+      elegirColor(ev){ //Cuando JS llama esta función perdera un pco el contexto (¿quién es << this >> dentro de cada una de las funciones?)
+        console.log(ev) //Veremos lo que ocurre al hacer click y habra un atributo del evento << target >> y dice en que elemento se realizo el click 
+      }
+
+Para decirle que ate el valor de << this >> es necesario pasarlo por el método << bind >> y con esto le estamos diciendo explicitamente que escoja el valor de this y NO lo que esta siendo optenido por medio del atributo target y se ate con ese otro que estamos pasando dentro de .bind
+En algunos casos se ve así 
+        this.colores.celeste.addEventListener('click', this.elegirColor.bind(this))
+o también se suele ver de esta manera; definiendo una variable << self >> o << _this >> y obtener esa referencia al << this >> evitando perder la referencia a this y no ver alterado su valor contextual dentro del código.
+        var _this = this
+        this.colores.celeste.addEventListener('click', this.elegirColor.bind(_this))
+o podemos llevar el valor del llamado a la función << this.elegirColor >> sea << this >> colocandolo dentro de la función donde definimos los valores de juego.
+
+      inicializar() {
+        this.elegirColor = this.elegirColor.bind(this) //Y ahora este llamado siempre tendra este valor de << this >> 
+        btnEmpezar.classList.add('hide')
+        this.nivel = 7
+        this.colores = {
+          celeste, //estando definidos globalmente podemos ahorramos??
+          violeta, // celeste: celeste,
+          naranja,
+          verde
+        }
+Y si volvemos a revisar la función y el log que lleva dentro pasandole el parámetro << this >>
+      elegirColor(ev){
+        console.log(this)//Vemos como ahora << this >> es el juego y no cada uno de los botones
+      }
+
+enlaces::::::::::::::::::::::::::===================>
+https://www.youtube.com/watch?v=gvicrj31JOM (Este video esa en el clase #40)
+https://filisantillan.com/this-en-diferentes-situaciones-y-su-comportamiento/
+
+comentarios:::::::::::::::::::::::::::::::::::::=====================>
+this es el botón porque this en un addEventListener representa al elemento HTML al cual le asignamos ese evento, por ese motivo pasa de ser Game() a ser un elemento HTML.
+Lo que hacemos con bind() es decirle: ¡No!, tú no serás un elemento HTML, tú serás Game(), digamos que cambiamos su forma de pensar del this.
+Por si se les complica this, escribí un artículo hace tiempo que explica un poco quién realmente es this en diferentes situaciones.
+https://filisantillan.com/this-en-diferentes-situaciones-y-su-comportamiento/
+https://medium.com/better-programming/understanding-the-this-keyword-in-javascript-cb76d4c7c5e8
+https://medium.com/sngular-devs/comprende-js-call-apply-y-bind-2e27db35b8c2
+https://filisantillan.com/this-en-diferentes-situaciones-y-su-comportamiento/
+
+comentarios:::::::::::::::::::::::::::::::::::::=====================>
+Excelente clase. El this me ha confundido un poco pero bueno solo es cosa de seguir practicando y mejorando. 
+------------------------------------------------------------------
+El this hace referencia a un método que pertenece a esa clase.
+Por ejemplo:
+En la clase Juego está el método inicializar() el cual está definido dentro de la misma clase Juego… entonces al llamarlo en el método constructor() se lo llama de la siguiente manera:
+this.inicializar() que es lo mismo que decir simbólicamente EstaClase.inicializar()
+si el método inicializar() estuviese definido en otra clase, se la llama de la siguiente manera:
+NombreClase.inicializar()
+Ejemplo: Persona.mostrarNombre()
+
+comentario::::::::::::::::::::::::::::::::::::::::::::===========================>
+.-Los event listeners funcionan de manera asíncrona
+.-bind sirve para asignar el this
+.-Para entender mejor el bind y el this: https://medium.com/sngular-devs/comprende-js-call-apply-y-bind-2e27db35b8c2
+.-Una forma de agilizar los eventListeners:
+
+eventoClick() {
+                for(letcolorinthis.colores) {
+                    this.colores[color].addEventListener('click', this.elegirColor);
+                }
+            }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
