@@ -2031,9 +2031,106 @@ eventoClick() {
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+#43 Agregando la verificación del color elegido
+
+Para agregar atributos al objeto principal en el que está nuestro código, basta con usar this, haciendo referencia al contexto de la clase, y agregar los atributos con un punto: this.atributo = valor
+
+La verificación del color elegido la haremos creando y removiendo los eventos del click al pasar el juego a cada nuevo nivel.
+
+En este momento aplicaremos la lógica para ver que pasa con ese boton que toco es incorrecto y pierde el juego o es correcto y tiene que seguir repitiendo la secuencia dependiendo del nivel donde se encuentre, pasar al siguiente nivel y si termina todos lo niveles y gana.
+
+Hacer log del parámetro de esta función vemos dentro de los atributos de este evento << target >> y dentro << dataset >> y dentro << color >> y dentro el valor del color que tenga ese elemento en el que hayamos hecho que reaccionara el evento click
+      elegirColor(ev){
+        console.log(ev)
+      }
+Este dataset sale del código HTML por medio de << data-loQueSea='violeta' >>, esto quiere decir que dentro del dataset aparecera un atriburo llamado loQueSea con el valor violeta 
+
+siempre que podamos usaremos const para definir las variables
+
+Recordar que para agragar atributos siempre que queramos lo podemos hacer colocando
+        this.nombreDelAtributo = "elValorQueLeVamosADar" //No hace falta colocarlo en el constructor o en otro lugar
+
+Podemos hacer un break pint dentro de la pestaña << sources >> del inspector de elementos para hacer un debbug de cualquier parte en especifico y poder ver mejor posibles errores en vista que ademas nos da el valor que tenga determinda parte dentro del código.
+
+enlaces:::::::::::::::::::::::::=======================>
+https://en.wikibooks.org/wiki/Computer_Programming/Coding_Style/Minimize_nesting
+https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Array
+
+comentario::::::::::::::::::::::::::::::::::::::==========================>
+Nota: es conveniente colocar desde el constructor del objeto la función bind, para evitar que en las futuras iteraciones la referencia this se dirija a Window en lugar de al objeto (en este caso el juego).
+
+comentarios:::::::::::::::::::::::::::::==================>
+No entendi bien la diferencia entre llamar a un metodo con () y sin (). Cuando llamo a this.siguienteNivel() con parentesis NO espera los 700 milisegundos y brilla de inmediato el juego, si lo pongo sin parentesis this.siguienteNivel SI espera los 700 milisegundos y luego de eso brilla el juego.
+constructor(){
+    this.inicializar()
+    this.generarSecuencia()
+    setTimeout(this.siguienteNivel,700)
+  }
+------------------------------------------------------------------------
+referenciaMetodo() ==> significa que estas ejecutando el método.
+referenciaMetodo ===> significa que estas referenciando el método.
+------------------------------------------------------------------------
+Cuando colocas () ejecutas la función … cuando no los colocas estas haciendo referencia a la función (como una variable u objeto) … no la estás ejecutando
+------------------------------------------------------------------------
+al utilizar los paréntesis invocas métodos, mientras que sin paréntesis invocas a atributos.
+------------------------------------------------------------------------
+Los callbacks son funciones que pasas como parámetro a otras funciones.
+Imagina el siguiente código:
+functionejecutarPatito(callback) {
+	/* bla bla bla */
+	calback();
+	/* bla bla bla */
+}
+functionpatito() {
+	console.log("PATITO!!")
+}
+ejecuarPatito(patito); // PATITO!!
+La función ejecutarPatito se encarga de ponerle los paréntesis (osea, ejecutar) la función callback (en este caso, la función patito).
+Si en cambio utilizas los paréntesis (ejecutarPatito(patito())) puedes estas llamando a la función callback antes de tiempo y tu código puede no funcionar.
+
+comentarios:::::::::::::::::::=================>
+Un pequeño detalle para la usabilidad del juego, la función ‘agregarEventosClick’ que se encuentra en la función ‘siguienteNivel’ debería de llamarse una vez se ilumine toda la secuencia completa y deje de iluminar el ultimó color, puesto que sino, podríamos hacer _click _ en un color mientras se esta iluminando la secuencia…
+-------------------------------------------------------------------------
+De todas formas creo que se podra hacer click en los colores, debido a los callbacks que se utilizan para iluminar la secuencia, es decir, que mientras se ilumina la secuencia JS agregara los eventListener a los colores, debido a los setTimeOut
+
+comentarios:::::::::::::::::::=================>
+Genial la clase. Aunque estoy en desacuerdo con el uso execiso del if y del switch.
+-------------------------------------------------------------------------
+Hola dslpy, creo que se debe a que es una mala práctica de programación y es un antipatrón: Flat is better than nested. Pero para ponerlo en palabras simples, uno siempre debe escribir código para leerlo, no solo para solucionar un problema.
+Cuanto más dificil sea de leer (y entender) un código más rapido debería ser refactorizado para atacar ese problema, de otro modo el principal afectado serás tu mismo cuando tengas que mantenerlo.
+Más info: https://en.wikibooks.org/wiki/Computer_Programming/Coding_Style/Minimize_nesting
+
+comentarios:::::::::::::::::::=================>
+Podrian aclararme como y porque se utiliza el [this.subnivel] dentro de this.secuencia?
+-------------------------------------------------------------------------
+‘this.subnivel’ se utiliza como índice para recorrer el arreglo ‘this.secuencia’.
+Un arreglo se puede recorrer accediendo a sus índices, en este ejemplo primera evalua la condición y si es verdadera se incrementa en uno la variable ‘this.subnivel’, la cual en la función siguienteNivel() se vuelve a colocar su valor en 0.
+Suponiendo el caso de que estemos en el nivel 1 del juego, la condición a evaluar sería numeroColor === this.secuencia[0], si estuvieses en el nivel 2, tendriamos numeroColor === this.secuencia[1] ya que en la anterior iteración se incremento en 1 la variable ‘this.subnivel’ y así sucesivamente.
+Te recomiendo esta página para que revises con más detalle como funcionan los arreglos y su manera de iterar o acceder a los datos.
+https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Array
+
+comentarios:::::::::::::::::::=================>
+Hice una version de este proyecto pero usando Arrays en vez de objetos. Me quedo asi:
+Repositorio:https://github.com/alanzzant/SimonColors
+Website:https://alanzzant.github.io/SimonColors/
+---------------------------------------------------------------------
+Para hacer host al repo desde GitHub usamos GitHub Pages (solo para sites estáticos):
+Vamos al repo, hacemos click en Settings, bajamos hasta GitHub Pages, seleccionamos la rama/source que debe tener nuestro index.html, esperamos 1 o 2 minutos y ya deberia darnos un mensaje de exito y el link a nuestro site:
+_ Your site is published at {url}_
+Para mas info puedes seguir el Curso Profesional de Git y GitHub
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+#44 Agregando los estados finales del juego
+
+Incluiremos una librería de mensajes con estilos mucho más agradables que el mensaje básico de javascript para mostrar los estados finales del juego al usuario.
+
+Para este caso se requiere inicializar la función << estilosDeAprendizaje >> y veremos que es necesario ademas crear un parámetro donde reciba la coalición por la paz en Colombia
+
+enlaces::::::::::::::::::::::::::::::::::::::::::::======================>
+https://sweetalert2.github.io/ nueva versión
+https://sweetalert.js.org/ old versión
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

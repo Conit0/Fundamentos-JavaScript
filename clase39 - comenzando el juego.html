@@ -80,7 +80,6 @@
       left: calc(50% - 200px);
     }
 
-    /* Clase definida en JS << inicializar() >>  */
     .hide {
       display: none;
     }
@@ -95,40 +94,55 @@
     <div id="verde" class="color verde right" data-color="verde"></div>
     <button id="btnEmpezar" class="btn-start" onclick="empezarJuego()">¡Empezar a jugar!</button>
   </div>
+  <!-- Varias versiones de Sweet Alert -->
+  <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> OldVersion -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+
   <script>
     const celeste = document.getElementById('celeste')
     const violeta = document.getElementById('violeta')
     const naranja = document.getElementById('naranja')
     const verde = document.getElementById('verde')
     const btnEmpezar = document.getElementById('btnEmpezar')
+    const ULTIMO_NIVEL = 2
 
-    //Tendra toda la lógica
     class Juego {
       constructor() {
+        this.inicializar = this.inicializar.bind(this)//Con esto lo he dejado atado directamente al << this >> 
         this.inicializar()
         this.generarSecuencia()
-        this.siguienteNivel()
+        setTimeout(this.siguienteNivel, 500)
       }
-      //Con esto agragamos una clase a la lista de CSS 
       inicializar() {
+        this.siguienteNivel = this.siguienteNivel.bind(this)
         this.elegirColor = this.elegirColor.bind(this)
-        btnEmpezar.classList.add('hide')
-        this.nivel = 7
+        this.toggleBtnEmpezar()
+        // btnEmpezar.classList.add('hide') remplazamos esta por ↑↑↑↑↑ para poder mostrar el boton al inciar una nueva partida.
+        this.nivel = 1
         this.colores = {
-          celeste, //estando definidos globalmente podemos ahorramos↓↓
-          violeta, // celeste: celeste,
+          celeste,
+          violeta,
           naranja,
           verde
         }
       }
+      toggleBtnEmpezar() {
+        if (btnEmpezar.classList.contains('hide')) {//<< contains >> para saber si tiene esa clase
+          btnEmpezar.classList.remove('hide')// true
+        } else {
+          btnEmpezar.classList.add('hide')// false
+        }
+      }
       generarSecuencia() {
-        this.secuencia = new Array(10).fill(0).map(n => Math.floor(Math.random() * 4))
+        this.secuencia = new Array(ULTIMO_NIVEL).fill(0).map(n => Math.floor(Math.random() * 4))
       }
       siguienteNivel() {
+        this.subnivel = 0
         this.iluminarSecuencia()
         this.agregarEventosClick()
       }
-      transformarNumeroAColor(numero){
+      transformarNumeroAColor(numero) {
         switch (numero) {
           case 0:
             return 'celeste'
@@ -140,39 +154,81 @@
             return 'verde'
         }
       }
+      transformarColorANumero(color) {
+        switch (color) {
+          case 'celeste':
+            return 0
+          case 'violeta':
+            return 1
+          case 'naranja':
+            return 2
+          case 'verde':
+            return 3
+        }
+      }
       iluminarSecuencia() {
         for (let i = 0; i < this.nivel; i++) {
-          const color = this.transformarNumeroAColor(this.secuencia[i]) // Por cada uno de los números ira transformando el color
-          setTimeout(() => //función para ilumninar el color
-            // console.log(color),
-            this.iluminarColor(color)
-            , 1000 * i)
+          const color = this.transformarNumeroAColor(this.secuencia[i])
+          setTimeout(() => this.iluminarColor(color), 1000 * i)
         }
       }
       iluminarColor(color) {
-        this.colores[color].classList.add ('light')
+        this.colores[color].classList.add('light')
         setTimeout(() => this.apagarColor(color), 350)
       }
       apagarColor(color) {
         this.colores[color].classList.remove('light')
       }
-      agregarEventosClick(){
+      agregarEventosClick() {
         this.colores.celeste.addEventListener('click', this.elegirColor)
         this.colores.violeta.addEventListener('click', this.elegirColor)
         this.colores.naranja.addEventListener('click', this.elegirColor)
         this.colores.verde.addEventListener('click', this.elegirColor)
       }
-
-      elegirColor(ev){
-        console.log(this)//Definiendo el valor de << this.elegirColor >> arriba donde se encuentran los valores del juego vemos como ahora << this >> toma el valor del juego y no el valor del elemento HTML que << addEventListener >> habia alterado o bien podemos usar << this.elegirColor.bind(this) >> con ello le recordamos su valor.
+      eliminarEventosClick() {
+        this.colores.celeste.removeEventListener('click', this.elegirColor)
+        this.colores.violeta.removeEventListener('click', this.elegirColor)
+        this.colores.naranja.removeEventListener('click', this.elegirColor)
+        this.colores.verde.removeEventListener('click', this.elegirColor)
+      }
+      elegirColor(ev) {
+        const nombreColor = ev.target.dataset.color
+        const numeroColor = this.transformarColorANumero(nombreColor)
+        this.iluminarColor(nombreColor)
+        if (numeroColor === this.secuencia[this.subnivel]) {
+          this.subnivel++
+          if (this.subnivel === this.nivel) {
+            this.nivel++
+            this.eliminarEventosClick()
+            if (this.nivel === (ULTIMO_NIVEL + 1)) {
+              this.ganoElJuego()
+            } else {
+              setTimeout(this.siguienteNivel, 1500)
+            }
+          }
+        } else {
+          this.perdioElJuego()
+        }
+      }
+      ganoElJuego() {
+        swal('FeLiZidades', '¡¡¡Ganaste!!!', 'success') //Esto nos delvolvera una promesa
+          // .then(this.inicializar) esto de abajo lo puedo reducir a una línea (cuando se hace de esta forma hay que tener cuidado que << this >> no pierda su contexto)
+          .then(() => {
+            // this.eliminarEventosClick() Usamos esto para eliminar los eventos como ya lo tenemos arriba no hace falta aquí
+            this.inicializar()
+          })
+      }
+      perdioElJuego() {
+        swal('Lo siento', '¡¡¡Te equivocaste!!! :(', 'error')  //Esto nos delvolvera una promesa
+          .then(() => {
+            // this.eliminarEventosClick() Usamos esto para eliminar los eventos como ya lo tenemos arriba no hace falta aquí
+            this.eliminarEventosClick()
+            this.inicializar()
+          })
       }
     }
-    
-
-
     function empezarJuego() {
-      // var juego = new Juego()
-      window.juego = new Juego() // a modo de prueba podemos asiganar la variable dentro del objeto window y la tendremos disponible y ver el resultado en consola 
+      window.juego = new Juego()
     }
   </script>
 </body>
