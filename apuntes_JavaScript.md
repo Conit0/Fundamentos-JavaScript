@@ -2132,8 +2132,10 @@ enlaces::::::::::::::::::::::::::::::::::::::::::::======================>
 https://sweetalert2.github.io/ nueva versión
 https://sweetalert.js.org/ old versión
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+comentarios::::::::::::::::::::::::::::::===============>
+Para ver mi version mejorada y jugar un poquito https://jan888adams.github.io/simon-says-game/simon-says-game/index.html
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
