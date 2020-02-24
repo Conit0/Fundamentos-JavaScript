@@ -2213,6 +2213,17 @@ Resumen de la clase: var - let - const
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+#47 ¿Hace cuántos días naciste?
+
+Con variables de tipo Date, se pueden realizar operaciones de suma y resta similares a las que se realizan con números. El  resultado que se obtiene está en milisegundos, por lo que luego hay que hacer algunas operaciones adicionales para llevarlos  a días, meses o años según queramos. También aplica para Horas, Minutos, Segundos y Milisegundos.
+
+new Date(year, month, day, hours, minutes, seconds, milliseconds)
+
+enlaces::::::::::::::::::::::::::::::::::::=========================>
+https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Date
+https://www.w3schools.com/js/js_dates.asp
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
