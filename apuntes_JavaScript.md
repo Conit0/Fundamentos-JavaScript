@@ -2139,3 +2139,9 @@ Para ver mi version mejorada y jugar un poquito https://jan888adams.github.io/si
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+#45 Conclusiones del curso
+
+Felicitaciones, ya tienes unas bases sólidas para continuar aprendiendo frameworks más avanzados basados en JavaScript.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
