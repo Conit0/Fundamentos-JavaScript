@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Video #46 | var, let, const y sus diferencias</title>
+</head>
+
+<body>
+  <script>
+    // const arrais = [1,2,3,4,5,6,7] no podemos reasignarlos, pero sí modficarlo haciendo un arrais.push(8) de un nuevo elemento, podemos modificar el array pero no podemos reasignar la varaible a otro valor
+
+    var alguien = {
+      name: 'Jonathan',
+      lastName: 'Cardozo',
+      age: 23
+    }, persona = 
+
+    function esMayorDeEdad(persona) {
+      const MAYORIA_EDAD = 18 //como su nombre lo dice será constante, no la podemos volver a declarar sólo inicializa y listo.
+      let mensaje //Limita el alcance de la varaible al bloque donde es declarada usada para loop's 
+      if (alguien.age >= 18) {
+        mensaje = 'Es mayor de edad'
+      } else {
+        mensaje = 'Es menor de edad'
+      }
+      console.log(mensaje);
+    }
+    
+    // esMayorDeEdad(alguien)
+    //Esta función para ejecutar la función ↑↑↑
+
+    /**
+     * Dentro de un ciclo for cuando declaramos la variable que recorrera el ciclo ccon:
+     * var: la varaible queda accecible fuera del ciclo for
+     * let: limita el alcance de la variable haciendo que sólo se use en el for
+    */
+    for (let i = 0; i<10;i++) {
+      console.log(i)
+    }
+    console.log(`Termino el ciclo el ultimo número es: ${i}`)
+  </script>
+</body>
+
+</html>

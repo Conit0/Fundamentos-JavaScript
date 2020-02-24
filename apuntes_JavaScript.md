@@ -2145,3 +2145,81 @@ Felicitaciones, ya tienes unas bases sólidas para continuar aprendiendo framewor
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+8. Complementos
+
+#46 var, let y const: las diferencias entre ellos
+
+““var”” es la manera más antigua de declarar variables. No es muy estricta en cuanto al alcance, ya que al declarar variables de esta forma, dichas variables podrán ser accedidas, e incluso modificaddas, tanto dentro como fuera de los bloques internos en una función. Pueden ser manupuladas desde el objeto window haciendolas vulnerables. Al pasarlas como referencia, es decir sin la palabra << var >> y solo con el nombre de la variable, también se puede llegar a reformular el valor de la varaible.
+
+Con ““let”” por otra parte, el alcance se reduce al bloque (las llaves) en el cual la variable fue declarada. Fuera de este bloque la variable no existe. Una vez declarada la variable con let, no se puede volver a declarar con en ninguna otra parte de la función.
+
+““const”” al igual que ““let”” se define en el contexto o alcance de un bloque, a diferencia de let y var, las varibles definidas como constantes (const), ya no podrán ser modificadas ni declaradas nuevamente, en ninguna otra parte de la función o el contexto en el que ya existen.
+La recomendación es reducir siempre al mínimo el alcance de nuestras variables, por lo que se debe usar let en lugar de var mientras sea posible.
+
+Usar let si es una variable que tenemso que reasignar, si van a ser fijas usa const y con ellas evitaremos que las varaibles se reasignen y provoquen bugs cambiando sus valores como sucede con var (evita su uso)
+
+
+enlaces:::::::::::::::::::::::=================>
+https://www.youtube.com/watch?v=XgSjoHgy3Rk
+https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Sentencias/const
+https://www.w3schools.com/js/js_hoisting.asp
+https://cybmeta.com/var-let-y-const-en-javascript
+
+comentario::::::::::::::::::::::::::===================>
+Vengo del Java tradicional, básicamente let es para declarar la variable como local de un bloque de código, como en comentarios anteriores mencionaron, considero que esta clase deberían moverla hacia las primeras, mucho del código en el proyecto hubiera tenido más sentido para mi si hubiera sabido que las variables necesitan ser declaradas como let para que sean locales.
+
+comentarios::::::::::::::::::::::::::::::==================>
+¿Qué es mejor utilizar: var, let o const?
+-----------------------------------------------------
+Yo te recomiendo que olvides el uso de var debido a que a futuro te puede causar algunos problemas codificando, comienza a usar letpara variables que cambien o se le reasigne un valor a futuro y const para las variables que son inmutables, es decir, que no cambian su valor.
+-----------------------------------------------------------
+Como comenta el profesor en la ultima parte del video, es mejor utilizar let para las variables que cambiaran su valor y const para las inmutables, de esta forma se pueden evitar bugs a futuro.	
+
+comentarios::::::::::::::::::::::::::::===================>
+La principal diferencia entre var, let y const es el alcancé que tienen y capacidad de alteración de los datos que estas contienen.
+let y const tienen un alcance limitado al entorno o función en el que son declarados, ya sea dentro de un for, if o función. Por otro lado var no importa el lugar donde se declare, este ocupa un espacio de memoria y por lo tanto ha sido declarada permitiendo así que en algún lugar sobre-escriba el contenido de otra variable con el mismo nombre.
+En resumen, la mejor forma de declarar variables en javascript, es usando let para datos que se cambiarán a futuro, y const para valores definidos por ejemplo, los llamados “número mágicos” 
+
+comentarios:::::::::::::::::::::::::::::===================>
+Alguien sabe quien es el encargado de liberar la memoria cuando finaliza el alcance de una variable? es el propio browser? o se puede correr algo?
+y cuando definimos una clase, la creamos (new) y la quiero borrar? basta con hacer null?
+-----------------------------------------------------
+Es el motor (runtime) del lenguaje el encargado de hacer eso, en este caso será el intérprete de Javascript que empaqueta Chrome.
+En los lenguajes de más alto nivel existe un proceso de fondo llamado Recolector de Basura (Garbage Collector), que revisa el HEAP (almacen de memoria de un proceso donde se guardan los objetos) y controla que los objetos aún estén en alcance, si no lo están los marca para eliminar y cuando haga falta memoria se puede reutilizar.
+En los de más bajo nivel hay que hacerlo a mano.
+Respecto a lo de la clase si creas un objeto con new,y guardas la referencia en una variable asignas un trozo del HEAP para ese objeto. Si luego esa variable pierde el alcance o le asignas otro valor y nadie más apunta a ese objeto el Recolector de Basura lo eliminará.
+
+comentario::::::::::::::::::::::::::::::::::::==============>
+Resumen de la clase: var - let - const
+
+• Cuando declaramos variables con ‘var’ siempre conviene declararlas ‘arriba’ del código en el que sea claro cuáles van a ser las variables que se van a usar dentro de nuestra función o programa.
+
+• Dentro de una función javascript detecta todas las variables declaradas con ‘var’ y las ‘declara’ por sí solo como si estuvieran ‘arriba’ en el código. Por lo que si se declara un var dentro de un bloque else y este no es accedido por el condicional, la variable ‘var’ declarada dentro de ese else existe de todas maneras.
+
+• Si utilizamos ‘let’, el alcance de esa variable se ve reducido únicamente al bloque de código donde es utilizado.
+
+• ‘const’ se comporta parecido a let sólo que no es posible reasignarlo.
+
+• Es posible modificar una variable ‘const’ en el caso de un array[ ] con el método push() por ejemplo.
+
+• Reducir siempre al mínimo el alcance de nuestras variables.
+
+• Utilizar 'let’ si tenemos que reasignar una variable.
+
+• Si nunca tenemos que reasignar una variable usamos ‘const’.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
