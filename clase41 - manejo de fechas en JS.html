@@ -11,7 +11,7 @@
     function diasEntreFechas(fecha1, fecha2) {
       const milisegundosEnUnDia = 1000 * 60 * 60 * 24 //Para hacer la conversión a años (milisegundos * minuto * hora * dia) conversión milisegundos a día
       const diferencia = Math.abs(fecha1 - fecha2) //<< .abs >> Para calcular el número absoluto de una cuenta y hacerlo positivo. Tambien nos arroga un diferencia en milisegundos
-      return Math.floor(diferencia / unDia) //retornara la diferencia en milisegundos
+      return Math.floor(diferencia / milisegundosEnUnDia) //retornara la diferencia en milisegundos
     }
     const hoy = new Date() //Esto tendra la fecha actual por defecto
     const nacimiento = new Date(1995, 6, 2, 10, 1, 15, 90) //(year, month, day, hours, minutes, seconds, milliseconds)

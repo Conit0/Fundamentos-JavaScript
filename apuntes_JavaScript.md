@@ -2223,6 +2223,64 @@ new Date(year, month, day, hours, minutes, seconds, milliseconds)
 enlaces::::::::::::::::::::::::::::::::::::=========================>
 https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Date
 https://www.w3schools.com/js/js_dates.asp
+https://code.tutsplus.com/es/tutorials/understanding-recursion-with-javascript--cms-30346
+https://www.campusmvp.es/recursos/post/Que-es-la-recursividad-o-recursion-Un-ejemplo-con-JavaScript.aspx
+
+
+Por acá dejo una herramienta super buena que me encontré hace poco y que facilita mucho el trabajo con JS.
+Espero sea de utilidad.
+https://quokkajs.com/
+
+comentarios:::::::::::::::::::::::::=======================>
+Veo que es una especie de bucle.
+Lo que no entiendo es como hace que el numero 1 inicial se sume cada vez que se ‘itera’ el ‘bucle’.
+--------------------------------------------------------
+Aqui tienes otro ejemplo
+
+functionfactorial(n) {
+    if (n<=1) return1;
+    return n* factorial(n-1);
+}
+Debes asegurarte que al retornar la misma función, cambies el valor de entrada. De esta manera aseguras que no tendras un bucle infinito. Por ello tambièn es importante definir el caso base en el cual se termina el bucle.
+
+comentario::::::::::::::::::::::::::::::::==========================>
+La recursividad es un concepto muy importante en cualquier lenguaje de programación. Una función recursiva es básicamente aquella que se llama (o se ejecuta) a sí misma de forma controlada, hasta que sucede una condición base.
+
+comentario:::::::::::::::::::::::::::::::::======================>
+IDEAS CLAVES
+=> ¿Que es recursividad?
+Una función recursiva es básicamente aquella que se llama (o se ejecuta) a sí misma hasta que sucede una condición base.
+=> ¿Para que me sirve? ¿Como lo puedo utilizar?
+Para ejecutar de algun modo ciclos a traves de funciones
+
+comentarios::::::::::::::::::::::::::::::=====================>
+Acá tengo una pregunta para todos ya que llevo trabajando en informática por mas de 10 años y muchos de los proyectos en los que he trabajado han sido para entidades bancarias, financieras y para entidades gubernamentales en las cuales se manejan una inmensa cantidad de información y jamas JAMAS he visto una función recursiva en el código que me ha tocado revisar, e incluso cuando me ha tocado desarrollar se me ha especificado el no usar recursividad, y esto es debido que a mayor cantidad de iteraciones estas funciones bajan muchísimo la performance de las aplicaciones. Por lo mismo he llegado a considerar la recursividad solo como un lindo ejercicio de lógica. Aun así resulta útil cuando las iteraciones se saben pocas. Lo que me gustaría saber es ¿Cual ha sido vuestra experiencia con este tipo de solución?
+-----------------------------------------------------------------
+por lo general las tomo como un ejercicio o como saber que se puede hacer, ya que suelen reducir mucho el performance, gastar demasiados recursos, la verdad en toda la escuela nomas las he usado en ordenamientos como quicksort o merge, pero toda recursividad puede ser iteración y viceversa
+-----------------------------------------------------------------
+Es cierto, se usa poco. Yo solo recuerdo haberla usado para navegar estructuras de archivos.
+Me parece que algunos casos de ordenamiento de datos sería muy enredado escribirlos sin recursión, pero con los lenguajes de alto nivel que usamos ahora (la mayoría), practicamente ya no se necesita escribir funciones de ordenamiento, todo está dado.
+
+comentario:::::::::::::::::::::::::::==============>
+Funciones Recursivas
+Para realizar recursividad necesitamos 2 cosa; 1 caso base y 1 caso recursivo.
+Usaremos una división para mostrar las funciones recursivas.
+Algoritmo de nuestro ejercicio:
+13 /4
+13 - 4 = 9 1 => caso recursivo
+9 - 4 = 5 1 => caso recursivo
+5 - 4 = 1 1 => caso recursivo
+1 - 4 = -3 0 => caso base
+La función:
+function divisionEntera(dividendo, divisor) {
+	if (dividendo < divisor) {
+		return 0
+	}
+	return 1 + divisionEntera(dividendo - divisor, divisor)  
+}
+‘dividendo - divisor’ en el primer parámetro de nuestra función recursiva invocada dentro de sí misma sería el ‘caso recursivo’ que se repetirá mientras la condición no se cumpla. Cuando la función se cumple, ‘caso base’ termina la recursividad, termina la operación y nos entrega el resultado de la división en valor entero.
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
