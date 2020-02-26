@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Video #51 | Estructuras de datos inmutables</title>
+</head>
+
+<body>
+  <script>
+    const jony = {
+      nombre: 'Jonathan',
+      apellido: 'Cardozo',
+      edad: 24
+    }
+    //Desglosando el objeto y por ende convirtiendolo en otro objeto que no afectara al original
+    
+    const compleanosInmutable = persona => ({
+      ...persona,
+      edad: persona.edad +1
+    })
+
+    const coche = {
+      marca: 'seat',
+      modelo: 'leon',
+      puertas: 5
+    }
+
+    const motor = {
+      cilindros: 4,
+      caballos: 120
+    }
+
+    const propCoche = {...coche, ...motor}
+    const deportivo = {...coche, puertas: 3}
+
+    console.log(propCoche);
+    console.log(deportivo);
+    
+
+    /*
+      La contraposición de esto si queremos ver un lado no tan positivo de esta forma 
+      de hacer las cosas es el tener que declarar una nueva varaible cada que invocamos la función para referirnos en este caso a un << jony >> más viejo
+
+              const jony25 = compleanosInmutable(jony)
+              undefined
+              jony25
+              {nombre: "Jonathan", apellido: "Cardozo", edad: 25}
+              const jony26 = compleanosInmutable(jony)
+              undefined
+              jony26
+              {nombre: "Jonathan", apellido: "Cardozo", edad: 25}
+              const jony27 = compleanosInmutable(jony)
+              undefined
+    */
+
+    /*
+      De esta forma podemos ver que al llamar << cumpleaños >> varias veces 
+      resultariamos con una modificación del atributo edad del objeto jony, 
+      esto es un efecto de lado pues al llamar una función esta va modificanfo 
+      cosas por fuera de ella y es algo que hay que evitar:
+                  cumpleanos(jony)
+                  24
+                  cumpleanos(jony)
+                  25
+                  cumpleanos(jony)
+                  26
+      const cumpleanos = persona => persona.edad++
+    */
+  </script>
+</body>
+
+</html>
