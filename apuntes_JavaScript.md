@@ -2280,10 +2280,27 @@ function divisionEntera(dividendo, divisor) {
 }
 ‘dividendo - divisor’ en el primer parámetro de nuestra función recursiva invocada dentro de sí misma sería el ‘caso recursivo’ que se repetirá mientras la condición no se cumpla. Cuando la función se cumple, ‘caso base’ termina la recursividad, termina la operación y nos entrega el resultado de la división en valor entero.
 
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+#49 Memoización: ahorrando cómputo
+
+La memoización es una técnica de programación que nos permite ahorrar cómputo o procesamiento en JavaScript, al ir almacenando el resultado invariable de una función para que no sea necesario volver a ejecutar todas las instrucciones de nuevo, cuando se vuelva a llamar con los mismos parámetros. Es similar a usar memoria cache.
+
+Podemos colocar varios debbugers dentro de nuestro código
+Dentro del inspecionador de elementos veremos como se conporta el código dentro de ese par de debbugers, en la pestaña source al  llamar la otra consola podemos ver el valor que tienen ciertas partes de nuestro código cuando ejecuta derterminado proceso 
+
+Mediante esta pracica podemos cachear resultados de operaciones costosas y ahorranos bastante procesamiento
+
+enlaces::::::::::::::::::::::::::::::::::=============>
+La Memoización es una clave en la Programación Dinámica, les dejo una serie de retos de Dynamic Programming, en uno de esos problemas viene un problema similar al visto en ésta clase
+https://app.codesignal.com/interview-practice/topics/dynamic-programming-basic
+
+comentario::::::::::::::::::::::::::::::======================>
+Existen dos maneras para recargar una página en tu navegador:
+Normal: Con Ctrl + R o F5
+Completa: Ctrl + Shift + R o Shift + F5
+Este último hace que se descargue todo de nuevo, haciendo que lo que se tenía en cache se borré y se reemplacé por los nuevos archivos descargados.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -9,20 +9,24 @@
 <body>
   <script>
     /*
+
+    El proceso que llevaremos acabo en la función de aquí abajo se exoplica por medio
+    de este pequeño algoritmo que usaremos para representar la división de un número
+    y con ello saber la forma de hacer que esto queden con la menor cantidad de operaciones
+    y hacer que sea recursiva la operación.
       13 / 4
       
-      13 - 4 = 9    1
-      9 -  4 = 5    1
-      5 -  4 = 1    1
-      1 -  4 = 0    0
-
-
+      13 - 4 = 9    1   caso1
+      9 -  4 = 5    1   caso2
+      5 -  4 = 1    1   caso3
+      1 -  4 = 0    0   caso4
     */
     function divisionEntera(dividendo, divisor) {
-      if (dividendo < divisor) {
+      if (dividendo < divisor) { //caso4
         return 0
       }
-      return 1 + divisionEntera(dividendo - divisor, divisor)
+      //si no es así hará ↓↓
+      return 1 + divisionEntera(dividendo - divisor, divisor) //casos1,2,3
     }
   </script>
 </body>

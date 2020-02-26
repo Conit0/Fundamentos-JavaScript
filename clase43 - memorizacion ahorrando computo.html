@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Video #49 | Memoriazación ahorrando cómputo</title>
+</head>
+
+<body>
+  <script>
+    /*
+    Encontramos que al sacar el factorial de
+      !6 = 6 * 5 * 4 * 3 * 2 * 1 = 720 
+      !12 = 12 * 11 * 10 * 8 * 7 * 6 * 5 * 4 * 3 * 2 * 1
+      De esta forma vemos que ya no tenemos que realizar toda esa cuenta de allí arriba 
+      y podemos usar algo de lo que ya se tiene en este caso el factorial de seis para completar lo que hace falta para el factorial de doce
+      !12 = 12 * 11 * 10 * 8 * 7 * !6 
+      (para casos sencillos en casos más grandes es más complejo)
+    */
+
+    function factorial(n) {
+      //Los guardaremos dentro de una cache interna los resultados de los valores calculados
+      //Primero preguntaremos si hay cache, cada función puede tener atributos internos
+      //Esto se ejecutara la primera vez que llamemos a una función 
+      debugger // Para entender mejor como trabaja la cache
+      if (!this.cache) //Pregutamos si esta definida
+        //Si no esta definida creemos un objeto nuevo vacio
+        this.cache = { }
+      
+      //Preguntamos si << this.cache >> existe o ya fue calculado entonces si existe << return >> y listo
+      if (this.cache[n]) {
+        return this.cache[n]
+      }
+      if (n === 1) {
+        return 1 //caso base para evitar caer en un bucle 
+      }
+      //Antes solo << return >> ahora guradarenis el cache
+      this.cache[n] = factorial(n - 1)
+      debugger //aquí baja el ultimo resultado que sera guardado en la cache
+      return this.cache[n]
+      //Lo que hara esto en cada caso
+      // 6 * 5 * 4 * factorial(3) ... hasta llegar al caso base donde terminara
+    }
+
+  </script>
+</body>
+
+</html>
