@@ -2365,5 +2365,62 @@ Pueden leer un poco más en Lemoncode
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+#51 Estructuras de datos inmutables
+
+Las estructuras de datos inmutables forman parte de los principios de la Programación Funcional y nos permiten evitar tener efectos colaterales en los datos. En otras palabras, que hayan modificaciones en las variables sin nuestro consentimiento, produciendo comportamientos inesperados en el programa.
+
+Evitaremos el efecto de lado (o helado) que genera una gran cantidad de bugs cuando se esta desarrollando por eso es bueno usar estructuras de datos inmutables
+
+Utilizar estructuras de datos inmutables es algo que Sasha recomienda mucho a la hora de desarrollar código con JavaScript, pues nos permite desacernos del efecto de lado y programar mucho más seguros de que al momento de llamar una función no estamos contaminando más'na no estamos tocando objetos de otros lados.
+Es bueno saber que no estas modificando información de otros lados 
+
+enlaces:::::::::::::::::::::::::::::================>
+https://developer.mozilla.org/es/docs/Web/JavaScript/Closures
+https://medium.com/@gloriafercu/es6-spread-operator-en-arrays-y-objetos-e46bfc84a0d0
+
+comentarios::::::::::::::::::::::::::::::::::==================>
+En ciencias de la computación se dice que una función o expresión tiene efecto colateral, efecto de lado o efecto secundario si esta, además de retornar un valor, modifica el estado de su entorno. Por ejemplo, una función puede modificar una variable global o estática, modificar uno de sus argumentos, escribir datos a la pantalla o a un archivo, o leer datos de otras funciones que tienen efecto secundario. Los efectos secundarios frecuentemente hacen que el comportamiento de un programa sea más difícil de predecir.
+
+La programación imperativa generalmente emplea funciones con efecto secundario para hacer que los programas funcionen, la programación funcional en cambio se caracteriza por minimizar estos efectos.
+
+En el diseño de CPU las instrucciones con efecto colateral son aquellas instrucciones que modifican valores internos del CPU de forma no explícita - de hecho, la instrucción ADD puede o no modificar otros registros (carry, zero, overflow, etc). Esto causa un problema cuando se diseña un CPU que usa “pipeline” de instrucciones y soporta instrucciones con efecto colateral. Se debe prestar especial cuidado para evitar este riesgo.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+#52 Cambiando de contexto al llamar a una función
+
+El contexto (o alcance) de una función es por lo general, window. Así que en ciertos casos, cuando intentamos referirnos a this en alguna parte del código, es posible que tengamos un comportamiento inesperado, porque el contexto quizás no sea el que esperamos.
+
+Existen al menos tres maneras de cambiar el contexto de una función.
+
+Usando el método .bind, enviamos la referencia a la función sin ejecutarla, pasando el contexto como parámetro.
+Usando el método .call, ejecutamos inmediatamente la función con el contexto indicado
+Usando el método .apply, es similar a .call pero los parámetros adicionales se pasan como un arreglo de valores
+
+¿quién es el objeto .this cuando se ejecuta un código? Errores comunes de undefined por que muchas veces << this >> no es quien dice ser pues puede que se valor allá sido alterado
+
+Uncaught SyntaxError: Missing initializer in const declaration Se genero este error en mi código a causa de haber declarado una << funtion >> con la palabra reservada << const >>
+
+se puede declarar el valor del parémetro de una función dentro
+function ejemplo (parametro = 'Nuevo valor')
+Programar de forma asyncrona requiere que tengamos muy presente el valor que va tomando el this dentro del código
+
+enlaces::::::::::::::::::::::=================>
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let#Temporal_dead_zone
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/statements/const#Description
+https://medium.com/javascript-scene/what-is-this-the-inner-workings-of-javascript-objects-d397bfa0708a
+https://filisantillan.com/this-en-diferentes-situaciones-y-su-comportamiento/
+
+comentarios:::::::::::::::::::::::::::::::::=====================>
+Pregunto: si la función saludar pertenece al objeto window, porque el objeto o variable sacha no pertenece también al objeto window, entonces a que objeto pertenece la variable sacha; porque si copiamos en la consola window.sacha o document.sacha, muestra que sacha no pertenece ni a window ni a document. Gracias
+----------------------------------------------------------------------
+Es correcta tu conclusión en efecto cuando definies variables y constantes globales usando let y const ellas NO pertenecen al objeto window (y por tanto no pueden ser accesadas a través de él) sino que en su lugar se crean en un espacio distinto denominado Temporal dead zone debido principalmente a la naturaleza misma de este tipo de definiciones.(Ya sabes, const define constantes y let variables, pero ambas de contexto limitado al lugar donde se definen).
+
+comentarios::::::::::::::::::::::::::::=================>
+Está muy bueno el curso, pero yo que vengo de casi nada de conocimientos de programación, me cuesta entender aún varias de estas lógicas. Me recomiendan libros para estudiar, para acompañar estas clases prácticas?
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

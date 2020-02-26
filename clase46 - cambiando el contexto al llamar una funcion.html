@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Video #52 | Cambiando de contexto al llamar a una función</title>
+</head>
+
+<body>
+  <script>
+    const jony = {
+      nombre: 'Jonathan',
+      apellido: 'Cardozo'
+    }
+    const Liz = {
+      nombre: 'Lised',
+      apellido: 'Pulido'
+    }
+    function saludar (saludo = 'Hola') {
+      console.log(`${saludo}, mi nombre es ${this.nombre}`)
+    }
+    //<< .bind >> nos devuelve la referencia a una función
+    //<< bind >> no ejecuta la función simplemente nos retorna una nueva función con ese contexto cambiado.
+    // const saludarAJony = saludar.bind(jony)
+    // const saludarALiz = saludar.bind(Liz)
+
+    setTimeout(saludar.bind(jony, 'Hola amor'), 1000) 
+
+    // saludar.bind(jony) esta línea no ejecuta la función
+    
+    // saludar.call(jony, ['primer valor', 'segundo valor...']) esto para el caso que fuera un array lo que se piensa modificar
+    saludar.call(jony, 'Hola che')
+    saludar.apply(jony)
+
+  </script>
+</body>
+
+</html>
