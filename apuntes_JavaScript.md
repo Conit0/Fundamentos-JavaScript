@@ -2305,6 +2305,64 @@ Este último hace que se descargue todo de nuevo, haciendo que lo que se tenía en
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+#50 Entiende los closures de JavaScript
+
+Un closure, básicamente, es una función que recuerda el estado de las variables al momento de ser invocada, y conserva este estado a través de reiteradas ejecuciones. Un aspecto fundamental de los closures es que son funciones que retornan otras funciones.
+
+Entenderlos hará que domines el  lenguaje de una manera completamente diferente 
+
+enlaces::::::::::::::::::::::::==============>
+https://developer.mozilla.org/es/docs/Web/JavaScript/Introducci%C3%B3n_a_JavaScript_orientado_a_objetos
+https://www.freecodecamp.org/news/javascript-modules-a-beginner-s-guide-783f7d7a5fcc/
+https://medium.com/@sergiodxa/definiendo-conceptos-closure-y-scope-en-javascript-9081f1e113e6
+https://eloquentjavascript.net/           Eloquent JavaScript Tercera Edición
+https://www.google.com/search?q=javascript+patron+modulo
+Recomiendo este link :::::::::::::::::::: https://lemoncode.net/lemoncode-blog/2017/9/5/introduccion-programacion-funcional-javascript#curry=
+https://gist.github.com/Foxandxss/ec12a9b8cc0cfe8fa2ca
+http://jsfiddle.net/xAFs9/3/
+https://blog.bitsrc.io/a-beginners-guide-to-closures-in-javascript-97d372284dda
+
+comentarios:::::::::::::::::::::::::::::=====================>
+Funcionalmente entiendo lo que hacen y en lo que constan (creo), pero no logro entender del todo la utilidad de los Closures, ¿alguien quizás pueda explicarme?
+---------------------------------------------------------------------------------------------
+Cuando haces sistemas grandes, basados en un modelo MVC por ejemplo, o una single page app, tu lo que tienes es un solo archivo index, al cual se le va cargando información en la medida que lo necesites; entonces, por ejemplo, tu index tiene una funcion grande
+
+function cargarIndex(datos){
+	function mostrarTitulo(datos){
+		return datos.titulo
+	}
+}
+Entonces los datos se los puedo dar desde el backend, como un arreglo grande, o como un objeto, y la pagina va imprimiendo lo que necesita acorde con los datos que le de.
+Al principio parece mas engorroso, pero imaginate el alcance, con un mismo esqueleto, yo le puedo pasar el titulo que yo quiera, el contenido que yo quiera, y la funciones que yo quiera… y se va a imprimir automaticametne como si fuieran paginas diferentes; es decir, puedo hacer el aplicativo que yo quiera, entonces, estamos creando las bases de React y Angular :3
+
+comentarios::::::::::::::::::::::::::================>
+Este es el principio de lo que se conoce como módulos en JS y que vamos a utilizar en frameworks MVC como Angular mas adelante. Mas información si quieren saber acerca de módulos :::::: https://www.freecodecamp.org/news/javascript-modules-a-beginner-s-guide-783f7d7a5fcc/
+--------------------------------------------------------------
+Si asi es. Y no solamente en modelos MVC. De hecho los encontrarás bastante útiles para encapsular funciones especificas que contengan sus propias dependencias.
+Igual si eres organizado podras hacer closures transversales y fáciles de mantener.
+´
+comentarios::::::::::::::::::::::::::================>
+Lean la edición Scope & Closures del libro You Dont Know JS de Kyle Simpson si quieren reforzar esto y van a entrar en lo mas profundo de Javascript
+--------------------------------------------------------------
+Siempre es importante complementar con un buen libro, yo empece a leer Eloquent JavaScript Tercera Edición. https://eloquentjavascript.net/
+
+comentario::::::::::::::::::::::::::================>
+Los closure permiten emular métodos privados en javascript.
+Recomiendo leer sobre el patrón modulo, que nos permite definir algunas funciones públicas que pueden acceder a variables y funciones privadas utilizando closures
+
+Haciendo uso de otras herramientas vistas en el curso, la función podría quedar de la siguiente forma:
+
+const saludar = pais => nombre => console.log(`Hola ${nombre} de ${pais}`);
+const saludarMexicanos = saludar("México"); // nombre => console.log(...)
+saludarMexicanos("Luis");  // Hola Luis de México
+
+O poniendole más juguetes, podemos usar funciones currificadas:
+
+saludar("Argentina")("Sacha");  // Hola Sacha de Argentina
+saludar("México")("Ángel");
+// Hola Ángel de Ángel
+Pueden leer un poco más en Lemoncode
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
