@@ -2424,3 +2424,39 @@ Está muy bueno el curso, pero yo que vengo de casi nada de conocimientos de prog
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+#53 ¿Cuándo hace falta poner el punto y coma al final de la línea?
+El punto y coma es opcional en JavaScript, excepto en algunos casos:
+
+Cuando usamos varias instrucciones en una mísma línea
+Al comenzar la próxima línea con un array
+Al comenzar la próxima línea con un template string
+
+Despues de las llaves que indican un bloque de código es innecesario poner punto y coma 
+
+cuando se coloca un array como valor inicial en una línea de código es mejor anteponerlo a un punto y coma
+
+Las clases en javascript es una manera linda de escroibir prototipos
+
+enlaces:::::::::::::::::::::::::::::::================>
+http://cassandrawilcox.me/when-to-use-semicolons-in-javascript/
+https://es.stackoverflow.com/questions/146487/puntos-y-comas-en-js-recomendado-a-nivel-de-rendimiento
+https://github.com/gsuscastellanosSC/FundamentosavaScript
+
+.forEach
+https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Array/forEach
+.forIn
+https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Sentencias/for...in
+Ambas son muy importantes y muy utilizadas.
+
+
+comentarios:::::::::::::::::::::::::::::::::::::::::::=======================>
+El tema de usar o no el punto y coma es muy polemico. Va en cada uno.
+Pero por otro lado alguien podría explicarme para qué quisiera poner un template string despues de una función? Es claro que si no pongo el punto y coma(?? al terminar la función o al iniciar el template string va a saltar un error, pero no le encuentro motivo alguno ni funcionalidad.
+------------------------------------------------------------------------
+Si no los pones, al final el motor de JS los pone por ti. Eso es llamado ASI (Automatic Semicolon Insertion). Solo es considerado una buena práctica y en caso de que no lo hicieras, en algunos casos, muy raros, fallará tu código si no lo usas.
+Puedes darle una mirada a los siguientes estándares de JS que son mas comunes hoy por hoy:
+StandarJs		https://standardjs.com/
+Airbnb		https://github.com/airbnb/javascript
+
+

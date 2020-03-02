@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Video #53 | ¿Cuándo hace falta poner el punto y coma al final de la línea?</title>
+</head>
+
+<body>
+  <script>
+    //Evitar este << ; >> en este caso ↓↓
+    //Uncaught TypeError: Cannot read property '3' of undefined
+    //Lo solucionamos poniendo un << ; >> al final de la
+    //primera línea o al principio de la segunda es decir del array
+    console.log('Hola mi nombre es Jonathan');
+    ;[1, 2, 3].forEach(n => console.log(n * 2));
+
+
+    //No colocar este << ; >> genera este error ↓↓↓
+    //Uncaught TypeError: console.log(...) is not a function
+    //Lo solucionamos poniendo un << ; >> al final de la
+    //primera línea o al principio de la segunda línea (no hacen falta los dos << ; >>)
+    const nombre = 'Liz'
+    console.log('Hola mi nombre es Jonathan');
+    ;`${nombre} nombre es una ternurita`
+
+    //Hacer enter entre el << return >> y lo que retornara proboca ↓↓↓
+    //Uncaught SyntaxError: Unexpected token ':'
+    //Evitar hacer ese enter por que luego del enter hay un ; por defecto
+    function calcularDoble(numero) {
+      return { 
+        original: numero, 
+        doble: numero * 2 }
+    }
+
+    console.log(calcularDoble(20));
+    
+    
+  </script>
+</body>
+
+</html>
