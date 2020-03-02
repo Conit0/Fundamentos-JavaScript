@@ -2460,3 +2460,192 @@ StandarJs		https://standardjs.com/
 Airbnb		https://github.com/airbnb/javascript
 
 
+___________________________________________
+|############Evaluación :)############|
+--------------------------------------------------------------------------------------
+
+#1.  Si sabemos precisamente cuántas veces queremos ejecutar cierto código, nos conviene usar un ciclo:
+	Los ciclos FOR se ejecutan una cantidad determinada de veces.
+
+#2. La función reduce de los arrays sirve para reducir un array a un único valor, teniendo en cuenta todos los elementos del array:
+	El método reduce() ejecuta una función reductora sobre cada elemento de un array, 		devolviendo como resultado un único valor.
+
+#3. Si tenemos un array de equipos de fútbol de un torneo y cada equipo tiene una propiedad que indica cuántos goles hizo en lo que va del torneo. Si queremos saber la cantidad de goles totales que hicieron en el torneo, ¿qué función de arrays podríamos utilizar?
+	El objeto Map almacena pares clave/valor. Cualquier valor (tanto objetos como valores 		primitivos) pueden ser usados como clave o valor.
+	
+	#######MAL 
+
+#4. Si tenemos un array de números y queremos un nuevo array con el triple de cada número, ¿qué función de los arrays deberíamos utilizar?
+	reduce, map, filter => nINGUNA DE LAS ANTERIORES
+
+	#%$%#%$#%# MAL Posiblemente era .map pues se usa para hacer un mapeo de los 	elementos antes de devolver por medio de una operador matemático Math un triple.
+
+#5. En JavaScript para declarar una variable llamada edad y asignarle el valor 27 escribo:
+	var edad = 27
+
+#6. Si tengo el siguiente código:
+ const luke = await obtenerPersonaje('https://swapi.co/api/people/1')
+      console.log(luke.name)
+      console.log('Sacha')
+En consola sale primero el nombre de Luke:
+	VERDADERO
+
+#7. Si tenemos estas dos llamadas a funciones para obtener datos:
+	
+  $.get('https://swapi.co/api/people/1', function (luke) {
+        console.log(luke.name)
+      })
+
+      $.get('https://swapi.co/api/people/4', function (vader) {
+        console.log(vader.name)
+      })
+	NO SABEMOS CUAL APARECERA PRIMERO
+
+#8. Cuando declaro una variable en JavaScript tengo que especificar su tipo:
+	FALSO
+
+#9. Cuando declaro una variable en JavaScript tengo que especificar su tipo:
+	WHILE
+
+#10. La siguiente sentencia es true:
+“1” === 1
+	FALSO
+
+#11. Para acceder a la primera letra de un string debemos ejecutar:
+	String.prototype.charAt() - JavaScript | MDNdeveloper.mozilla.org › ... › Objetos globales › 
+	23 mar. 2019 - El método charAt() de String devuelve en un nuevo String el carácter UTF-16 	de una ... El índice del primer caracter es 0, y el índice del último caracter en una ... Feature, 	Android, Chrome for Android, Firefox Mobile (Gecko) ...
+
+#12. Tengo el siguiente HTML:
+<form>
+	<input type="text" name="username">
+	<input type="password" name="password">
+	<button type="submit" id=”btnSubmit”>Login</button>
+</form>
+Si quiero obtener el botón con id “btnSubmit” puedo hacer:
+
+	DOCUMENT.GETELMENTBYID('btnSubmit')
+
+#13. El primer código es equivalente al segundo:
+ // 1
+      const nombre = persona.nombre
+      const apellido = persona.apellido
+      const edad = persona.edad
+ // 2
+      const { nombre, apellido, edad } = persona
+	VERDADERO
+
+#14. Al correr este programa en el navegador ¿Qué número se imprime primero en la pantalla?
+
+  setTimeout(() => console.log(1), 1000)
+     setTimeout(() => console.log(2), 300)
+     setTimeout(() => console.log(3), 0)
+     console.log(4)
+
+	4
+#15. Si tenemos un array de nombres y queremos excluir aquellos que empiecen con ‘S’, ¿qué función de los arrays deberíamos utilizar?
+	El método filter() crea un nuevo array con todos los elementos que cumplan la condición 		implementada por la función dada.
+
+#16. Si estamos usando las clases de JavaScript y queremos que una clase “herede” de otra, utilizamos la palabra clave:
+	EXTENDS3
+
+#17. Las promesas son una forma de ejecutar código asíncrono evitando que se produzca un callback hell en nuestro código:
+	VERDADERO
+
+#18. Las “clases” en JavaScript no son más que una forma linda de escribir prototipos:
+	VERDADERO
+
+#19. Si queremos ejecutar distintos códigos de acuerdo a múltiples valores (más de 3) que puede tener una variable, nos conviene usar
+	SWITCH
+
+#20. Para incrementar una variable i en 1 podemos hacer:
+	cUIALQUIERA DE LAS ANTERIORES
+
+#21 Para pasar un string a mayúsculas debemos ejecutar:	
+	Si
+
+#22 Si comparamos los siguientes objetos de esta manera, da true:
+
+const persona = { nombre: 'Sacha' }
+persona === { nombre: 'Sacha' } }
+	Falso
+	Diferentes espacios en memoria
+
+#23. Si tengo el siguiente código de JavaScript
+
+ var nombre = 'Sacha'
+    var apellido = 'Lifszyc'
+
+    function pasarAMayusculas(nombre) {
+      return nombre.toUpperCase()
+    }
+
+    pasarAMayusculas(nombre + ' ' + apellido)
+    pasarAMayusculas('Lucía')
+    pasarAMayusculas('')
+
+	SIN ERRORES
+
+#24. Si tengo el siguiente código:
+
+let nombre = 'Pepe'
+
+    const persona = {
+      nombre: 'Sacha',
+      apellido: 'Lifszyc',
+      edad: 28,
+      saludar: function () {
+        console.log(`Hola, me llamo ${this.nombre}`)
+      },
+      decirAdios: function () {
+        console.log('Chau, me voy!')
+      }
+    }
+
+    const otraPersona = {
+      ...persona,
+      nombre: 'Eric',
+      edad: 24
+    }
+
+    nombre = 'Lucas'
+    otraPersona.saludar()
+Se imprimirá por consola:
+
+Hola, me llamo Eric 
+// Aparece esto por que no se puede cambiar el valor de una constante ademas el objeto this ya esta apuntando al nombre dentro de la función que es invocada
+
+#25. Si tengo el siguiente código:
+
+$.get('https://swapi.co/api/people/1', function (err, luke) {
+        console.log(luke.name)
+      })
+
+      console.log('Sacha')
+En consola sale primero el nombre de Sacha:
+
+Verdadero
+
+
+#26. Si tengo el siguiente código:
+
+obtenerPersonaje('https://swapi.co/api/people/1')
+        .then(luke => console.log(luke.name))
+
+      console.log('Sacha')
+En consola sale primero el nombre de Luke Skywalker antes que el de Sacha:
+
+#27. La siguiente sentencia es true:
+“1” == 1
+verdadero
+
+#28. Estos dos códigos hacen lo mismo:
+total = total + 10
+total += 10
+
+	verdadero
+total = 10
+		total = 10
+
+total += 10		total = total + 10
+
+20		20
